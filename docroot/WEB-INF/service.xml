@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder
+	package-path="edu.jhu.cvrg.waveform.main.dbpersistence">
+	<author>bbenite1</author>
+	<namespace>Database</namespace>
+    <entity name="DocumentRecord" remote-service="true" local-service="true">
+        <column name="RecordID" type="String" primary="true"></column>
+        <column name="RecordName" type="String"></column>
+        <column name="UserID" type="String"></column>
+        <column name="SubjectID" type="String"></column>
+        <column name="OriginalFormat" type="String"></column>
+        <column name="SamplingRate" type="double"></column>
+        <column name="FileTreePath" type="String"></column>
+        <column name="LeadCount" type="int"></column>
+        <column name="NumberOfPoints" type="int"></column>
+        <column name="DateOfUpload" type="Date"></column>
+        <column name="Age" type="int"></column>
+        <column name="Gender" type="String"></column>
+        <column name="DateOfRecording" type="Date"></column>
+        <column name="AduGain" type="double"></column>
+        <column name="FileListID" type="String"></column>
+        <finder return-type="Collection" name="OriginalFormat">
+            <finder-column name="OriginalFormat"></finder-column>
+        </finder>
+        <finder name="GetRecordName" return-type="String">
+            <finder-column name="RecordID"></finder-column>
+        </finder>
+        <finder name="SubjectID" return-type="Collection">
+            <finder-column name="SubjectID"></finder-column>
+        </finder>
+        <finder name="UserID" return-type="Collection">
+            <finder-column name="UserID"></finder-column>
+        </finder>
+        <finder name="RecordProperties" return-type="DocumentRecord" unique="false">
+            <finder-column name="RecordName"></finder-column>
+            <finder-column name="UserID"></finder-column>
+            <finder-column name="SubjectID"></finder-column>
+            <finder-column name="FileTreePath"></finder-column>
+        </finder>
+    </entity>
+    <entity name="FilesInfo" remote-service="true" local-service="true">
+        <column name="DocumentID" type="String" primary="true"></column>
+        <column name="FileListID" type="String"></column>
+        <finder name="FileListID" return-type="Collection">
+            <finder-column name="FileListID"></finder-column>
+        </finder>
+    </entity>
+    <entity name="AnnotationInfo" remote-service="true" local-service="true">
+        <column name="AnnotationID" type="String" primary="true"></column>
+        <column name="CreatedBy" type="String"></column>
+        <column name="AnnotationType" type="String"></column>
+        <column name="Name" type="String"></column>
+        <column name="BioportalReference" type="String"></column>
+        <column name="Lead" type="String"></column>
+        <column name="StartingCoordinateID" type="String"></column>
+        <column name="EndingCoordinateID" type="String"></column>
+        <column name="UnitOfMeasurement" type="String"></column>
+        <column name="Description" type="String"></column>
+        <column name="Value" type="String"></column>
+        <column name="RecordID" type="String"></column>
+        <column name="Timestamp" type="Date"></column>
+        <finder name="RecordID" return-type="Collection">
+            <finder-column name="RecordID"></finder-column>
+        </finder>
+        <finder name="AnnotationProperties" return-type="AnnotationInfo">
+            <finder-column name="RecordID"></finder-column>
+            <finder-column name="Name"></finder-column>
+            <finder-column name="AnnotationType"></finder-column>
+            <finder-column name="Lead"></finder-column>
+        </finder>
+        <finder name="AnnotationType" return-type="Collection">
+            <finder-column name="AnnotationType"></finder-column>
+            <finder-column name="RecordID"></finder-column>
+        </finder>
+    </entity>
+    <entity name="UploadStatus" remote-service="true" local-service="true">
+        <column name="StatusLogNumber" type="String" primary="true"></column>
+        <column name="FileTransfer" type="String"></column>
+        <column name="FileConversion" type="String"></column>
+        <column name="RecordCreation" type="String"></column>
+        <column name="AnnotationCreation" type="String"></column>
+        <column name="RecordID" type="String"></column>
+    </entity>
+    <entity name="Coordinate" remote-service="true" local-service="true">
+        <column name="CoordinateID" type="String" primary="true"></column>
+        <column name="xCoordinate" type="double"></column>
+        <column name="yCoordinate" type="double"></column>
+    </entity>
+</service-builder>

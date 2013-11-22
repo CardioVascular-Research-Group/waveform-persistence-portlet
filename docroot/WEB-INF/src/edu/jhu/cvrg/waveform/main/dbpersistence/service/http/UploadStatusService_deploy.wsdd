@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Database_UploadStatusService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.UploadStatusServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="UploadStatusServiceSoap" />
+		<parameter name="wsdlServiceElement" value="UploadStatusServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_UploadStatusService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+</deployment>

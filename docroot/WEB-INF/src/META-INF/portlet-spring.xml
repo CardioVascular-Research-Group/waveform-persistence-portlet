@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.AnnotationInfoLocalService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.AnnotationInfoLocalServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.AnnotationInfoService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.AnnotationInfoServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.AnnotationInfoPersistence" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.AnnotationInfoPersistenceImpl" parent="basePersistence" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.CoordinateLocalService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.CoordinateLocalServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.CoordinateService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.CoordinateServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.CoordinatePersistence" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.CoordinatePersistenceImpl" parent="basePersistence" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.DocumentRecordLocalService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.DocumentRecordLocalServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.DocumentRecordService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.DocumentRecordServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.DocumentRecordPersistence" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.DocumentRecordPersistenceImpl" parent="basePersistence" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.FilesInfoLocalService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.FilesInfoLocalServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.FilesInfoService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.FilesInfoServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.FilesInfoPersistence" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.FilesInfoPersistenceImpl" parent="basePersistence" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.UploadStatusLocalService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.UploadStatusLocalServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.UploadStatusService" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.impl.UploadStatusServiceImpl" />
+	<bean id="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.UploadStatusPersistence" class="edu.jhu.cvrg.waveform.main.dbpersistence.service.persistence.UploadStatusPersistenceImpl" parent="basePersistence" />
+</beans>

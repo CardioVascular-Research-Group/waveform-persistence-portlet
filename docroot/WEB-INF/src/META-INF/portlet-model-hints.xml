@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo">
+		<field name="AnnotationID" type="String" />
+		<field name="CreatedBy" type="String" />
+		<field name="AnnotationType" type="String" />
+		<field name="Name" type="String" />
+		<field name="BioportalReference" type="String" />
+		<field name="Lead" type="String" />
+		<field name="StartingCoordinateID" type="String" />
+		<field name="EndingCoordinateID" type="String" />
+		<field name="UnitOfMeasurement" type="String" />
+		<field name="Description" type="String" />
+		<field name="Value" type="String" />
+		<field name="RecordID" type="String" />
+		<field name="Timestamp" type="Date" />
+	</model>
+	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate">
+		<field name="CoordinateID" type="String" />
+		<field name="xCoordinate" type="double" />
+		<field name="yCoordinate" type="double" />
+	</model>
+	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord">
+		<field name="RecordID" type="String" />
+		<field name="RecordName" type="String" />
+		<field name="UserID" type="String" />
+		<field name="SubjectID" type="String" />
+		<field name="OriginalFormat" type="String" />
+		<field name="SamplingRate" type="double" />
+		<field name="FileTreePath" type="String" />
+		<field name="LeadCount" type="int" />
+		<field name="NumberOfPoints" type="int" />
+		<field name="DateOfUpload" type="Date" />
+		<field name="Age" type="int" />
+		<field name="Gender" type="String" />
+		<field name="DateOfRecording" type="Date" />
+		<field name="AduGain" type="double" />
+		<field name="FileListID" type="String" />
+	</model>
+	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo">
+		<field name="DocumentID" type="String" />
+		<field name="FileListID" type="String" />
+	</model>
+	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus">
+		<field name="StatusLogNumber" type="String" />
+		<field name="FileTransfer" type="String" />
+		<field name="FileConversion" type="String" />
+		<field name="RecordCreation" type="String" />
+		<field name="AnnotationCreation" type="String" />
+		<field name="RecordID" type="String" />
+	</model>
+</model-hints>

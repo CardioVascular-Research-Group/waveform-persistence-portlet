@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.AnnotationInfoModelImpl">
+		<attributes>
+			<id name="AnnotationID" />
+			<basic name="CreatedBy" />
+			<basic name="AnnotationType" />
+			<basic name="Name" />
+			<basic name="BioportalReference" />
+			<basic name="Lead" />
+			<basic name="StartingCoordinateID" />
+			<basic name="EndingCoordinateID" />
+			<basic name="UnitOfMeasurement" />
+			<basic name="Description" />
+			<basic name="Value" />
+			<basic name="RecordID" />
+			<basic name="Timestamp">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.CoordinateModelImpl">
+		<attributes>
+			<id name="CoordinateID" />
+			<basic name="xCoordinate" />
+			<basic name="yCoordinate" />
+			<transient name="XCoordinate" />
+			<transient name="YCoordinate" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.DocumentRecordModelImpl">
+		<attributes>
+			<id name="RecordID" />
+			<basic name="RecordName" />
+			<basic name="UserID" />
+			<basic name="SubjectID" />
+			<basic name="OriginalFormat" />
+			<basic name="SamplingRate" />
+			<basic name="FileTreePath" />
+			<basic name="LeadCount" />
+			<basic name="NumberOfPoints" />
+			<basic name="DateOfUpload">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="Age" />
+			<basic name="Gender" />
+			<basic name="DateOfRecording">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="AduGain" />
+			<basic name="FileListID" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoModelImpl">
+		<attributes>
+			<id name="DocumentID" />
+			<basic name="FileListID" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.UploadStatusModelImpl">
+		<attributes>
+			<id name="StatusLogNumber" />
+			<basic name="FileTransfer" />
+			<basic name="FileConversion" />
+			<basic name="RecordCreation" />
+			<basic name="AnnotationCreation" />
+			<basic name="RecordID" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.AnnotationInfoImpl" name="AnnotationInfo">
+		<table name="Database_AnnotationInfo" />
+		<attributes />
+	</entity>
+	<entity class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.CoordinateImpl" name="Coordinate">
+		<table name="Database_Coordinate" />
+		<attributes />
+	</entity>
+	<entity class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.DocumentRecordImpl" name="DocumentRecord">
+		<table name="Database_DocumentRecord" />
+		<attributes />
+	</entity>
+	<entity class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoImpl" name="FilesInfo">
+		<table name="Database_FilesInfo" />
+		<attributes />
+	</entity>
+	<entity class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.UploadStatusImpl" name="UploadStatus">
+		<table name="Database_UploadStatus" />
+		<attributes />
+	</entity>
+</entity-mappings>

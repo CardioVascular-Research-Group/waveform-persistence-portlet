@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="axis.sendMinimizedElements" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="Plugin_Database_AnnotationInfoService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:ArrayOf_tns2_AnnotationInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[]" innerType="cmp-ns:AnnotationInfoSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:AnnotationInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addAnnotationInfo" qname="operNS:addAnnotationInfo" returnQName="addAnnotationInfoReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="createdBy" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="bioportalRef" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startCoord" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endCoord" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="unitMeasurement" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="value" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="timestamp" type="tns:dateTime"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteAnnotationInfo" qname="operNS:deleteAnnotationInfo" returnQName="deleteAnnotationInfoReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotation" qname="operNS:getAnnotation" returnQName="getAnnotationReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addAnnotationInfo deleteAnnotationInfo getAnnotation getAnnotationsByRecord getAnnotationsByType" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.AnnotationInfoServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu,urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AnnotationInfoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AnnotationInfoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_AnnotationInfoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+	<service name="Plugin_Database_CoordinateService" provider="java:RPC" style="rpc" use="encoded">
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:CoordinateSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addCoordinate" qname="operNS:addCoordinate" returnQName="addCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="xCoord" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="yCoord" type="tns:double"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteCoordinate" qname="operNS:deleteCoordinate" returnQName="deleteCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getCoordinate" qname="operNS:getCoordinate" returnQName="getCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="updateCoordinate" qname="operNS:updateCoordinate" returnQName="updateCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="xCoord" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="yCoord" type="tns:double"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addCoordinate deleteCoordinate getCoordinate updateCoordinate" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.CoordinateServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="CoordinateServiceSoap" />
+		<parameter name="wsdlServiceElement" value="CoordinateServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_CoordinateService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+	<service name="Plugin_Database_DocumentRecordService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:ArrayOf_tns2_DocumentRecordSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap[]" innerType="cmp-ns:DocumentRecordSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:DocumentRecordSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addDocumentRecord" qname="operNS:addDocumentRecord" returnQName="addDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="screenName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="samplingRate" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="leadCount" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="numPoints" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dateUploaded" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="age" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="gender" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dateRecorded" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="aduGain" type="tns:double"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteDocumentRecord" qname="operNS:deleteDocumentRecord" returnQName="deleteDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteDocumentRecord" qname="operNS:deleteDocumentRecord" returnQName="deleteDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByFileFormat" qname="operNS:getByFileFormat" returnQName="getByFileFormatReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByFileFormat" qname="operNS:getByFileFormat" returnQName="getByFileFormatReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByScreenName" qname="operNS:getByScreenName" returnQName="getByScreenNameReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByScreenName" qname="operNS:getByScreenName" returnQName="getByScreenNameReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getBySubjectID" qname="operNS:getBySubjectID" returnQName="getBySubjectIDReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getBySubjectID" qname="operNS:getBySubjectID" returnQName="getBySubjectIDReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getRecord" qname="operNS:getRecord" returnQName="getRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="updateDocumentRecord" qname="operNS:updateDocumentRecord" returnQName="updateDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="screenName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="samplingRate" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="leadCount" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="numPoints" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dateUploaded" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="age" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="gender" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="dateRecorded" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="aduGain" type="tns:double"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addDocumentRecord deleteDocumentRecord getByFileFormat getByScreenName getBySubjectID getRecord updateDocumentRecord" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.DocumentRecordServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu,urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="DocumentRecordServiceSoap" />
+		<parameter name="wsdlServiceElement" value="DocumentRecordServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_DocumentRecordService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+	<service name="Plugin_Database_FilesInfoService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:ArrayOf_tns2_FilesInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap[]" innerType="cmp-ns:FilesInfoSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:FilesInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://model.portal.liferay.com" qname="ns:PortletPreferencesIds" type="java:com.liferay.portal.model.PortletPreferencesIds" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://service.portal.liferay.com" qname="ns:ServiceContext" type="java:com.liferay.portal.service.ServiceContext" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://xml.apache.org/xml-soap" qname="ns:mapItem" type="java:org.apache.xml.xml_soap.MapItem" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addFilesInfo" qname="operNS:addFilesInfo" returnQName="addFilesInfoReturn" returnType="rtns:FilesInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="documentID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileListID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteFilesInfo" qname="operNS:deleteFilesInfo" returnQName="deleteFilesInfoReturn" returnType="rtns:FilesInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="docID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getFile" qname="operNS:getFile" returnQName="getFileReturn" returnType="rtns:FilesInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="documentID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getFiles" qname="operNS:getFiles" returnQName="getFilesReturn" returnType="rtns:ArrayOf_tns2_FilesInfoSoap" returnItemType="tns2:FilesInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getFiles" qname="operNS:getFiles" returnQName="getFilesReturn" returnType="rtns:ArrayOf_tns2_FilesInfoSoap" returnItemType="tns2:FilesInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addFilesInfo deleteFilesInfo getFile getFiles" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.FilesInfoServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu,http://model.portal.liferay.com,http://service.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="FilesInfoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="FilesInfoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_FilesInfoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+	<service name="Plugin_Database_UploadStatusService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.UploadStatusServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="UploadStatusServiceSoap" />
+		<parameter name="wsdlServiceElement" value="UploadStatusServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_UploadStatusService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+</deployment>

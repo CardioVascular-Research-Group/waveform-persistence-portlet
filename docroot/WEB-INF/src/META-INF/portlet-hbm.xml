@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo" />
+	<import class="edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate" />
+	<import class="edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord" />
+	<import class="edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo" />
+	<import class="edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus" />
+	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.AnnotationInfoImpl" table="Database_AnnotationInfo">
+		<cache usage="read-write" />
+		<id name="AnnotationID" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="CreatedBy" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="AnnotationType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="BioportalReference" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Lead" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="StartingCoordinateID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="EndingCoordinateID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="UnitOfMeasurement" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Value" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="RecordID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Timestamp" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.CoordinateImpl" table="Database_Coordinate">
+		<cache usage="read-write" />
+		<id name="CoordinateID" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="xCoordinate" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="yCoordinate" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+	</class>
+	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.DocumentRecordImpl" table="Database_DocumentRecord">
+		<cache usage="read-write" />
+		<id name="RecordID" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="RecordName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="UserID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="SubjectID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="OriginalFormat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="SamplingRate" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="FileTreePath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="LeadCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="NumberOfPoints" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="DateOfUpload" type="org.hibernate.type.TimestampType" />
+		<property name="Age" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="Gender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="DateOfRecording" type="org.hibernate.type.TimestampType" />
+		<property name="AduGain" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="FileListID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoImpl" table="Database_FilesInfo">
+		<cache usage="read-write" />
+		<id name="DocumentID" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="FileListID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.UploadStatusImpl" table="Database_UploadStatus">
+		<cache usage="read-write" />
+		<id name="StatusLogNumber" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="FileTransfer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="FileConversion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="RecordCreation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="AnnotationCreation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="RecordID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

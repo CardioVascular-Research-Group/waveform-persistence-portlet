@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Database_CoordinateService" provider="java:RPC" style="rpc" use="encoded">
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:CoordinateSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addCoordinate" qname="operNS:addCoordinate" returnQName="addCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="xCoord" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="yCoord" type="tns:double"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteCoordinate" qname="operNS:deleteCoordinate" returnQName="deleteCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getCoordinate" qname="operNS:getCoordinate" returnQName="getCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="updateCoordinate" qname="operNS:updateCoordinate" returnQName="updateCoordinateReturn" returnType="rtns:CoordinateSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="coordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="xCoord" type="tns:double"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="yCoord" type="tns:double"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addCoordinate deleteCoordinate getCoordinate updateCoordinate" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.CoordinateServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="CoordinateServiceSoap" />
+		<parameter name="wsdlServiceElement" value="CoordinateServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_CoordinateService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+</deployment>

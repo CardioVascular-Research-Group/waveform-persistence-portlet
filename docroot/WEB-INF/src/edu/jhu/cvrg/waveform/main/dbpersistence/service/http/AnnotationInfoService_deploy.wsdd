@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Database_AnnotationInfoService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:cmp-ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:ArrayOf_tns2_AnnotationInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[]" innerType="cmp-ns:AnnotationInfoSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" qname="ns:AnnotationInfoSoap" type="java:edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="addAnnotationInfo" qname="operNS:addAnnotationInfo" returnQName="addAnnotationInfoReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="createdBy" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="bioportalRef" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startCoord" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endCoord" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="unitMeasurement" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="value" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="timestamp" type="tns:dateTime"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteAnnotationInfo" qname="operNS:deleteAnnotationInfo" returnQName="deleteAnnotationInfoReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotation" qname="operNS:getAnnotation" returnQName="getAnnotationReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addAnnotationInfo deleteAnnotationInfo getAnnotation getAnnotationsByRecord getAnnotationsByType" />
+		<parameter name="className" value="edu.jhu.cvrg.waveform.main.dbpersistence.service.http.AnnotationInfoServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.dbpersistence.main.waveform.cvrg.jhu.edu,urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AnnotationInfoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AnnotationInfoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Database_AnnotationInfoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" />
+	</service>
+</deployment>
