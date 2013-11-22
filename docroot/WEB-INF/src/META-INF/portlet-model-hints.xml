@@ -36,11 +36,10 @@
 		<field name="Gender" type="String" />
 		<field name="DateOfRecording" type="Date" />
 		<field name="AduGain" type="double" />
-		<field name="FileListID" type="String" />
 	</model>
 	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo">
 		<field name="DocumentID" type="String" />
-		<field name="FileListID" type="String" />
+		<field name="RecordID" type="String" />
 	</model>
 	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus">
 		<field name="StatusLogNumber" type="String" />

@@ -573,7 +573,6 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 		documentRecordImpl.setGender(documentRecord.getGender());
 		documentRecordImpl.setDateOfRecording(documentRecord.getDateOfRecording());
 		documentRecordImpl.setAduGain(documentRecord.getAduGain());
-		documentRecordImpl.setFileListID(documentRecord.getFileListID());
 
 		return documentRecordImpl;
 	}

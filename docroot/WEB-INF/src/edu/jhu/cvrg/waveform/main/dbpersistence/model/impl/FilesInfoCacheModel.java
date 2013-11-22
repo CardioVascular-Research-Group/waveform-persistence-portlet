@@ -36,8 +36,8 @@ public class FilesInfoCacheModel implements CacheModel<FilesInfo>, Serializable 
 
 		sb.append("{DocumentID=");
 		sb.append(DocumentID);
-		sb.append(", FileListID=");
-		sb.append(FileListID);
+		sb.append(", RecordID=");
+		sb.append(RecordID);
 		sb.append("}");
 
 		return sb.toString();
@@ -53,11 +53,11 @@ public class FilesInfoCacheModel implements CacheModel<FilesInfo>, Serializable 
 			filesInfoImpl.setDocumentID(DocumentID);
 		}
 
-		if (FileListID == null) {
-			filesInfoImpl.setFileListID(StringPool.BLANK);
+		if (RecordID == null) {
+			filesInfoImpl.setRecordID(StringPool.BLANK);
 		}
 		else {
-			filesInfoImpl.setFileListID(FileListID);
+			filesInfoImpl.setRecordID(RecordID);
 		}
 
 		filesInfoImpl.resetOriginalValues();
@@ -66,5 +66,5 @@ public class FilesInfoCacheModel implements CacheModel<FilesInfo>, Serializable 
 	}
 
 	public String DocumentID;
-	public String FileListID;
+	public String RecordID;
 }

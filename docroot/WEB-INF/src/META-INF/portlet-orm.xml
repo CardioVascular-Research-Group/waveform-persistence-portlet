@@ -61,7 +61,6 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="AduGain" />
-			<basic name="FileListID" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -70,7 +69,7 @@
 	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoModelImpl">
 		<attributes>
 			<id name="DocumentID" />
-			<basic name="FileListID" />
+			<basic name="RecordID" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

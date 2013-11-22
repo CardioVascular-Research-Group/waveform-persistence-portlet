@@ -50,11 +50,9 @@ public class DocumentRecordLocalServiceImpl
 	 */
 	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String screenName, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
 		UUID recordID = UUID.randomUUID();
-		UUID fileListID = UUID.randomUUID();
 		
 		DocumentRecord docRecord = documentRecordPersistence.create(recordID.toString());
 		
-		docRecord.setFileListID(fileListID.toString());
 		docRecord.setUserID(screenName);
 		docRecord.setRecordName(recordName);
 		docRecord.setSubjectID(subjectID);
@@ -82,10 +80,9 @@ public class DocumentRecordLocalServiceImpl
 		// all instances of the respective entities at once instead - BB 11/14/2013 
 		
 		// Delete file records first
-		String filesID = docRecord.getFileListID();
 		String recordID = docRecord.getPrimaryKey();
 		
-		List<FilesInfo> fInfoList = filesInfoPersistence.findByFileListID(filesID);
+		List<FilesInfo> fInfoList = filesInfoPersistence.findByRecordID(recordID);
 		
 		for(FilesInfo filesInfo : fInfoList) {
 			filesInfoLocalService.deleteFilesInfo(filesInfo);

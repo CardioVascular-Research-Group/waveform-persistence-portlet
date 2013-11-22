@@ -60,7 +60,6 @@ public class DocumentRecordWrapper implements DocumentRecord,
 		attributes.put("Gender", getGender());
 		attributes.put("DateOfRecording", getDateOfRecording());
 		attributes.put("AduGain", getAduGain());
-		attributes.put("FileListID", getFileListID());
 
 		return attributes;
 	}
@@ -148,12 +147,6 @@ public class DocumentRecordWrapper implements DocumentRecord,
 
 		if (AduGain != null) {
 			setAduGain(AduGain);
-		}
-
-		String FileListID = (String)attributes.get("FileListID");
-
-		if (FileListID != null) {
-			setFileListID(FileListID);
 		}
 	}
 
@@ -425,24 +418,6 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	*/
 	public void setAduGain(double AduGain) {
 		_documentRecord.setAduGain(AduGain);
-	}
-
-	/**
-	* Returns the file list i d of this document record.
-	*
-	* @return the file list i d of this document record
-	*/
-	public java.lang.String getFileListID() {
-		return _documentRecord.getFileListID();
-	}
-
-	/**
-	* Sets the file list i d of this document record.
-	*
-	* @param FileListID the file list i d of this document record
-	*/
-	public void setFileListID(java.lang.String FileListID) {
-		_documentRecord.setFileListID(FileListID);
 	}
 
 	public boolean isNew() {

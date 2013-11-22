@@ -73,10 +73,9 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			{ "Age", Types.INTEGER },
 			{ "Gender", Types.VARCHAR },
 			{ "DateOfRecording", Types.TIMESTAMP },
-			{ "AduGain", Types.DOUBLE },
-			{ "FileListID", Types.VARCHAR }
+			{ "AduGain", Types.DOUBLE }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (RecordID VARCHAR(75) not null primary key,RecordName VARCHAR(75) null,UserID VARCHAR(75) null,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE,FileListID VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (RecordID VARCHAR(75) not null primary key,RecordName VARCHAR(75) null,UserID VARCHAR(75) null,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table Database_DocumentRecord";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -124,7 +123,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		model.setGender(soapModel.getGender());
 		model.setDateOfRecording(soapModel.getDateOfRecording());
 		model.setAduGain(soapModel.getAduGain());
-		model.setFileListID(soapModel.getFileListID());
 
 		return model;
 	}
@@ -197,7 +195,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		attributes.put("Gender", getGender());
 		attributes.put("DateOfRecording", getDateOfRecording());
 		attributes.put("AduGain", getAduGain());
-		attributes.put("FileListID", getFileListID());
 
 		return attributes;
 	}
@@ -286,12 +283,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 		if (AduGain != null) {
 			setAduGain(AduGain);
-		}
-
-		String FileListID = (String)attributes.get("FileListID");
-
-		if (FileListID != null) {
-			setFileListID(FileListID);
 		}
 	}
 
@@ -516,20 +507,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		_AduGain = AduGain;
 	}
 
-	@JSON
-	public String getFileListID() {
-		if (_FileListID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _FileListID;
-		}
-	}
-
-	public void setFileListID(String FileListID) {
-		_FileListID = FileListID;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -563,7 +540,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		documentRecordImpl.setGender(getGender());
 		documentRecordImpl.setDateOfRecording(getDateOfRecording());
 		documentRecordImpl.setAduGain(getAduGain());
-		documentRecordImpl.setFileListID(getFileListID());
 
 		documentRecordImpl.resetOriginalValues();
 
@@ -713,20 +689,12 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 		documentRecordCacheModel.AduGain = getAduGain();
 
-		documentRecordCacheModel.FileListID = getFileListID();
-
-		String FileListID = documentRecordCacheModel.FileListID;
-
-		if ((FileListID != null) && (FileListID.length() == 0)) {
-			documentRecordCacheModel.FileListID = null;
-		}
-
 		return documentRecordCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{RecordID=");
 		sb.append(getRecordID());
@@ -756,15 +724,13 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		sb.append(getDateOfRecording());
 		sb.append(", AduGain=");
 		sb.append(getAduGain());
-		sb.append(", FileListID=");
-		sb.append(getFileListID());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -827,10 +793,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			"<column><column-name>AduGain</column-name><column-value><![CDATA[");
 		sb.append(getAduGain());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>FileListID</column-name><column-value><![CDATA[");
-		sb.append(getFileListID());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -861,7 +823,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	private String _Gender;
 	private Date _DateOfRecording;
 	private double _AduGain;
-	private String _FileListID;
 	private long _columnBitmask;
 	private DocumentRecord _escapedModelProxy;
 }

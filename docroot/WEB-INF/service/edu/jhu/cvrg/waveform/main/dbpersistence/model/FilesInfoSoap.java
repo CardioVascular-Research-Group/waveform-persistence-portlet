@@ -31,7 +31,7 @@ public class FilesInfoSoap implements Serializable {
 		FilesInfoSoap soapModel = new FilesInfoSoap();
 
 		soapModel.setDocumentID(model.getDocumentID());
-		soapModel.setFileListID(model.getFileListID());
+		soapModel.setRecordID(model.getRecordID());
 
 		return soapModel;
 	}
@@ -92,14 +92,14 @@ public class FilesInfoSoap implements Serializable {
 		_DocumentID = DocumentID;
 	}
 
-	public String getFileListID() {
-		return _FileListID;
+	public String getRecordID() {
+		return _RecordID;
 	}
 
-	public void setFileListID(String FileListID) {
-		_FileListID = FileListID;
+	public void setRecordID(String RecordID) {
+		_RecordID = RecordID;
 	}
 
 	private String _DocumentID;
-	private String _FileListID;
+	private String _RecordID;
 }

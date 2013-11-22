@@ -73,19 +73,19 @@ public interface FilesInfoModel extends BaseModel<FilesInfo> {
 	public void setDocumentID(String DocumentID);
 
 	/**
-	 * Returns the file list i d of this files info.
+	 * Returns the record i d of this files info.
 	 *
-	 * @return the file list i d of this files info
+	 * @return the record i d of this files info
 	 */
 	@AutoEscape
-	public String getFileListID();
+	public String getRecordID();
 
 	/**
-	 * Sets the file list i d of this files info.
+	 * Sets the record i d of this files info.
 	 *
-	 * @param FileListID the file list i d of this files info
+	 * @param RecordID the record i d of this files info
 	 */
-	public void setFileListID(String FileListID);
+	public void setRecordID(String RecordID);
 
 	public boolean isNew();
 

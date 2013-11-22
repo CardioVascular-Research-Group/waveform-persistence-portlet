@@ -34,13 +34,12 @@ create table Database_DocumentRecord (
 	Age INTEGER,
 	Gender VARCHAR(75) null,
 	DateOfRecording DATE null,
-	AduGain DOUBLE,
-	FileListID VARCHAR(75) null
+	AduGain DOUBLE
 );
 
 create table Database_FilesInfo (
 	DocumentID VARCHAR(75) not null primary key,
-	FileListID VARCHAR(75) null
+	RecordID VARCHAR(75) null
 );
 
 create table Database_UploadStatus (

@@ -80,7 +80,6 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		attributes.put("Gender", getGender());
 		attributes.put("DateOfRecording", getDateOfRecording());
 		attributes.put("AduGain", getAduGain());
-		attributes.put("FileListID", getFileListID());
 
 		return attributes;
 	}
@@ -169,12 +168,6 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 
 		if (AduGain != null) {
 			setAduGain(AduGain);
-		}
-
-		String FileListID = (String)attributes.get("FileListID");
-
-		if (FileListID != null) {
-			setFileListID(FileListID);
 		}
 	}
 
@@ -290,14 +283,6 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		_AduGain = AduGain;
 	}
 
-	public String getFileListID() {
-		return _FileListID;
-	}
-
-	public void setFileListID(String FileListID) {
-		_FileListID = FileListID;
-	}
-
 	public BaseModel<?> getDocumentRecordRemoteModel() {
 		return _documentRecordRemoteModel;
 	}
@@ -341,7 +326,6 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		clone.setGender(getGender());
 		clone.setDateOfRecording(getDateOfRecording());
 		clone.setAduGain(getAduGain());
-		clone.setFileListID(getFileListID());
 
 		return clone;
 	}
@@ -384,7 +368,7 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{RecordID=");
 		sb.append(getRecordID());
@@ -414,15 +398,13 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		sb.append(getDateOfRecording());
 		sb.append(", AduGain=");
 		sb.append(getAduGain());
-		sb.append(", FileListID=");
-		sb.append(getFileListID());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append(
@@ -485,10 +467,6 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 			"<column><column-name>AduGain</column-name><column-value><![CDATA[");
 		sb.append(getAduGain());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>FileListID</column-name><column-value><![CDATA[");
-		sb.append(getFileListID());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -509,6 +487,5 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 	private String _Gender;
 	private Date _DateOfRecording;
 	private double _AduGain;
-	private String _FileListID;
 	private BaseModel<?> _documentRecordRemoteModel;
 }

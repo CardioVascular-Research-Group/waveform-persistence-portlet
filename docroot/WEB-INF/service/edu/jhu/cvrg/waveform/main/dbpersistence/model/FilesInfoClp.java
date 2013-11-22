@@ -65,7 +65,7 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("DocumentID", getDocumentID());
-		attributes.put("FileListID", getFileListID());
+		attributes.put("RecordID", getRecordID());
 
 		return attributes;
 	}
@@ -78,10 +78,10 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 			setDocumentID(DocumentID);
 		}
 
-		String FileListID = (String)attributes.get("FileListID");
+		String RecordID = (String)attributes.get("RecordID");
 
-		if (FileListID != null) {
-			setFileListID(FileListID);
+		if (RecordID != null) {
+			setRecordID(RecordID);
 		}
 	}
 
@@ -93,12 +93,12 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		_DocumentID = DocumentID;
 	}
 
-	public String getFileListID() {
-		return _FileListID;
+	public String getRecordID() {
+		return _RecordID;
 	}
 
-	public void setFileListID(String FileListID) {
-		_FileListID = FileListID;
+	public void setRecordID(String RecordID) {
+		_RecordID = RecordID;
 	}
 
 	public BaseModel<?> getFilesInfoRemoteModel() {
@@ -129,7 +129,7 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		FilesInfoClp clone = new FilesInfoClp();
 
 		clone.setDocumentID(getDocumentID());
-		clone.setFileListID(getFileListID());
+		clone.setRecordID(getRecordID());
 
 		return clone;
 	}
@@ -176,8 +176,8 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 
 		sb.append("{DocumentID=");
 		sb.append(getDocumentID());
-		sb.append(", FileListID=");
-		sb.append(getFileListID());
+		sb.append(", RecordID=");
+		sb.append(getRecordID());
 		sb.append("}");
 
 		return sb.toString();
@@ -195,8 +195,8 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		sb.append(getDocumentID());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>FileListID</column-name><column-value><![CDATA[");
-		sb.append(getFileListID());
+			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
+		sb.append(getRecordID());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -205,6 +205,6 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 	}
 
 	private String _DocumentID;
-	private String _FileListID;
+	private String _RecordID;
 	private BaseModel<?> _filesInfoRemoteModel;
 }

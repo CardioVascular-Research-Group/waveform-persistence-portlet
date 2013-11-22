@@ -47,7 +47,7 @@ public class FilesInfoLocalServiceImpl extends FilesInfoLocalServiceBaseImpl {
 
 		FilesInfo file = filesInfoPersistence.create(documentID);
 		
-		file.setFileListID(fileListID);
+		file.setRecordID(fileListID);
 		
 		super.addFilesInfo(file);
 		
@@ -69,10 +69,10 @@ public class FilesInfoLocalServiceImpl extends FilesInfoLocalServiceBaseImpl {
 	}
 	
 	public List<FilesInfo> getFiles(String fileID) throws SystemException {
-		return filesInfoPersistence.findByFileListID(fileID);
+		return filesInfoPersistence.findByRecordID(fileID);
 	}
 	
 	public List<FilesInfo> getFiles(String fileID, int start, int end) throws SystemException {
-		return filesInfoPersistence.findByFileListID(fileID, start, end);
+		return filesInfoPersistence.findByRecordID(fileID, start, end);
 	}
 }

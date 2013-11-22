@@ -45,7 +45,6 @@ public class DocumentRecordSoap implements Serializable {
 		soapModel.setGender(model.getGender());
 		soapModel.setDateOfRecording(model.getDateOfRecording());
 		soapModel.setAduGain(model.getAduGain());
-		soapModel.setFileListID(model.getFileListID());
 
 		return soapModel;
 	}
@@ -210,14 +209,6 @@ public class DocumentRecordSoap implements Serializable {
 		_AduGain = AduGain;
 	}
 
-	public String getFileListID() {
-		return _FileListID;
-	}
-
-	public void setFileListID(String FileListID) {
-		_FileListID = FileListID;
-	}
-
 	private String _RecordID;
 	private String _RecordName;
 	private String _UserID;
@@ -232,5 +223,4 @@ public class DocumentRecordSoap implements Serializable {
 	private String _Gender;
 	private Date _DateOfRecording;
 	private double _AduGain;
-	private String _FileListID;
 }

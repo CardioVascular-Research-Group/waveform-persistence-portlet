@@ -35,7 +35,7 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{RecordID=");
 		sb.append(RecordID);
@@ -65,8 +65,6 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 		sb.append(DateOfRecording);
 		sb.append(", AduGain=");
 		sb.append(AduGain);
-		sb.append(", FileListID=");
-		sb.append(FileListID);
 		sb.append("}");
 
 		return sb.toString();
@@ -147,13 +145,6 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 
 		documentRecordImpl.setAduGain(AduGain);
 
-		if (FileListID == null) {
-			documentRecordImpl.setFileListID(StringPool.BLANK);
-		}
-		else {
-			documentRecordImpl.setFileListID(FileListID);
-		}
-
 		documentRecordImpl.resetOriginalValues();
 
 		return documentRecordImpl;
@@ -173,5 +164,4 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 	public String Gender;
 	public long DateOfRecording;
 	public double AduGain;
-	public String FileListID;
 }

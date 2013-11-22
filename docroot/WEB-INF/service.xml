@@ -19,7 +19,6 @@
         <column name="Gender" type="String"></column>
         <column name="DateOfRecording" type="Date"></column>
         <column name="AduGain" type="double"></column>
-        <column name="FileListID" type="String"></column>
         <finder return-type="Collection" name="OriginalFormat">
             <finder-column name="OriginalFormat"></finder-column>
         </finder>
@@ -41,9 +40,9 @@
     </entity>
     <entity name="FilesInfo" remote-service="true" local-service="true">
         <column name="DocumentID" type="String" primary="true"></column>
-        <column name="FileListID" type="String"></column>
-        <finder name="FileListID" return-type="Collection">
-            <finder-column name="FileListID"></finder-column>
+        <column name="RecordID" type="String"></column>
+        <finder name="RecordID" return-type="Collection">
+            <finder-column name="RecordID"></finder-column>
         </finder>
     </entity>
     <entity name="AnnotationInfo" remote-service="true" local-service="true">

@@ -51,14 +51,13 @@
 		<property name="Gender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="DateOfRecording" type="org.hibernate.type.TimestampType" />
 		<property name="AduGain" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="FileListID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoImpl" table="Database_FilesInfo">
 		<cache usage="read-write" />
 		<id name="DocumentID" type="java.lang.String">
 			<generator class="assigned" />
 		</id>
-		<property name="FileListID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="RecordID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.UploadStatusImpl" table="Database_UploadStatus">
 		<cache usage="read-write" />

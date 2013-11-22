@@ -262,21 +262,6 @@ public interface DocumentRecordModel extends BaseModel<DocumentRecord> {
 	 */
 	public void setAduGain(double AduGain);
 
-	/**
-	 * Returns the file list i d of this document record.
-	 *
-	 * @return the file list i d of this document record
-	 */
-	@AutoEscape
-	public String getFileListID();
-
-	/**
-	 * Sets the file list i d of this document record.
-	 *
-	 * @param FileListID the file list i d of this document record
-	 */
-	public void setFileListID(String FileListID);
-
 	public boolean isNew();
 
 	public void setNew(boolean n);

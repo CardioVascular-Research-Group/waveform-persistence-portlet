@@ -9,3 +9,4 @@ create index IX_8B762701 on Database_DocumentRecord (SubjectID);
 create index IX_BBD1D290 on Database_DocumentRecord (UserID);
 
 create index IX_1F4C0330 on Database_FilesInfo (FileListID);
+create index IX_12809607 on Database_FilesInfo (RecordID);

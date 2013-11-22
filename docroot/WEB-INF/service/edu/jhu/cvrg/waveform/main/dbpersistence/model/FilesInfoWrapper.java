@@ -45,7 +45,7 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("DocumentID", getDocumentID());
-		attributes.put("FileListID", getFileListID());
+		attributes.put("RecordID", getRecordID());
 
 		return attributes;
 	}
@@ -57,10 +57,10 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 			setDocumentID(DocumentID);
 		}
 
-		String FileListID = (String)attributes.get("FileListID");
+		String RecordID = (String)attributes.get("RecordID");
 
-		if (FileListID != null) {
-			setFileListID(FileListID);
+		if (RecordID != null) {
+			setRecordID(RecordID);
 		}
 	}
 
@@ -101,21 +101,21 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 	}
 
 	/**
-	* Returns the file list i d of this files info.
+	* Returns the record i d of this files info.
 	*
-	* @return the file list i d of this files info
+	* @return the record i d of this files info
 	*/
-	public java.lang.String getFileListID() {
-		return _filesInfo.getFileListID();
+	public java.lang.String getRecordID() {
+		return _filesInfo.getRecordID();
 	}
 
 	/**
-	* Sets the file list i d of this files info.
+	* Sets the record i d of this files info.
 	*
-	* @param FileListID the file list i d of this files info
+	* @param RecordID the record i d of this files info
 	*/
-	public void setFileListID(java.lang.String FileListID) {
-		_filesInfo.setFileListID(FileListID);
+	public void setRecordID(java.lang.String RecordID) {
+		_filesInfo.setRecordID(RecordID);
 	}
 
 	public boolean isNew() {
