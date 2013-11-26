@@ -35,9 +35,9 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 
 		_methodParameterTypes3 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 
 		_methodName4 = "deleteDocumentRecord";
@@ -47,7 +47,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 		_methodName5 = "deleteDocumentRecord";
 
 		_methodParameterTypes5 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
@@ -69,23 +69,23 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 
 		_methodName10 = "getByScreenName";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getByScreenName";
 
-		_methodParameterTypes11 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes11 = new String[] { "long", "int", "int" };
 
 		_methodName12 = "getRecord";
 
 		_methodParameterTypes12 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
 		_methodName13 = "updateDocumentRecord";
 
 		_methodParameterTypes13 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "double",
 				"java.lang.String", "int", "int", "java.util.Date", "int",
 				"java.lang.String", "java.util.Date", "double"
@@ -141,11 +141,11 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord addDocumentRecord(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String screenName, java.lang.String recordName,
-		java.lang.String subjectID, java.lang.String originalFormat,
-		double samplingRate, java.lang.String fileTreePath, int leadCount,
-		int numPoints, java.util.Date dateUploaded, int age,
-		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordName, java.lang.String subjectID,
+		java.lang.String originalFormat, double samplingRate,
+		java.lang.String fileTreePath, int leadCount, int numPoints,
+		java.util.Date dateUploaded, int age, java.lang.String gender,
+		java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -159,8 +159,6 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 					liferayGroupId,
 						
 					liferayCompanyId,
-						
-					ClpSerializer.translateInput(screenName),
 						
 					ClpSerializer.translateInput(recordName),
 						
@@ -245,8 +243,8 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long username, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
@@ -258,7 +256,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 					new Object[] {
 						ClpSerializer.translateInput(recordName),
 						
-					ClpSerializer.translateInput(username),
+					username,
 						
 					ClpSerializer.translateInput(subjectID),
 						
@@ -421,14 +419,12 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userID) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(username) });
+					_methodParameterTypes10, new Object[] { userID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -450,20 +446,13 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username, int start, int end)
+		long userID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
-					new Object[] {
-						ClpSerializer.translateInput(username),
-						
-					start,
-						
-					end
-					});
+					_methodParameterTypes11, new Object[] { userID, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -485,8 +474,8 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long userID, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		Object returnObj = null;
@@ -497,7 +486,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 					new Object[] {
 						ClpSerializer.translateInput(recordName),
 						
-					ClpSerializer.translateInput(username),
+					userID,
 						
 					ClpSerializer.translateInput(subjectID),
 						
@@ -528,12 +517,11 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, java.lang.String screenName,
-		java.lang.String recordName, java.lang.String subjectID,
-		java.lang.String originalFormat, double samplingRate,
-		java.lang.String fileTreePath, int leadCount, int numPoints,
-		java.util.Date dateUploaded, int age, java.lang.String gender,
-		java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordID, long userID, java.lang.String recordName,
+		java.lang.String subjectID, java.lang.String originalFormat,
+		double samplingRate, java.lang.String fileTreePath, int leadCount,
+		int numPoints, java.util.Date dateUploaded, int age,
+		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		Object returnObj = null;
@@ -544,7 +532,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 					new Object[] {
 						ClpSerializer.translateInput(recordID),
 						
-					ClpSerializer.translateInput(screenName),
+					userID,
 						
 					ClpSerializer.translateInput(recordName),
 						

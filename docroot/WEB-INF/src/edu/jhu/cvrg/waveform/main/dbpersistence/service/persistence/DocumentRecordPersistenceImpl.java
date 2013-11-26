@@ -136,7 +136,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			DocumentRecordImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByUserID",
 			new String[] {
-				String.class.getName(),
+				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -146,18 +146,18 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED,
 			DocumentRecordImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserID",
-			new String[] { String.class.getName() },
+			new String[] { Long.class.getName() },
 			DocumentRecordModelImpl.USERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserID",
-			new String[] { String.class.getName() });
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_RECORDPROPERTIES = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED,
 			DocumentRecordImpl.class, FINDER_CLASS_NAME_ENTITY,
 			"fetchByRecordProperties",
 			new String[] {
-				String.class.getName(), String.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				String.class.getName(), String.class.getName()
 			},
 			DocumentRecordModelImpl.RECORDNAME_COLUMN_BITMASK |
@@ -169,7 +169,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByRecordProperties",
 			new String[] {
-				String.class.getName(), String.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				String.class.getName(), String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
@@ -200,8 +200,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 			new Object[] {
 				documentRecord.getRecordName(),
-				
-			documentRecord.getUserID(),
+				Long.valueOf(documentRecord.getUserID()),
 				
 			documentRecord.getSubjectID(),
 				
@@ -287,8 +286,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 			new Object[] {
 				documentRecord.getRecordName(),
-				
-			documentRecord.getUserID(),
+				Long.valueOf(documentRecord.getUserID()),
 				
 			documentRecord.getSubjectID(),
 				
@@ -463,14 +461,16 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			if ((documentRecordModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						documentRecordModelImpl.getOriginalUserID()
+						Long.valueOf(documentRecordModelImpl.getOriginalUserID())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] { documentRecordModelImpl.getUserID() };
+				args = new Object[] {
+						Long.valueOf(documentRecordModelImpl.getUserID())
+					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
@@ -489,8 +489,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 				new Object[] {
 					documentRecord.getRecordName(),
-					
-				documentRecord.getUserID(),
+					Long.valueOf(documentRecord.getUserID()),
 					
 				documentRecord.getSubjectID(),
 					
@@ -519,8 +518,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 					FINDER_PATH_FETCH_BY_RECORDPROPERTIES.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						documentRecordModelImpl.getOriginalRecordName(),
-						
-						documentRecordModelImpl.getOriginalUserID(),
+						Long.valueOf(documentRecordModelImpl.getOriginalUserID()),
 						
 						documentRecordModelImpl.getOriginalSubjectID(),
 						
@@ -536,8 +534,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 					new Object[] {
 						documentRecord.getRecordName(),
-						
-					documentRecord.getUserID(),
+						Long.valueOf(documentRecord.getUserID()),
 						
 					documentRecord.getSubjectID(),
 						
@@ -1636,7 +1633,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<DocumentRecord> findByUserID(String UserID)
+	public List<DocumentRecord> findByUserID(long UserID)
 		throws SystemException {
 		return findByUserID(UserID, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1654,7 +1651,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the range of matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<DocumentRecord> findByUserID(String UserID, int start, int end)
+	public List<DocumentRecord> findByUserID(long UserID, int start, int end)
 		throws SystemException {
 		return findByUserID(UserID, start, end, null);
 	}
@@ -1673,7 +1670,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the ordered range of matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<DocumentRecord> findByUserID(String UserID, int start, int end,
+	public List<DocumentRecord> findByUserID(long UserID, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1693,7 +1690,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 		if ((list != null) && !list.isEmpty()) {
 			for (DocumentRecord documentRecord : list) {
-				if (!Validator.equals(UserID, documentRecord.getUserID())) {
+				if ((UserID != documentRecord.getUserID())) {
 					list = null;
 
 					break;
@@ -1714,17 +1711,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 			query.append(_SQL_SELECT_DOCUMENTRECORD_WHERE);
 
-			if (UserID == null) {
-				query.append(_FINDER_COLUMN_USERID_USERID_1);
-			}
-			else {
-				if (UserID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_USERID_USERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_USERID_USERID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -1742,9 +1729,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (UserID != null) {
-					qPos.add(UserID);
-				}
+				qPos.add(UserID);
 
 				list = (List<DocumentRecord>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -1778,7 +1763,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord findByUserID_First(String UserID,
+	public DocumentRecord findByUserID_First(long UserID,
 		OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord documentRecord = fetchByUserID_First(UserID,
@@ -1808,7 +1793,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the first matching document record, or <code>null</code> if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord fetchByUserID_First(String UserID,
+	public DocumentRecord fetchByUserID_First(long UserID,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<DocumentRecord> list = findByUserID(UserID, 0, 1, orderByComparator);
 
@@ -1828,7 +1813,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord findByUserID_Last(String UserID,
+	public DocumentRecord findByUserID_Last(long UserID,
 		OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord documentRecord = fetchByUserID_Last(UserID,
@@ -1858,7 +1843,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the last matching document record, or <code>null</code> if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord fetchByUserID_Last(String UserID,
+	public DocumentRecord fetchByUserID_Last(long UserID,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserID(UserID);
 
@@ -1883,7 +1868,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws SystemException if a system exception occurred
 	 */
 	public DocumentRecord[] findByUserID_PrevAndNext(String RecordID,
-		String UserID, OrderByComparator orderByComparator)
+		long UserID, OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord documentRecord = findByPrimaryKey(RecordID);
 
@@ -1913,7 +1898,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	protected DocumentRecord getByUserID_PrevAndNext(Session session,
-		DocumentRecord documentRecord, String UserID,
+		DocumentRecord documentRecord, long UserID,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -1927,17 +1912,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 		query.append(_SQL_SELECT_DOCUMENTRECORD_WHERE);
 
-		if (UserID == null) {
-			query.append(_FINDER_COLUMN_USERID_USERID_1);
-		}
-		else {
-			if (UserID.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_USERID_USERID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_USERID_USERID_2);
-			}
-		}
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -2004,9 +1979,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (UserID != null) {
-			qPos.add(UserID);
-		}
+		qPos.add(UserID);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(documentRecord);
@@ -2038,7 +2011,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws SystemException if a system exception occurred
 	 */
 	public DocumentRecord findByRecordProperties(String RecordName,
-		String UserID, String SubjectID, String FileTreePath)
+		long UserID, String SubjectID, String FileTreePath)
 		throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord documentRecord = fetchByRecordProperties(RecordName,
 				UserID, SubjectID, FileTreePath);
@@ -2083,7 +2056,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws SystemException if a system exception occurred
 	 */
 	public DocumentRecord fetchByRecordProperties(String RecordName,
-		String UserID, String SubjectID, String FileTreePath)
+		long UserID, String SubjectID, String FileTreePath)
 		throws SystemException {
 		return fetchByRecordProperties(RecordName, UserID, SubjectID,
 			FileTreePath, true);
@@ -2101,7 +2074,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws SystemException if a system exception occurred
 	 */
 	public DocumentRecord fetchByRecordProperties(String RecordName,
-		String UserID, String SubjectID, String FileTreePath,
+		long UserID, String SubjectID, String FileTreePath,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				RecordName, UserID, SubjectID, FileTreePath
@@ -2118,7 +2091,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			DocumentRecord documentRecord = (DocumentRecord)result;
 
 			if (!Validator.equals(RecordName, documentRecord.getRecordName()) ||
-					!Validator.equals(UserID, documentRecord.getUserID()) ||
+					(UserID != documentRecord.getUserID()) ||
 					!Validator.equals(SubjectID, documentRecord.getSubjectID()) ||
 					!Validator.equals(FileTreePath,
 						documentRecord.getFileTreePath())) {
@@ -2143,17 +2116,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				}
 			}
 
-			if (UserID == null) {
-				query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_1);
-			}
-			else {
-				if (UserID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_2);
 
 			if (SubjectID == null) {
 				query.append(_FINDER_COLUMN_RECORDPROPERTIES_SUBJECTID_1);
@@ -2194,9 +2157,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 					qPos.add(RecordName);
 				}
 
-				if (UserID != null) {
-					qPos.add(UserID);
-				}
+				qPos.add(UserID);
 
 				if (SubjectID != null) {
 					qPos.add(SubjectID);
@@ -2223,8 +2184,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 					if ((documentRecord.getRecordName() == null) ||
 							!documentRecord.getRecordName().equals(RecordName) ||
-							(documentRecord.getUserID() == null) ||
-							!documentRecord.getUserID().equals(UserID) ||
+							(documentRecord.getUserID() != UserID) ||
 							(documentRecord.getSubjectID() == null) ||
 							!documentRecord.getSubjectID().equals(SubjectID) ||
 							(documentRecord.getFileTreePath() == null) ||
@@ -2420,7 +2380,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @param UserID the user i d
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUserID(String UserID) throws SystemException {
+	public void removeByUserID(long UserID) throws SystemException {
 		for (DocumentRecord documentRecord : findByUserID(UserID)) {
 			remove(documentRecord);
 		}
@@ -2437,7 +2397,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @throws SystemException if a system exception occurred
 	 */
 	public DocumentRecord removeByRecordProperties(String RecordName,
-		String UserID, String SubjectID, String FileTreePath)
+		long UserID, String SubjectID, String FileTreePath)
 		throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord documentRecord = findByRecordProperties(RecordName,
 				UserID, SubjectID, FileTreePath);
@@ -2659,7 +2619,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the number of matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByUserID(String UserID) throws SystemException {
+	public int countByUserID(long UserID) throws SystemException {
 		Object[] finderArgs = new Object[] { UserID };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
@@ -2670,17 +2630,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 			query.append(_SQL_COUNT_DOCUMENTRECORD_WHERE);
 
-			if (UserID == null) {
-				query.append(_FINDER_COLUMN_USERID_USERID_1);
-			}
-			else {
-				if (UserID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_USERID_USERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_USERID_USERID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
 
 			String sql = query.toString();
 
@@ -2693,9 +2643,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (UserID != null) {
-					qPos.add(UserID);
-				}
+				qPos.add(UserID);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2727,7 +2675,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	 * @return the number of matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByRecordProperties(String RecordName, String UserID,
+	public int countByRecordProperties(String RecordName, long UserID,
 		String SubjectID, String FileTreePath) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				RecordName, UserID, SubjectID, FileTreePath
@@ -2753,17 +2701,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				}
 			}
 
-			if (UserID == null) {
-				query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_1);
-			}
-			else {
-				if (UserID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_RECORDPROPERTIES_USERID_2);
 
 			if (SubjectID == null) {
 				query.append(_FINDER_COLUMN_RECORDPROPERTIES_SUBJECTID_1);
@@ -2804,9 +2742,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 					qPos.add(RecordName);
 				}
 
-				if (UserID != null) {
-					qPos.add(UserID);
-				}
+				qPos.add(UserID);
 
 				if (SubjectID != null) {
 					qPos.add(SubjectID);
@@ -2932,15 +2868,11 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_1 = "documentRecord.SubjectID IS NULL";
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_2 = "documentRecord.SubjectID = ?";
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_3 = "(documentRecord.SubjectID IS NULL OR documentRecord.SubjectID = ?)";
-	private static final String _FINDER_COLUMN_USERID_USERID_1 = "documentRecord.UserID IS NULL";
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "documentRecord.UserID = ?";
-	private static final String _FINDER_COLUMN_USERID_USERID_3 = "(documentRecord.UserID IS NULL OR documentRecord.UserID = ?)";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_RECORDNAME_1 = "documentRecord.RecordName IS NULL AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_RECORDNAME_2 = "documentRecord.RecordName = ? AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_RECORDNAME_3 = "(documentRecord.RecordName IS NULL OR documentRecord.RecordName = ?) AND ";
-	private static final String _FINDER_COLUMN_RECORDPROPERTIES_USERID_1 = "documentRecord.UserID IS NULL AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_USERID_2 = "documentRecord.UserID = ? AND ";
-	private static final String _FINDER_COLUMN_RECORDPROPERTIES_USERID_3 = "(documentRecord.UserID IS NULL OR documentRecord.UserID = ?) AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_SUBJECTID_1 = "documentRecord.SubjectID IS NULL AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_SUBJECTID_2 = "documentRecord.SubjectID = ? AND ";
 	private static final String _FINDER_COLUMN_RECORDPROPERTIES_SUBJECTID_3 = "(documentRecord.SubjectID IS NULL OR documentRecord.SubjectID = ?) AND ";

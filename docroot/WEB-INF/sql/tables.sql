@@ -23,7 +23,7 @@ create table Database_Coordinate (
 create table Database_DocumentRecord (
 	RecordID VARCHAR(75) not null primary key,
 	RecordName VARCHAR(75) null,
-	UserID VARCHAR(75) null,
+	UserID LONG,
 	SubjectID VARCHAR(75) null,
 	OriginalFormat VARCHAR(75) null,
 	SamplingRate DOUBLE,

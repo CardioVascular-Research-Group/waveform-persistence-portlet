@@ -35,9 +35,9 @@ public class DocumentRecordServiceClpInvoker {
 
 		_methodParameterTypes52 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 
 		_methodName53 = "deleteDocumentRecord";
@@ -47,7 +47,7 @@ public class DocumentRecordServiceClpInvoker {
 		_methodName54 = "deleteDocumentRecord";
 
 		_methodParameterTypes54 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
@@ -69,23 +69,23 @@ public class DocumentRecordServiceClpInvoker {
 
 		_methodName59 = "getByScreenName";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes59 = new String[] { "long" };
 
 		_methodName60 = "getByScreenName";
 
-		_methodParameterTypes60 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes60 = new String[] { "long", "int", "int" };
 
 		_methodName61 = "getRecord";
 
 		_methodParameterTypes61 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
 		_methodName62 = "updateDocumentRecord";
 
 		_methodParameterTypes62 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "double",
 				"java.lang.String", "int", "int", "java.util.Date", "int",
 				"java.lang.String", "java.util.Date", "double"
@@ -110,15 +110,15 @@ public class DocumentRecordServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				((Double)arguments[7]).doubleValue(),
-				(java.lang.String)arguments[8],
+				(java.lang.String)arguments[5],
+				((Double)arguments[6]).doubleValue(),
+				(java.lang.String)arguments[7],
+				((Integer)arguments[8]).intValue(),
 				((Integer)arguments[9]).intValue(),
-				((Integer)arguments[10]).intValue(),
-				(java.util.Date)arguments[11],
-				((Integer)arguments[12]).intValue(),
-				(java.lang.String)arguments[13], (java.util.Date)arguments[14],
-				((Double)arguments[15]).doubleValue());
+				(java.util.Date)arguments[10],
+				((Integer)arguments[11]).intValue(),
+				(java.lang.String)arguments[12], (java.util.Date)arguments[13],
+				((Double)arguments[14]).doubleValue());
 		}
 
 		if (_methodName53.equals(name) &&
@@ -129,8 +129,8 @@ public class DocumentRecordServiceClpInvoker {
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return DocumentRecordServiceUtil.deleteDocumentRecord((java.lang.String)arguments[0],
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
 		}
 
 		if (_methodName55.equals(name) &&
@@ -159,12 +159,12 @@ public class DocumentRecordServiceClpInvoker {
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return DocumentRecordServiceUtil.getByScreenName((java.lang.String)arguments[0]);
+			return DocumentRecordServiceUtil.getByScreenName(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return DocumentRecordServiceUtil.getByScreenName((java.lang.String)arguments[0],
+			return DocumentRecordServiceUtil.getByScreenName(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
@@ -172,15 +172,16 @@ public class DocumentRecordServiceClpInvoker {
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return DocumentRecordServiceUtil.getRecord((java.lang.String)arguments[0],
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return DocumentRecordServiceUtil.updateDocumentRecord((java.lang.String)arguments[0],
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
+				(java.lang.String)arguments[4],
 				((Double)arguments[5]).doubleValue(),
 				(java.lang.String)arguments[6],
 				((Integer)arguments[7]).intValue(),

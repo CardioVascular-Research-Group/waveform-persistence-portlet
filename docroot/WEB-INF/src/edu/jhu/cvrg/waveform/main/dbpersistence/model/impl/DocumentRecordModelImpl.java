@@ -62,7 +62,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "RecordID", Types.VARCHAR },
 			{ "RecordName", Types.VARCHAR },
-			{ "UserID", Types.VARCHAR },
+			{ "UserID", Types.BIGINT },
 			{ "SubjectID", Types.VARCHAR },
 			{ "OriginalFormat", Types.VARCHAR },
 			{ "SamplingRate", Types.DOUBLE },
@@ -75,7 +75,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			{ "DateOfRecording", Types.TIMESTAMP },
 			{ "AduGain", Types.DOUBLE }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (RecordID VARCHAR(75) not null primary key,RecordName VARCHAR(75) null,UserID VARCHAR(75) null,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE)";
+	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (RecordID VARCHAR(75) not null primary key,RecordName VARCHAR(75) null,UserID LONG,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table Database_DocumentRecord";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -213,7 +213,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			setRecordName(RecordName);
 		}
 
-		String UserID = (String)attributes.get("UserID");
+		Long UserID = (Long)attributes.get("UserID");
 
 		if (UserID != null) {
 			setUserID(UserID);
@@ -335,27 +335,24 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	}
 
 	@JSON
-	public String getUserID() {
-		if (_UserID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _UserID;
-		}
+	public long getUserID() {
+		return _UserID;
 	}
 
-	public void setUserID(String UserID) {
+	public void setUserID(long UserID) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
-		if (_originalUserID == null) {
+		if (!_setOriginalUserID) {
+			_setOriginalUserID = true;
+
 			_originalUserID = _UserID;
 		}
 
 		_UserID = UserID;
 	}
 
-	public String getOriginalUserID() {
-		return GetterUtil.getString(_originalUserID);
+	public long getOriginalUserID() {
+		return _originalUserID;
 	}
 
 	@JSON
@@ -592,6 +589,8 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 		documentRecordModelImpl._originalUserID = documentRecordModelImpl._UserID;
 
+		documentRecordModelImpl._setOriginalUserID = false;
+
 		documentRecordModelImpl._originalSubjectID = documentRecordModelImpl._SubjectID;
 
 		documentRecordModelImpl._originalOriginalFormat = documentRecordModelImpl._OriginalFormat;
@@ -622,12 +621,6 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		}
 
 		documentRecordCacheModel.UserID = getUserID();
-
-		String UserID = documentRecordCacheModel.UserID;
-
-		if ((UserID != null) && (UserID.length() == 0)) {
-			documentRecordCacheModel.UserID = null;
-		}
 
 		documentRecordCacheModel.SubjectID = getSubjectID();
 
@@ -807,8 +800,9 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	private String _originalRecordID;
 	private String _RecordName;
 	private String _originalRecordName;
-	private String _UserID;
-	private String _originalUserID;
+	private long _UserID;
+	private long _originalUserID;
+	private boolean _setOriginalUserID;
 	private String _SubjectID;
 	private String _originalSubjectID;
 	private String _OriginalFormat;

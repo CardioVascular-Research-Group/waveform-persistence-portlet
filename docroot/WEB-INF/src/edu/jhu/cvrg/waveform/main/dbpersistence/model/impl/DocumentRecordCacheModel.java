@@ -87,12 +87,7 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 			documentRecordImpl.setRecordName(RecordName);
 		}
 
-		if (UserID == null) {
-			documentRecordImpl.setUserID(StringPool.BLANK);
-		}
-		else {
-			documentRecordImpl.setUserID(UserID);
-		}
+		documentRecordImpl.setUserID(UserID);
 
 		if (SubjectID == null) {
 			documentRecordImpl.setSubjectID(StringPool.BLANK);
@@ -152,7 +147,7 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 
 	public String RecordID;
 	public String RecordName;
-	public String UserID;
+	public long UserID;
 	public String SubjectID;
 	public String OriginalFormat;
 	public double SamplingRate;

@@ -47,9 +47,9 @@ public class DocumentRecordServiceImpl extends DocumentRecordServiceBaseImpl {
 	 */
 	
 	// TODO:  Implement Security checks for this service (BB)
-	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String screenName, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
+	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
 
-		return DocumentRecordLocalServiceUtil.addDocumentRecord(liferayUserId, liferayGroupId, liferayCompanyId, screenName, recordName, subjectID, originalFormat, samplingRate, fileTreePath, leadCount, numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
+		return DocumentRecordLocalServiceUtil.addDocumentRecord(liferayUserId, liferayGroupId, liferayCompanyId, recordName, subjectID, originalFormat, samplingRate, fileTreePath, leadCount, numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
 	}
 	
 	public DocumentRecord deleteDocumentRecord(String recordID) throws SystemException, PortalException {
@@ -57,7 +57,7 @@ public class DocumentRecordServiceImpl extends DocumentRecordServiceBaseImpl {
 		return DocumentRecordLocalServiceUtil.deleteDocumentRecord(recordID);
 	}	
 	
-	public DocumentRecord deleteDocumentRecord(String recordName, String username, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException, PortalException {
+	public DocumentRecord deleteDocumentRecord(String recordName, long username, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException, PortalException {
 				
 		return DocumentRecordLocalServiceUtil.deleteDocumentRecord(recordName, username, subjectID, fileTreePath);
 	}
@@ -78,19 +78,19 @@ public class DocumentRecordServiceImpl extends DocumentRecordServiceBaseImpl {
 		return DocumentRecordLocalServiceUtil.getBySubjectID(subjectID, start, end);
 	}
 	
-	public List<DocumentRecord> getByScreenName(String username) throws SystemException {
-		return DocumentRecordLocalServiceUtil.getByScreenName(username);
+	public List<DocumentRecord> getByScreenName(long userID) throws SystemException {
+		return DocumentRecordLocalServiceUtil.getByScreenName(userID);
 	}
 	
-	public List<DocumentRecord> getByScreenName(String username, int start, int end) throws SystemException {
-		return DocumentRecordLocalServiceUtil.getByScreenName(username, start, end);
+	public List<DocumentRecord> getByScreenName(long userID, int start, int end) throws SystemException {
+		return DocumentRecordLocalServiceUtil.getByScreenName(userID, start, end);
 	}
 	
-	public DocumentRecord getRecord(String recordName, String username, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException {
-		return DocumentRecordLocalServiceUtil.getRecord(recordName, username, subjectID, fileTreePath);
+	public DocumentRecord getRecord(String recordName, long userID, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException {
+		return DocumentRecordLocalServiceUtil.getRecord(recordName, userID, subjectID, fileTreePath);
 	}
 	
-	public DocumentRecord updateDocumentRecord(String recordID, String screenName, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
-		return DocumentRecordLocalServiceUtil.updateDocumentRecord(recordID, screenName, recordName, subjectID, originalFormat, samplingRate, fileTreePath, leadCount, numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
+	public DocumentRecord updateDocumentRecord(String recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
+		return DocumentRecordLocalServiceUtil.updateDocumentRecord(recordID, userID, recordName, subjectID, originalFormat, samplingRate, fileTreePath, leadCount, numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
 	}
 }

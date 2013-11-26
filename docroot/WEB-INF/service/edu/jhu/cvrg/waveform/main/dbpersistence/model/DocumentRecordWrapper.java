@@ -77,7 +77,7 @@ public class DocumentRecordWrapper implements DocumentRecord,
 			setRecordName(RecordName);
 		}
 
-		String UserID = (String)attributes.get("UserID");
+		Long UserID = (Long)attributes.get("UserID");
 
 		if (UserID != null) {
 			setUserID(UserID);
@@ -209,7 +209,7 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	*
 	* @return the user i d of this document record
 	*/
-	public java.lang.String getUserID() {
+	public long getUserID() {
 		return _documentRecord.getUserID();
 	}
 
@@ -218,7 +218,7 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	*
 	* @param UserID the user i d of this document record
 	*/
-	public void setUserID(java.lang.String UserID) {
+	public void setUserID(long UserID) {
 		_documentRecord.setUserID(UserID);
 	}
 

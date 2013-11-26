@@ -8,7 +8,6 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="screenName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>
@@ -27,7 +26,7 @@
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="deleteDocumentRecord" qname="operNS:deleteDocumentRecord" returnQName="deleteDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
 		</operation>
@@ -40,10 +39,10 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByScreenName" qname="operNS:getByScreenName" returnQName="getByScreenNameReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userID" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getByScreenName" qname="operNS:getByScreenName" returnQName="getByScreenNameReturn" returnType="rtns:ArrayOf_tns2_DocumentRecordSoap" returnItemType="tns2:DocumentRecordSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 		</operation>
@@ -57,13 +56,13 @@
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getRecord" qname="operNS:getRecord" returnQName="getRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="username" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="updateDocumentRecord" qname="operNS:updateDocumentRecord" returnQName="updateDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="screenName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="originalFormat" type="tns:string"></parameter>

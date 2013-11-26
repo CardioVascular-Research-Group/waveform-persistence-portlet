@@ -39,7 +39,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="RecordName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="UserID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="UserID" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="SubjectID" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="OriginalFormat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="SamplingRate" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />

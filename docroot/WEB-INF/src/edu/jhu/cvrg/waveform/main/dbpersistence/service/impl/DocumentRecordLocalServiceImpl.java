@@ -48,12 +48,12 @@ public class DocumentRecordLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.DocumentRecordLocalServiceUtil} to access the document record local service.
 	 */
-	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String screenName, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
+	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
 		UUID recordID = UUID.randomUUID();
 		
 		DocumentRecord docRecord = documentRecordPersistence.create(recordID.toString());
 		
-		docRecord.setUserID(screenName);
+		docRecord.setUserID(liferayUserId);
 		docRecord.setRecordName(recordName);
 		docRecord.setSubjectID(subjectID);
 		docRecord.setOriginalFormat(originalFormat);
@@ -105,8 +105,8 @@ public class DocumentRecordLocalServiceImpl
 		return deleteDocumentRecord(docRecord);
 	}	
 	
-	public DocumentRecord deleteDocumentRecord(String recordName, String username, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException, PortalException {
-		DocumentRecord docRecord = documentRecordPersistence.findByRecordProperties(recordName, username, subjectID, fileTreePath);
+	public DocumentRecord deleteDocumentRecord(String recordName, long userID, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException, PortalException {
+		DocumentRecord docRecord = documentRecordPersistence.findByRecordProperties(recordName, userID, subjectID, fileTreePath);
 		
 		return deleteDocumentRecord(docRecord);
 	}
@@ -127,22 +127,22 @@ public class DocumentRecordLocalServiceImpl
 		return documentRecordPersistence.findBySubjectID(subjectID, start, end);
 	}
 	
-	public List<DocumentRecord> getByScreenName(String username) throws SystemException {
-		return documentRecordPersistence.findByUserID(username);
+	public List<DocumentRecord> getByScreenName(long userID) throws SystemException {
+		return documentRecordPersistence.findByUserID(userID);
 	}
 	
-	public List<DocumentRecord> getByScreenName(String username, int start, int end) throws SystemException {
-		return documentRecordPersistence.findByUserID(username, start, end);
+	public List<DocumentRecord> getByScreenName(long userID, int start, int end) throws SystemException {
+		return documentRecordPersistence.findByUserID(userID, start, end);
 	}
 	
-	public DocumentRecord getRecord(String recordName, String username, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException {
-		return documentRecordPersistence.findByRecordProperties(recordName, username, subjectID, fileTreePath);
+	public DocumentRecord getRecord(String recordName, long userID, String subjectID, String fileTreePath) throws NoSuchDocumentRecordException, SystemException {
+		return documentRecordPersistence.findByRecordProperties(recordName, userID, subjectID, fileTreePath);
 	}
 	
-	public DocumentRecord updateDocumentRecord(String recordID, String screenName, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
+	public DocumentRecord updateDocumentRecord(String recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord docRecord = documentRecordPersistence.findByPrimaryKey(recordID);
 		
-		docRecord.setUserID(screenName);
+		docRecord.setUserID(userID);
 		docRecord.setSubjectID(subjectID);
 		docRecord.setRecordName(recordName);
 		docRecord.setOriginalFormat(originalFormat);

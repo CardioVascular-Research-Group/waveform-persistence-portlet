@@ -113,11 +113,11 @@ public class DocumentRecordSoap implements Serializable {
 		_RecordName = RecordName;
 	}
 
-	public String getUserID() {
+	public long getUserID() {
 		return _UserID;
 	}
 
-	public void setUserID(String UserID) {
+	public void setUserID(long UserID) {
 		_UserID = UserID;
 	}
 
@@ -211,7 +211,7 @@ public class DocumentRecordSoap implements Serializable {
 
 	private String _RecordID;
 	private String _RecordName;
-	private String _UserID;
+	private long _UserID;
 	private String _SubjectID;
 	private String _OriginalFormat;
 	private double _SamplingRate;

@@ -24,7 +24,7 @@
 	<model name="edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord">
 		<field name="RecordID" type="String" />
 		<field name="RecordName" type="String" />
-		<field name="UserID" type="String" />
+		<field name="UserID" type="long" />
 		<field name="SubjectID" type="String" />
 		<field name="OriginalFormat" type="String" />
 		<field name="SamplingRate" type="double" />

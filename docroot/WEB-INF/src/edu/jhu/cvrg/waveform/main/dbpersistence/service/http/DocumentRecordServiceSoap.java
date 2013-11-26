@@ -67,19 +67,17 @@ import java.rmi.RemoteException;
 public class DocumentRecordServiceSoap {
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap addDocumentRecord(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String screenName, java.lang.String recordName,
-		java.lang.String subjectID, java.lang.String originalFormat,
-		double samplingRate, java.lang.String fileTreePath, int leadCount,
-		int numPoints, java.util.Date dateUploaded, int age,
-		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
-		throws RemoteException {
+		java.lang.String recordName, java.lang.String subjectID,
+		java.lang.String originalFormat, double samplingRate,
+		java.lang.String fileTreePath, int leadCount, int numPoints,
+		java.util.Date dateUploaded, int age, java.lang.String gender,
+		java.util.Date dateRecorded, double aduGain) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord returnValue =
 				DocumentRecordServiceUtil.addDocumentRecord(liferayUserId,
-					liferayGroupId, liferayCompanyId, screenName, recordName,
-					subjectID, originalFormat, samplingRate, fileTreePath,
-					leadCount, numPoints, dateUploaded, age, gender,
-					dateRecorded, aduGain);
+					liferayGroupId, liferayCompanyId, recordName, subjectID,
+					originalFormat, samplingRate, fileTreePath, leadCount,
+					numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap.toSoapModel(returnValue);
 		}
@@ -106,9 +104,8 @@ public class DocumentRecordServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap deleteDocumentRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
-		throws RemoteException {
+		java.lang.String recordName, long username, java.lang.String subjectID,
+		java.lang.String fileTreePath) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord returnValue =
 				DocumentRecordServiceUtil.deleteDocumentRecord(recordName,
@@ -187,10 +184,10 @@ public class DocumentRecordServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap[] getByScreenName(
-		java.lang.String username) throws RemoteException {
+		long userID) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> returnValue =
-				DocumentRecordServiceUtil.getByScreenName(username);
+				DocumentRecordServiceUtil.getByScreenName(userID);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap.toSoapModels(returnValue);
 		}
@@ -202,11 +199,10 @@ public class DocumentRecordServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap[] getByScreenName(
-		java.lang.String username, int start, int end)
-		throws RemoteException {
+		long userID, int start, int end) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> returnValue =
-				DocumentRecordServiceUtil.getByScreenName(username, start, end);
+				DocumentRecordServiceUtil.getByScreenName(userID, start, end);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap.toSoapModels(returnValue);
 		}
@@ -218,12 +214,11 @@ public class DocumentRecordServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap getRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
-		throws RemoteException {
+		java.lang.String recordName, long userID, java.lang.String subjectID,
+		java.lang.String fileTreePath) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord returnValue =
-				DocumentRecordServiceUtil.getRecord(recordName, username,
+				DocumentRecordServiceUtil.getRecord(recordName, userID,
 					subjectID, fileTreePath);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap.toSoapModel(returnValue);
@@ -236,16 +231,16 @@ public class DocumentRecordServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordSoap updateDocumentRecord(
-		java.lang.String recordID, java.lang.String screenName,
-		java.lang.String recordName, java.lang.String subjectID,
-		java.lang.String originalFormat, double samplingRate,
-		java.lang.String fileTreePath, int leadCount, int numPoints,
-		java.util.Date dateUploaded, int age, java.lang.String gender,
-		java.util.Date dateRecorded, double aduGain) throws RemoteException {
+		java.lang.String recordID, long userID, java.lang.String recordName,
+		java.lang.String subjectID, java.lang.String originalFormat,
+		double samplingRate, java.lang.String fileTreePath, int leadCount,
+		int numPoints, java.util.Date dateUploaded, int age,
+		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
+		throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord returnValue =
 				DocumentRecordServiceUtil.updateDocumentRecord(recordID,
-					screenName, recordName, subjectID, originalFormat,
+					userID, recordName, subjectID, originalFormat,
 					samplingRate, fileTreePath, leadCount, numPoints,
 					dateUploaded, age, gender, dateRecorded, aduGain);
 

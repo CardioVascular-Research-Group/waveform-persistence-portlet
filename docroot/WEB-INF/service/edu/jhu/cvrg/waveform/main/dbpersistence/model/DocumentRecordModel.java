@@ -94,15 +94,14 @@ public interface DocumentRecordModel extends BaseModel<DocumentRecord> {
 	 *
 	 * @return the user i d of this document record
 	 */
-	@AutoEscape
-	public String getUserID();
+	public long getUserID();
 
 	/**
 	 * Sets the user i d of this document record.
 	 *
 	 * @param UserID the user i d of this document record
 	 */
-	public void setUserID(String UserID);
+	public void setUserID(long UserID);
 
 	/**
 	 * Returns the subject i d of this document record.

@@ -7,7 +7,7 @@
     <entity name="DocumentRecord" remote-service="true" local-service="true">
         <column name="RecordID" type="String" primary="true"></column>
         <column name="RecordName" type="String"></column>
-        <column name="UserID" type="String"></column>
+        <column name="UserID" type="long"></column>
         <column name="SubjectID" type="String"></column>
         <column name="OriginalFormat" type="String"></column>
         <column name="SamplingRate" type="double"></column>

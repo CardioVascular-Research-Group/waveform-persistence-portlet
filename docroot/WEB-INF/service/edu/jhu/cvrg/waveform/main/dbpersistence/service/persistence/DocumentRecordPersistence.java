@@ -386,8 +386,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> findByUserID(
-		java.lang.String UserID)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long UserID) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns a range of all the document records where UserID = &#63;.
@@ -403,7 +402,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> findByUserID(
-		java.lang.String UserID, int start, int end)
+		long UserID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -421,7 +420,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> findByUserID(
-		java.lang.String UserID, int start, int end,
+		long UserID, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -435,7 +434,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByUserID_First(
-		java.lang.String UserID,
+		long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
@@ -449,7 +448,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByUserID_First(
-		java.lang.String UserID,
+		long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -463,7 +462,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByUserID_Last(
-		java.lang.String UserID,
+		long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
@@ -477,7 +476,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByUserID_Last(
-		java.lang.String UserID,
+		long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -492,7 +491,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord[] findByUserID_PrevAndNext(
-		java.lang.String RecordID, java.lang.String UserID,
+		java.lang.String RecordID, long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
@@ -509,8 +508,8 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByRecordProperties(
-		java.lang.String RecordName, java.lang.String UserID,
-		java.lang.String SubjectID, java.lang.String FileTreePath)
+		java.lang.String RecordName, long UserID, java.lang.String SubjectID,
+		java.lang.String FileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
@@ -525,8 +524,8 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByRecordProperties(
-		java.lang.String RecordName, java.lang.String UserID,
-		java.lang.String SubjectID, java.lang.String FileTreePath)
+		java.lang.String RecordName, long UserID, java.lang.String SubjectID,
+		java.lang.String FileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -541,9 +540,8 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByRecordProperties(
-		java.lang.String RecordName, java.lang.String UserID,
-		java.lang.String SubjectID, java.lang.String FileTreePath,
-		boolean retrieveFromCache)
+		java.lang.String RecordName, long UserID, java.lang.String SubjectID,
+		java.lang.String FileTreePath, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -625,7 +623,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @param UserID the user i d
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserID(java.lang.String UserID)
+	public void removeByUserID(long UserID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -639,8 +637,8 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord removeByRecordProperties(
-		java.lang.String RecordName, java.lang.String UserID,
-		java.lang.String SubjectID, java.lang.String FileTreePath)
+		java.lang.String RecordName, long UserID, java.lang.String SubjectID,
+		java.lang.String FileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
@@ -689,7 +687,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @return the number of matching document records
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUserID(java.lang.String UserID)
+	public int countByUserID(long UserID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -703,8 +701,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByRecordProperties(java.lang.String RecordName,
-		java.lang.String UserID, java.lang.String SubjectID,
-		java.lang.String FileTreePath)
+		long UserID, java.lang.String SubjectID, java.lang.String FileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

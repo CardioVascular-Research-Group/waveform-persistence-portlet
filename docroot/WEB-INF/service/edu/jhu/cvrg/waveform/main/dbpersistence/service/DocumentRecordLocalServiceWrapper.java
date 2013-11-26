@@ -275,27 +275,27 @@ public class DocumentRecordLocalServiceWrapper
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord addDocumentRecord(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String screenName, java.lang.String recordName,
-		java.lang.String subjectID, java.lang.String originalFormat,
-		double samplingRate, java.lang.String fileTreePath, int leadCount,
-		int numPoints, java.util.Date dateUploaded, int age,
-		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordName, java.lang.String subjectID,
+		java.lang.String originalFormat, double samplingRate,
+		java.lang.String fileTreePath, int leadCount, int numPoints,
+		java.util.Date dateUploaded, int age, java.lang.String gender,
+		java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _documentRecordLocalService.addDocumentRecord(liferayUserId,
-			liferayGroupId, liferayCompanyId, screenName, recordName,
-			subjectID, originalFormat, samplingRate, fileTreePath, leadCount,
-			numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
+			liferayGroupId, liferayCompanyId, recordName, subjectID,
+			originalFormat, samplingRate, fileTreePath, leadCount, numPoints,
+			dateUploaded, age, gender, dateRecorded, aduGain);
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long userID, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		return _documentRecordLocalService.deleteDocumentRecord(recordName,
-			username, subjectID, fileTreePath);
+			userID, subjectID, fileTreePath);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByFileFormat(
@@ -324,37 +324,35 @@ public class DocumentRecordLocalServiceWrapper
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _documentRecordLocalService.getByScreenName(username);
+		long userID) throws com.liferay.portal.kernel.exception.SystemException {
+		return _documentRecordLocalService.getByScreenName(userID);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username, int start, int end)
+		long userID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _documentRecordLocalService.getByScreenName(username, start, end);
+		return _documentRecordLocalService.getByScreenName(userID, start, end);
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long userID, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
-		return _documentRecordLocalService.getRecord(recordName, username,
+		return _documentRecordLocalService.getRecord(recordName, userID,
 			subjectID, fileTreePath);
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, java.lang.String screenName,
-		java.lang.String recordName, java.lang.String subjectID,
-		java.lang.String originalFormat, double samplingRate,
-		java.lang.String fileTreePath, int leadCount, int numPoints,
-		java.util.Date dateUploaded, int age, java.lang.String gender,
-		java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordID, long userID, java.lang.String recordName,
+		java.lang.String subjectID, java.lang.String originalFormat,
+		double samplingRate, java.lang.String fileTreePath, int leadCount,
+		int numPoints, java.util.Date dateUploaded, int age,
+		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		return _documentRecordLocalService.updateDocumentRecord(recordID,
-			screenName, recordName, subjectID, originalFormat, samplingRate,
+			userID, recordName, subjectID, originalFormat, samplingRate,
 			fileTreePath, leadCount, numPoints, dateUploaded, age, gender,
 			dateRecorded, aduGain);
 	}

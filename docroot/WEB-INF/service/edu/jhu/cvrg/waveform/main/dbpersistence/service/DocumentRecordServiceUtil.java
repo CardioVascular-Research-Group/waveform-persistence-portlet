@@ -64,18 +64,18 @@ public class DocumentRecordServiceUtil {
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord addDocumentRecord(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String screenName, java.lang.String recordName,
-		java.lang.String subjectID, java.lang.String originalFormat,
-		double samplingRate, java.lang.String fileTreePath, int leadCount,
-		int numPoints, java.util.Date dateUploaded, int age,
-		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordName, java.lang.String subjectID,
+		java.lang.String originalFormat, double samplingRate,
+		java.lang.String fileTreePath, int leadCount, int numPoints,
+		java.util.Date dateUploaded, int age, java.lang.String gender,
+		java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addDocumentRecord(liferayUserId, liferayGroupId,
-			liferayCompanyId, screenName, recordName, subjectID,
-			originalFormat, samplingRate, fileTreePath, leadCount, numPoints,
-			dateUploaded, age, gender, dateRecorded, aduGain);
+			liferayCompanyId, recordName, subjectID, originalFormat,
+			samplingRate, fileTreePath, leadCount, numPoints, dateUploaded,
+			age, gender, dateRecorded, aduGain);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
@@ -86,8 +86,8 @@ public class DocumentRecordServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long username, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
@@ -121,37 +121,35 @@ public class DocumentRecordServiceUtil {
 	}
 
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getByScreenName(username);
+		long userID) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getByScreenName(userID);
 	}
 
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord> getByScreenName(
-		java.lang.String username, int start, int end)
+		long userID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getByScreenName(username, start, end);
+		return getService().getByScreenName(userID, start, end);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getRecord(
-		java.lang.String recordName, java.lang.String username,
-		java.lang.String subjectID, java.lang.String fileTreePath)
+		java.lang.String recordName, long userID, java.lang.String subjectID,
+		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		return getService()
-				   .getRecord(recordName, username, subjectID, fileTreePath);
+				   .getRecord(recordName, userID, subjectID, fileTreePath);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, java.lang.String screenName,
-		java.lang.String recordName, java.lang.String subjectID,
-		java.lang.String originalFormat, double samplingRate,
-		java.lang.String fileTreePath, int leadCount, int numPoints,
-		java.util.Date dateUploaded, int age, java.lang.String gender,
-		java.util.Date dateRecorded, double aduGain)
+		java.lang.String recordID, long userID, java.lang.String recordName,
+		java.lang.String subjectID, java.lang.String originalFormat,
+		double samplingRate, java.lang.String fileTreePath, int leadCount,
+		int numPoints, java.util.Date dateUploaded, int age,
+		java.lang.String gender, java.util.Date dateRecorded, double aduGain)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException {
 		return getService()
-				   .updateDocumentRecord(recordID, screenName, recordName,
+				   .updateDocumentRecord(recordID, userID, recordName,
 			subjectID, originalFormat, samplingRate, fileTreePath, leadCount,
 			numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
 	}
