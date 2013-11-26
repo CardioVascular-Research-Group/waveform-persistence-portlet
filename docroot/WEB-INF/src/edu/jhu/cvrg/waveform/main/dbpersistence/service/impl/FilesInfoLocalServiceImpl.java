@@ -43,15 +43,15 @@ public class FilesInfoLocalServiceImpl extends FilesInfoLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.FilesInfoLocalServiceUtil} to access the files info local service.
 	 */
-	public FilesInfo addFilesInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, String documentID, String fileListID) throws SystemException, PortalException{
+	public FilesInfo addFilesInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, long fileID, long docRecordID) throws SystemException, PortalException{
 
-		FilesInfo file = filesInfoPersistence.create(documentID);
+		FilesInfo file = filesInfoPersistence.create(fileID);
 		
-		file.setRecordID(fileListID);
+		file.setDocumentRecordID(docRecordID);
 		
 		super.addFilesInfo(file);
 		
-		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, FilesInfo.class.getName(), file.getDocumentID(), false, true, true);
+		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, FilesInfo.class.getName(), file.getDocumentRecordID(), false, true, true);
 		
 		return file;
 	}
@@ -60,19 +60,19 @@ public class FilesInfoLocalServiceImpl extends FilesInfoLocalServiceBaseImpl {
 		return filesInfoPersistence.remove(file);
 	}
 	
-	public FilesInfo deleteFilesInfo(String docID) throws NoSuchFilesInfoException, SystemException {
-		return filesInfoPersistence.remove(docID);
+	public FilesInfo deleteFilesInfo(long fileID) throws NoSuchFilesInfoException, SystemException {
+		return filesInfoPersistence.remove(fileID);
 	}
 	
-	public FilesInfo getFile(String documentID) throws NoSuchFilesInfoException, SystemException {
-		return filesInfoPersistence.findByPrimaryKey(documentID);
+	public FilesInfo getFile(long fileID) throws NoSuchFilesInfoException, SystemException {
+		return filesInfoPersistence.findByPrimaryKey(fileID);
 	}
 	
-	public List<FilesInfo> getFiles(String fileID) throws SystemException {
-		return filesInfoPersistence.findByRecordID(fileID);
+	public List<FilesInfo> getFiles(long docRecordID) throws SystemException {
+		return filesInfoPersistence.findByDocumentRecordID(docRecordID);
 	}
 	
-	public List<FilesInfo> getFiles(String fileID, int start, int end) throws SystemException {
-		return filesInfoPersistence.findByRecordID(fileID, start, end);
+	public List<FilesInfo> getFiles(long docRecordID, int start, int end) throws SystemException {
+		return filesInfoPersistence.findByDocumentRecordID(docRecordID, start, end);
 	}
 }

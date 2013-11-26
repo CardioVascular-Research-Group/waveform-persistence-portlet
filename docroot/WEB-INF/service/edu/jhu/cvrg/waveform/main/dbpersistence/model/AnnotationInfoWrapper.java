@@ -57,14 +57,14 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 		attributes.put("UnitOfMeasurement", getUnitOfMeasurement());
 		attributes.put("Description", getDescription());
 		attributes.put("Value", getValue());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("Timestamp", getTimestamp());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String AnnotationID = (String)attributes.get("AnnotationID");
+		Long AnnotationID = (Long)attributes.get("AnnotationID");
 
 		if (AnnotationID != null) {
 			setAnnotationID(AnnotationID);
@@ -100,14 +100,13 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 			setLead(Lead);
 		}
 
-		String StartingCoordinateID = (String)attributes.get(
-				"StartingCoordinateID");
+		Long StartingCoordinateID = (Long)attributes.get("StartingCoordinateID");
 
 		if (StartingCoordinateID != null) {
 			setStartingCoordinateID(StartingCoordinateID);
 		}
 
-		String EndingCoordinateID = (String)attributes.get("EndingCoordinateID");
+		Long EndingCoordinateID = (Long)attributes.get("EndingCoordinateID");
 
 		if (EndingCoordinateID != null) {
 			setEndingCoordinateID(EndingCoordinateID);
@@ -131,10 +130,10 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 			setValue(Value);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		Date Timestamp = (Date)attributes.get("Timestamp");
@@ -149,7 +148,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @return the primary key of this annotation info
 	*/
-	public java.lang.String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _annotationInfo.getPrimaryKey();
 	}
 
@@ -158,7 +157,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @param primaryKey the primary key of this annotation info
 	*/
-	public void setPrimaryKey(java.lang.String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_annotationInfo.setPrimaryKey(primaryKey);
 	}
 
@@ -167,7 +166,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @return the annotation i d of this annotation info
 	*/
-	public java.lang.String getAnnotationID() {
+	public long getAnnotationID() {
 		return _annotationInfo.getAnnotationID();
 	}
 
@@ -176,7 +175,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @param AnnotationID the annotation i d of this annotation info
 	*/
-	public void setAnnotationID(java.lang.String AnnotationID) {
+	public void setAnnotationID(long AnnotationID) {
 		_annotationInfo.setAnnotationID(AnnotationID);
 	}
 
@@ -275,7 +274,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @return the starting coordinate i d of this annotation info
 	*/
-	public java.lang.String getStartingCoordinateID() {
+	public long getStartingCoordinateID() {
 		return _annotationInfo.getStartingCoordinateID();
 	}
 
@@ -284,7 +283,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @param StartingCoordinateID the starting coordinate i d of this annotation info
 	*/
-	public void setStartingCoordinateID(java.lang.String StartingCoordinateID) {
+	public void setStartingCoordinateID(long StartingCoordinateID) {
 		_annotationInfo.setStartingCoordinateID(StartingCoordinateID);
 	}
 
@@ -293,7 +292,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @return the ending coordinate i d of this annotation info
 	*/
-	public java.lang.String getEndingCoordinateID() {
+	public long getEndingCoordinateID() {
 		return _annotationInfo.getEndingCoordinateID();
 	}
 
@@ -302,7 +301,7 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	*
 	* @param EndingCoordinateID the ending coordinate i d of this annotation info
 	*/
-	public void setEndingCoordinateID(java.lang.String EndingCoordinateID) {
+	public void setEndingCoordinateID(long EndingCoordinateID) {
 		_annotationInfo.setEndingCoordinateID(EndingCoordinateID);
 	}
 
@@ -361,21 +360,21 @@ public class AnnotationInfoWrapper implements AnnotationInfo,
 	}
 
 	/**
-	* Returns the record i d of this annotation info.
+	* Returns the document record i d of this annotation info.
 	*
-	* @return the record i d of this annotation info
+	* @return the document record i d of this annotation info
 	*/
-	public java.lang.String getRecordID() {
-		return _annotationInfo.getRecordID();
+	public long getDocumentRecordID() {
+		return _annotationInfo.getDocumentRecordID();
 	}
 
 	/**
-	* Sets the record i d of this annotation info.
+	* Sets the document record i d of this annotation info.
 	*
-	* @param RecordID the record i d of this annotation info
+	* @param DocumentRecordID the document record i d of this annotation info
 	*/
-	public void setRecordID(java.lang.String RecordID) {
-		_annotationInfo.setRecordID(RecordID);
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_annotationInfo.setDocumentRecordID(DocumentRecordID);
 	}
 
 	/**

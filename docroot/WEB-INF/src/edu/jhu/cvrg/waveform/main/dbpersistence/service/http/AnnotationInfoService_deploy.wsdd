@@ -8,14 +8,14 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayUserId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayGroupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="liferayCompanyId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="createdBy" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="bioportalRef" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startCoord" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endCoord" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startCoord" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endCoord" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="unitMeasurement" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="value" type="tns:string"></parameter>
@@ -25,25 +25,25 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationID" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotation" qname="operNS:getAnnotation" returnQName="getAnnotationReturn" returnType="rtns:AnnotationInfoSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="name" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="lead" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByRecord" qname="operNS:getAnnotationsByRecord" returnQName="getAnnotationsByRecordReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:tns2="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="getAnnotationsByType" qname="operNS:getAnnotationsByType" returnQName="getAnnotationsByTypeReturn" returnType="rtns:ArrayOf_tns2_AnnotationInfoSoap" returnItemType="tns2:AnnotationInfoSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="annotationType" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>

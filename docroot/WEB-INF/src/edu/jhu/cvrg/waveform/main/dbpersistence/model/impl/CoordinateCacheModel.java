@@ -15,7 +15,6 @@
 package edu.jhu.cvrg.waveform.main.dbpersistence.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate;
@@ -49,13 +48,7 @@ public class CoordinateCacheModel implements CacheModel<Coordinate>,
 	public Coordinate toEntityModel() {
 		CoordinateImpl coordinateImpl = new CoordinateImpl();
 
-		if (CoordinateID == null) {
-			coordinateImpl.setCoordinateID(StringPool.BLANK);
-		}
-		else {
-			coordinateImpl.setCoordinateID(CoordinateID);
-		}
-
+		coordinateImpl.setCoordinateID(CoordinateID);
 		coordinateImpl.setXCoordinate(xCoordinate);
 		coordinateImpl.setYCoordinate(yCoordinate);
 
@@ -64,7 +57,7 @@ public class CoordinateCacheModel implements CacheModel<Coordinate>,
 		return coordinateImpl;
 	}
 
-	public String CoordinateID;
+	public long CoordinateID;
 	public double xCoordinate;
 	public double yCoordinate;
 }

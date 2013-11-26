@@ -85,10 +85,10 @@ public class DocumentRecordServiceClpInvoker {
 		_methodName62 = "updateDocumentRecord";
 
 		_methodParameterTypes62 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 	}
 
@@ -178,7 +178,7 @@ public class DocumentRecordServiceClpInvoker {
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return DocumentRecordServiceUtil.updateDocumentRecord((java.lang.String)arguments[0],
+			return DocumentRecordServiceUtil.updateDocumentRecord(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4],

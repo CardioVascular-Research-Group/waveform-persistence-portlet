@@ -45,20 +45,20 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 		return Coordinate.class.getName();
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _CoordinateID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setCoordinateID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _CoordinateID;
+		return new Long(_CoordinateID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String CoordinateID = (String)attributes.get("CoordinateID");
+		Long CoordinateID = (Long)attributes.get("CoordinateID");
 
 		if (CoordinateID != null) {
 			setCoordinateID(CoordinateID);
@@ -93,11 +93,11 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 		}
 	}
 
-	public String getCoordinateID() {
+	public long getCoordinateID() {
 		return _CoordinateID;
 	}
 
-	public void setCoordinateID(String CoordinateID) {
+	public void setCoordinateID(long CoordinateID) {
 		_CoordinateID = CoordinateID;
 	}
 
@@ -152,9 +152,17 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 	}
 
 	public int compareTo(Coordinate coordinate) {
-		String primaryKey = coordinate.getPrimaryKey();
+		long primaryKey = coordinate.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -172,9 +180,9 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 			return false;
 		}
 
-		String primaryKey = coordinate.getPrimaryKey();
+		long primaryKey = coordinate.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -184,7 +192,7 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -227,7 +235,7 @@ public class CoordinateClp extends BaseModelImpl<Coordinate>
 		return sb.toString();
 	}
 
-	private String _CoordinateID;
+	private long _CoordinateID;
 	private double _xCoordinate;
 	private double _yCoordinate;
 	private BaseModel<?> _coordinateRemoteModel;

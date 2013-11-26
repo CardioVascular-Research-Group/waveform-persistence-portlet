@@ -50,13 +50,13 @@ public class UploadStatusWrapper implements UploadStatus,
 		attributes.put("FileConversion", getFileConversion());
 		attributes.put("RecordCreation", getRecordCreation());
 		attributes.put("AnnotationCreation", getAnnotationCreation());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String StatusLogNumber = (String)attributes.get("StatusLogNumber");
+		Long StatusLogNumber = (Long)attributes.get("StatusLogNumber");
 
 		if (StatusLogNumber != null) {
 			setStatusLogNumber(StatusLogNumber);
@@ -86,10 +86,10 @@ public class UploadStatusWrapper implements UploadStatus,
 			setAnnotationCreation(AnnotationCreation);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class UploadStatusWrapper implements UploadStatus,
 	*
 	* @return the primary key of this upload status
 	*/
-	public java.lang.String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _uploadStatus.getPrimaryKey();
 	}
 
@@ -107,7 +107,7 @@ public class UploadStatusWrapper implements UploadStatus,
 	*
 	* @param primaryKey the primary key of this upload status
 	*/
-	public void setPrimaryKey(java.lang.String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_uploadStatus.setPrimaryKey(primaryKey);
 	}
 
@@ -116,7 +116,7 @@ public class UploadStatusWrapper implements UploadStatus,
 	*
 	* @return the status log number of this upload status
 	*/
-	public java.lang.String getStatusLogNumber() {
+	public long getStatusLogNumber() {
 		return _uploadStatus.getStatusLogNumber();
 	}
 
@@ -125,7 +125,7 @@ public class UploadStatusWrapper implements UploadStatus,
 	*
 	* @param StatusLogNumber the status log number of this upload status
 	*/
-	public void setStatusLogNumber(java.lang.String StatusLogNumber) {
+	public void setStatusLogNumber(long StatusLogNumber) {
 		_uploadStatus.setStatusLogNumber(StatusLogNumber);
 	}
 
@@ -202,21 +202,21 @@ public class UploadStatusWrapper implements UploadStatus,
 	}
 
 	/**
-	* Returns the record i d of this upload status.
+	* Returns the document record i d of this upload status.
 	*
-	* @return the record i d of this upload status
+	* @return the document record i d of this upload status
 	*/
-	public java.lang.String getRecordID() {
-		return _uploadStatus.getRecordID();
+	public long getDocumentRecordID() {
+		return _uploadStatus.getDocumentRecordID();
 	}
 
 	/**
-	* Sets the record i d of this upload status.
+	* Sets the document record i d of this upload status.
 	*
-	* @param RecordID the record i d of this upload status
+	* @param DocumentRecordID the document record i d of this upload status
 	*/
-	public void setRecordID(java.lang.String RecordID) {
-		_uploadStatus.setRecordID(RecordID);
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_uploadStatus.setDocumentRecordID(DocumentRecordID);
 	}
 
 	public boolean isNew() {

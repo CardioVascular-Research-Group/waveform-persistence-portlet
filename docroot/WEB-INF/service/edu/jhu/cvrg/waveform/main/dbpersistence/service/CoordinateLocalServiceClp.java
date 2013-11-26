@@ -32,11 +32,11 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 
 		_methodName1 = "createCoordinate";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteCoordinate";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteCoordinate";
 
@@ -75,11 +75,11 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 
 		_methodName9 = "fetchCoordinate";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getCoordinate";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -117,14 +117,12 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 		_methodName19 = "addCoordinate";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "long", "java.lang.String", "double", "double"
+				"long", "long", "long", "double", "double"
 			};
 
 		_methodName20 = "updateCoordinate";
 
-		_methodParameterTypes20 = new String[] {
-				"java.lang.String", "double", "double"
-			};
+		_methodParameterTypes20 = new String[] { "long", "double", "double" };
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
@@ -157,13 +155,12 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate createCoordinate(
-		java.lang.String CoordinateID) {
+		long CoordinateID) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(CoordinateID) });
+					_methodParameterTypes1, new Object[] { CoordinateID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -181,15 +178,15 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate deleteCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(CoordinateID) });
+					_methodParameterTypes2, new Object[] { CoordinateID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -200,6 +197,10 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException) {
+				throw (edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -401,14 +402,13 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate fetchCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(CoordinateID) });
+					_methodParameterTypes9, new Object[] { CoordinateID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -430,15 +430,15 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate getCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(CoordinateID) });
+					_methodParameterTypes10, new Object[] { CoordinateID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -449,6 +449,10 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException) {
+				throw (edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -660,7 +664,7 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
+		double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -674,8 +678,6 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 					liferayGroupId,
 						
 					liferayCompanyId,
-						
-					ClpSerializer.translateInput(coordID),
 						
 					xCoord,
 						
@@ -706,7 +708,7 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
+		long coordID, double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -714,13 +716,7 @@ public class CoordinateLocalServiceClp implements CoordinateLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
 					_methodParameterTypes20,
-					new Object[] {
-						ClpSerializer.translateInput(coordID),
-						
-					xCoord,
-						
-					yCoord
-					});
+					new Object[] { coordID, xCoord, yCoord });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -64,7 +64,7 @@ public interface CoordinateLocalService extends BaseLocalService,
 	* @return the new coordinate
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate createCoordinate(
-		java.lang.String CoordinateID);
+		long CoordinateID);
 
 	/**
 	* Deletes the coordinate with the primary key from the database. Also notifies the appropriate model listeners.
@@ -73,11 +73,13 @@ public interface CoordinateLocalService extends BaseLocalService,
 	* @return the coordinate that was removed
 	* @throws PortalException if a coordinate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate deleteCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException;
 
 	/**
 	* Deletes the coordinate from the database. Also notifies the appropriate model listeners.
@@ -156,7 +158,7 @@ public interface CoordinateLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate fetchCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -166,12 +168,14 @@ public interface CoordinateLocalService extends BaseLocalService,
 	* @return the coordinate
 	* @throws PortalException if a coordinate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate getCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -250,12 +254,12 @@ public interface CoordinateLocalService extends BaseLocalService,
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
+		double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
+		long coordID, double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

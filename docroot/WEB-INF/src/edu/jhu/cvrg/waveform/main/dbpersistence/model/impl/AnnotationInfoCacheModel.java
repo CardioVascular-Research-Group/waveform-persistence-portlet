@@ -59,8 +59,8 @@ public class AnnotationInfoCacheModel implements CacheModel<AnnotationInfo>,
 		sb.append(Description);
 		sb.append(", Value=");
 		sb.append(Value);
-		sb.append(", RecordID=");
-		sb.append(RecordID);
+		sb.append(", DocumentRecordID=");
+		sb.append(DocumentRecordID);
 		sb.append(", Timestamp=");
 		sb.append(Timestamp);
 		sb.append("}");
@@ -71,12 +71,7 @@ public class AnnotationInfoCacheModel implements CacheModel<AnnotationInfo>,
 	public AnnotationInfo toEntityModel() {
 		AnnotationInfoImpl annotationInfoImpl = new AnnotationInfoImpl();
 
-		if (AnnotationID == null) {
-			annotationInfoImpl.setAnnotationID(StringPool.BLANK);
-		}
-		else {
-			annotationInfoImpl.setAnnotationID(AnnotationID);
-		}
+		annotationInfoImpl.setAnnotationID(AnnotationID);
 
 		if (CreatedBy == null) {
 			annotationInfoImpl.setCreatedBy(StringPool.BLANK);
@@ -113,19 +108,8 @@ public class AnnotationInfoCacheModel implements CacheModel<AnnotationInfo>,
 			annotationInfoImpl.setLead(Lead);
 		}
 
-		if (StartingCoordinateID == null) {
-			annotationInfoImpl.setStartingCoordinateID(StringPool.BLANK);
-		}
-		else {
-			annotationInfoImpl.setStartingCoordinateID(StartingCoordinateID);
-		}
-
-		if (EndingCoordinateID == null) {
-			annotationInfoImpl.setEndingCoordinateID(StringPool.BLANK);
-		}
-		else {
-			annotationInfoImpl.setEndingCoordinateID(EndingCoordinateID);
-		}
+		annotationInfoImpl.setStartingCoordinateID(StartingCoordinateID);
+		annotationInfoImpl.setEndingCoordinateID(EndingCoordinateID);
 
 		if (UnitOfMeasurement == null) {
 			annotationInfoImpl.setUnitOfMeasurement(StringPool.BLANK);
@@ -148,12 +132,7 @@ public class AnnotationInfoCacheModel implements CacheModel<AnnotationInfo>,
 			annotationInfoImpl.setValue(Value);
 		}
 
-		if (RecordID == null) {
-			annotationInfoImpl.setRecordID(StringPool.BLANK);
-		}
-		else {
-			annotationInfoImpl.setRecordID(RecordID);
-		}
+		annotationInfoImpl.setDocumentRecordID(DocumentRecordID);
 
 		if (Timestamp == Long.MIN_VALUE) {
 			annotationInfoImpl.setTimestamp(null);
@@ -167,17 +146,17 @@ public class AnnotationInfoCacheModel implements CacheModel<AnnotationInfo>,
 		return annotationInfoImpl;
 	}
 
-	public String AnnotationID;
+	public long AnnotationID;
 	public String CreatedBy;
 	public String AnnotationType;
 	public String Name;
 	public String BioportalReference;
 	public String Lead;
-	public String StartingCoordinateID;
-	public String EndingCoordinateID;
+	public long StartingCoordinateID;
+	public long EndingCoordinateID;
 	public String UnitOfMeasurement;
 	public String Description;
 	public String Value;
-	public String RecordID;
+	public long DocumentRecordID;
 	public long Timestamp;
 }

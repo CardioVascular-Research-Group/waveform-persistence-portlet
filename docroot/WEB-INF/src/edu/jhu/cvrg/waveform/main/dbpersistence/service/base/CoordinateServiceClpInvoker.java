@@ -34,22 +34,20 @@ public class CoordinateServiceClpInvoker {
 		_methodName52 = "addCoordinate";
 
 		_methodParameterTypes52 = new String[] {
-				"long", "long", "long", "java.lang.String", "double", "double"
+				"long", "long", "long", "double", "double"
 			};
 
 		_methodName53 = "deleteCoordinate";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes53 = new String[] { "long" };
 
 		_methodName54 = "getCoordinate";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "long" };
 
 		_methodName55 = "updateCoordinate";
 
-		_methodParameterTypes55 = new String[] {
-				"java.lang.String", "double", "double"
-			};
+		_methodParameterTypes55 = new String[] { "long", "double", "double" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -69,24 +67,23 @@ public class CoordinateServiceClpInvoker {
 			return CoordinateServiceUtil.addCoordinate(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3],
-				((Double)arguments[4]).doubleValue(),
-				((Double)arguments[5]).doubleValue());
+				((Double)arguments[3]).doubleValue(),
+				((Double)arguments[4]).doubleValue());
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return CoordinateServiceUtil.deleteCoordinate((java.lang.String)arguments[0]);
+			return CoordinateServiceUtil.deleteCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return CoordinateServiceUtil.getCoordinate((java.lang.String)arguments[0]);
+			return CoordinateServiceUtil.getCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return CoordinateServiceUtil.updateCoordinate((java.lang.String)arguments[0],
+			return CoordinateServiceUtil.updateCoordinate(((Long)arguments[0]).longValue(),
 				((Double)arguments[1]).doubleValue(),
 				((Double)arguments[2]).doubleValue());
 		}

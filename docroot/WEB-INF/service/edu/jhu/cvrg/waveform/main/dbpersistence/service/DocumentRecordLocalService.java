@@ -60,22 +60,22 @@ public interface DocumentRecordLocalService extends BaseLocalService,
 	/**
 	* Creates a new document record with the primary key. Does not add the document record to the database.
 	*
-	* @param RecordID the primary key for the new document record
+	* @param DocumentRecordID the primary key for the new document record
 	* @return the new document record
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord createDocumentRecord(
-		java.lang.String RecordID);
+		long DocumentRecordID);
 
 	/**
 	* Deletes the document record with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record that was removed
 	* @throws PortalException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -158,20 +158,20 @@ public interface DocumentRecordLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the document record with the primary key.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record
 	* @throws PortalException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -261,6 +261,11 @@ public interface DocumentRecordLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
+		java.lang.String recordID)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
 		java.lang.String recordName, long userID, java.lang.String subjectID,
 		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -304,7 +309,7 @@ public interface DocumentRecordLocalService extends BaseLocalService,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, long userID, java.lang.String recordName,
+		long recordID, long userID, java.lang.String recordName,
 		java.lang.String subjectID, java.lang.String originalFormat,
 		double samplingRate, java.lang.String fileTreePath, int leadCount,
 		int numPoints, java.util.Date dateUploaded, int age,

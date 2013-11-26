@@ -64,30 +64,30 @@ public class CoordinateServiceUtil {
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
+		double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCoordinate(liferayUserId, liferayGroupId,
-			liferayCompanyId, coordID, xCoord, yCoord);
+			liferayCompanyId, xCoord, yCoord);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate deleteCoordinate(
-		java.lang.String coordID)
+		long coordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteCoordinate(coordID);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate getCoordinate(
-		java.lang.String coordID)
+		long coordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCoordinate(coordID);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
+		long coordID, double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateCoordinate(coordID, xCoord, yCoord);

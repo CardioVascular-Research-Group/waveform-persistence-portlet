@@ -32,11 +32,11 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 
 		_methodName1 = "createUploadStatus";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteUploadStatus";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteUploadStatus";
 
@@ -75,11 +75,11 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 
 		_methodName9 = "fetchUploadStatus";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getUploadStatus";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -145,13 +145,12 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus createUploadStatus(
-		java.lang.String StatusLogNumber) {
+		long StatusLogNumber) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(StatusLogNumber) });
+					_methodParameterTypes1, new Object[] { StatusLogNumber });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -169,15 +168,14 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus deleteUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(StatusLogNumber) });
+					_methodParameterTypes2, new Object[] { StatusLogNumber });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -389,14 +387,13 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus fetchUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(StatusLogNumber) });
+					_methodParameterTypes9, new Object[] { StatusLogNumber });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -418,15 +415,14 @@ public class UploadStatusLocalServiceClp implements UploadStatusLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus getUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(StatusLogNumber) });
+					_methodParameterTypes10, new Object[] { StatusLogNumber });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

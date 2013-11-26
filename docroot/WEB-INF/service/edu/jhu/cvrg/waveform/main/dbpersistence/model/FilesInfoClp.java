@@ -44,61 +44,61 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		return FilesInfo.class.getName();
 	}
 
-	public String getPrimaryKey() {
-		return _DocumentID;
+	public long getPrimaryKey() {
+		return _FileID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
-		setDocumentID(primaryKey);
+	public void setPrimaryKey(long primaryKey) {
+		setFileID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _DocumentID;
+		return new Long(_FileID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("DocumentID", getDocumentID());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("FileID", getFileID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String DocumentID = (String)attributes.get("DocumentID");
+		Long FileID = (Long)attributes.get("FileID");
 
-		if (DocumentID != null) {
-			setDocumentID(DocumentID);
+		if (FileID != null) {
+			setFileID(FileID);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 	}
 
-	public String getDocumentID() {
-		return _DocumentID;
+	public long getFileID() {
+		return _FileID;
 	}
 
-	public void setDocumentID(String DocumentID) {
-		_DocumentID = DocumentID;
+	public void setFileID(long FileID) {
+		_FileID = FileID;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public BaseModel<?> getFilesInfoRemoteModel() {
@@ -128,16 +128,24 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 	public Object clone() {
 		FilesInfoClp clone = new FilesInfoClp();
 
-		clone.setDocumentID(getDocumentID());
-		clone.setRecordID(getRecordID());
+		clone.setFileID(getFileID());
+		clone.setDocumentRecordID(getDocumentRecordID());
 
 		return clone;
 	}
 
 	public int compareTo(FilesInfo filesInfo) {
-		String primaryKey = filesInfo.getPrimaryKey();
+		long primaryKey = filesInfo.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -155,9 +163,9 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 			return false;
 		}
 
-		String primaryKey = filesInfo.getPrimaryKey();
+		long primaryKey = filesInfo.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -167,17 +175,17 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{DocumentID=");
-		sb.append(getDocumentID());
-		sb.append(", RecordID=");
-		sb.append(getRecordID());
+		sb.append("{FileID=");
+		sb.append(getFileID());
+		sb.append(", DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append("}");
 
 		return sb.toString();
@@ -191,12 +199,12 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>DocumentID</column-name><column-value><![CDATA[");
-		sb.append(getDocumentID());
+			"<column><column-name>FileID</column-name><column-value><![CDATA[");
+		sb.append(getFileID());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -204,7 +212,7 @@ public class FilesInfoClp extends BaseModelImpl<FilesInfo> implements FilesInfo 
 		return sb.toString();
 	}
 
-	private String _DocumentID;
-	private String _RecordID;
+	private long _FileID;
+	private long _DocumentRecordID;
 	private BaseModel<?> _filesInfoRemoteModel;
 }

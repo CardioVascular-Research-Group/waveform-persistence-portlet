@@ -19,9 +19,12 @@ import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoModel;
@@ -59,10 +62,10 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	 */
 	public static final String TABLE_NAME = "Database_FilesInfo";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "DocumentID", Types.VARCHAR },
-			{ "RecordID", Types.VARCHAR }
+			{ "FileID", Types.BIGINT },
+			{ "DocumentRecordID", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_FilesInfo (DocumentID VARCHAR(75) not null primary key,RecordID VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Database_FilesInfo (FileID LONG not null primary key,DocumentRecordID LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Database_FilesInfo";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -76,7 +79,7 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo"),
 			true);
-	public static long RECORDID_COLUMN_BITMASK = 1L;
+	public static long DOCUMENTRECORDID_COLUMN_BITMASK = 1L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -91,8 +94,8 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 
 		FilesInfo model = new FilesInfoImpl();
 
-		model.setDocumentID(soapModel.getDocumentID());
-		model.setRecordID(soapModel.getRecordID());
+		model.setFileID(soapModel.getFileID());
+		model.setDocumentRecordID(soapModel.getDocumentRecordID());
 
 		return model;
 	}
@@ -123,20 +126,20 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public FilesInfoModelImpl() {
 	}
 
-	public String getPrimaryKey() {
-		return _DocumentID;
+	public long getPrimaryKey() {
+		return _FileID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
-		setDocumentID(primaryKey);
+	public void setPrimaryKey(long primaryKey) {
+		setFileID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _DocumentID;
+		return new Long(_FileID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -151,67 +154,72 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("DocumentID", getDocumentID());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("FileID", getFileID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String DocumentID = (String)attributes.get("DocumentID");
+		Long FileID = (Long)attributes.get("FileID");
 
-		if (DocumentID != null) {
-			setDocumentID(DocumentID);
+		if (FileID != null) {
+			setFileID(FileID);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 	}
 
 	@JSON
-	public String getDocumentID() {
-		if (_DocumentID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _DocumentID;
-		}
+	public long getFileID() {
+		return _FileID;
 	}
 
-	public void setDocumentID(String DocumentID) {
-		_DocumentID = DocumentID;
+	public void setFileID(long FileID) {
+		_FileID = FileID;
 	}
 
 	@JSON
-	public String getRecordID() {
-		if (_RecordID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _RecordID;
-		}
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_columnBitmask |= RECORDID_COLUMN_BITMASK;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_columnBitmask |= DOCUMENTRECORDID_COLUMN_BITMASK;
 
-		if (_originalRecordID == null) {
-			_originalRecordID = _RecordID;
+		if (!_setOriginalDocumentRecordID) {
+			_setOriginalDocumentRecordID = true;
+
+			_originalDocumentRecordID = _DocumentRecordID;
 		}
 
-		_RecordID = RecordID;
+		_DocumentRecordID = DocumentRecordID;
 	}
 
-	public String getOriginalRecordID() {
-		return GetterUtil.getString(_originalRecordID);
+	public long getOriginalDocumentRecordID() {
+		return _originalDocumentRecordID;
 	}
 
 	public long getColumnBitmask() {
 		return _columnBitmask;
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			FilesInfo.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -229,8 +237,8 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public Object clone() {
 		FilesInfoImpl filesInfoImpl = new FilesInfoImpl();
 
-		filesInfoImpl.setDocumentID(getDocumentID());
-		filesInfoImpl.setRecordID(getRecordID());
+		filesInfoImpl.setFileID(getFileID());
+		filesInfoImpl.setDocumentRecordID(getDocumentRecordID());
 
 		filesInfoImpl.resetOriginalValues();
 
@@ -238,9 +246,17 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	}
 
 	public int compareTo(FilesInfo filesInfo) {
-		String primaryKey = filesInfo.getPrimaryKey();
+		long primaryKey = filesInfo.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -258,9 +274,9 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 			return false;
 		}
 
-		String primaryKey = filesInfo.getPrimaryKey();
+		long primaryKey = filesInfo.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -270,14 +286,16 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public void resetOriginalValues() {
 		FilesInfoModelImpl filesInfoModelImpl = this;
 
-		filesInfoModelImpl._originalRecordID = filesInfoModelImpl._RecordID;
+		filesInfoModelImpl._originalDocumentRecordID = filesInfoModelImpl._DocumentRecordID;
+
+		filesInfoModelImpl._setOriginalDocumentRecordID = false;
 
 		filesInfoModelImpl._columnBitmask = 0;
 	}
@@ -286,21 +304,9 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public CacheModel<FilesInfo> toCacheModel() {
 		FilesInfoCacheModel filesInfoCacheModel = new FilesInfoCacheModel();
 
-		filesInfoCacheModel.DocumentID = getDocumentID();
+		filesInfoCacheModel.FileID = getFileID();
 
-		String DocumentID = filesInfoCacheModel.DocumentID;
-
-		if ((DocumentID != null) && (DocumentID.length() == 0)) {
-			filesInfoCacheModel.DocumentID = null;
-		}
-
-		filesInfoCacheModel.RecordID = getRecordID();
-
-		String RecordID = filesInfoCacheModel.RecordID;
-
-		if ((RecordID != null) && (RecordID.length() == 0)) {
-			filesInfoCacheModel.RecordID = null;
-		}
+		filesInfoCacheModel.DocumentRecordID = getDocumentRecordID();
 
 		return filesInfoCacheModel;
 	}
@@ -309,10 +315,10 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{DocumentID=");
-		sb.append(getDocumentID());
-		sb.append(", RecordID=");
-		sb.append(getRecordID());
+		sb.append("{FileID=");
+		sb.append(getFileID());
+		sb.append(", DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append("}");
 
 		return sb.toString();
@@ -326,12 +332,12 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>DocumentID</column-name><column-value><![CDATA[");
-		sb.append(getDocumentID());
+			"<column><column-name>FileID</column-name><column-value><![CDATA[");
+		sb.append(getFileID());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -343,9 +349,10 @@ public class FilesInfoModelImpl extends BaseModelImpl<FilesInfo>
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
 			FilesInfo.class
 		};
-	private String _DocumentID;
-	private String _RecordID;
-	private String _originalRecordID;
+	private long _FileID;
+	private long _DocumentRecordID;
+	private long _originalDocumentRecordID;
+	private boolean _setOriginalDocumentRecordID;
 	private long _columnBitmask;
 	private FilesInfo _escapedModelProxy;
 }

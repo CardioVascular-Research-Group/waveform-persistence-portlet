@@ -45,25 +45,25 @@ public class FilesInfoServiceImpl extends FilesInfoServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.FilesInfoServiceUtil} to access the files info remote service.
 	 */
-	public FilesInfo addFilesInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, String documentID, String fileListID, ServiceContext serviceContext) throws SystemException, PortalException {
+	public FilesInfo addFilesInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, long documentID, long fileListID, ServiceContext serviceContext) throws SystemException, PortalException {
 		// TODO:  Add permissions check in Liferay for security.  Implement security classes to utilize Liferay Security (BB)
 
 		return FilesInfoLocalServiceUtil.addFilesInfo(liferayUserId, liferayGroupId, liferayCompanyId, documentID, fileListID);
 	}
 	
-	public FilesInfo deleteFilesInfo(String docID) throws SystemException, PortalException {
+	public FilesInfo deleteFilesInfo(long docID) throws SystemException, PortalException {
 		return FilesInfoLocalServiceUtil.deleteFilesInfo(docID);
 	}
 	
-	public FilesInfo getFile(String documentID) throws NoSuchFilesInfoException, SystemException {
-		return FilesInfoLocalServiceUtil.getFile(documentID);
+	public FilesInfo getFile(long fileID) throws NoSuchFilesInfoException, SystemException {
+		return FilesInfoLocalServiceUtil.getFile(fileID);
 	}
 	
-	public List<FilesInfo> getFiles(String fileID) throws SystemException {
-		return FilesInfoLocalServiceUtil.getFiles(fileID);
+	public List<FilesInfo> getFiles(long recordID) throws SystemException {
+		return FilesInfoLocalServiceUtil.getFiles(recordID);
 	}
 	
-	public List<FilesInfo> getFiles(String fileID, int start, int end) throws SystemException {
-		return FilesInfoLocalServiceUtil.getFiles(fileID, start, end);
+	public List<FilesInfo> getFiles(long recordID, int start, int end) throws SystemException {
+		return FilesInfoLocalServiceUtil.getFiles(recordID, start, end);
 	}
 }

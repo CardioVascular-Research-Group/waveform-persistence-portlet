@@ -31,11 +31,11 @@ public class DocumentRecordLocalServiceClpInvoker {
 
 		_methodName1 = "createDocumentRecord";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteDocumentRecord";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteDocumentRecord";
 
@@ -74,11 +74,11 @@ public class DocumentRecordLocalServiceClpInvoker {
 
 		_methodName9 = "fetchDocumentRecord";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getDocumentRecord";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -173,10 +173,10 @@ public class DocumentRecordLocalServiceClpInvoker {
 		_methodName79 = "updateDocumentRecord";
 
 		_methodParameterTypes79 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 	}
 
@@ -189,12 +189,12 @@ public class DocumentRecordLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return DocumentRecordLocalServiceUtil.createDocumentRecord((java.lang.String)arguments[0]);
+			return DocumentRecordLocalServiceUtil.createDocumentRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return DocumentRecordLocalServiceUtil.deleteDocumentRecord((java.lang.String)arguments[0]);
+			return DocumentRecordLocalServiceUtil.deleteDocumentRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -234,12 +234,12 @@ public class DocumentRecordLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return DocumentRecordLocalServiceUtil.fetchDocumentRecord((java.lang.String)arguments[0]);
+			return DocumentRecordLocalServiceUtil.fetchDocumentRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return DocumentRecordLocalServiceUtil.getDocumentRecord((java.lang.String)arguments[0]);
+			return DocumentRecordLocalServiceUtil.getDocumentRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -358,7 +358,7 @@ public class DocumentRecordLocalServiceClpInvoker {
 
 		if (_methodName79.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
-			return DocumentRecordLocalServiceUtil.updateDocumentRecord((java.lang.String)arguments[0],
+			return DocumentRecordLocalServiceUtil.updateDocumentRecord(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4],

@@ -67,7 +67,7 @@ import java.rmi.RemoteException;
 public class FilesInfoServiceSoap {
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID,
+		long documentID, long fileListID,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
@@ -86,7 +86,7 @@ public class FilesInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap deleteFilesInfo(
-		java.lang.String docID) throws RemoteException {
+		long docID) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo returnValue =
 				FilesInfoServiceUtil.deleteFilesInfo(docID);
@@ -101,10 +101,10 @@ public class FilesInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap getFile(
-		java.lang.String documentID) throws RemoteException {
+		long fileID) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo returnValue =
-				FilesInfoServiceUtil.getFile(documentID);
+				FilesInfoServiceUtil.getFile(fileID);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap.toSoapModel(returnValue);
 		}
@@ -116,10 +116,10 @@ public class FilesInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap[] getFiles(
-		java.lang.String fileID) throws RemoteException {
+		long recordID) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> returnValue =
-				FilesInfoServiceUtil.getFiles(fileID);
+				FilesInfoServiceUtil.getFiles(recordID);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap.toSoapModels(returnValue);
 		}
@@ -131,10 +131,10 @@ public class FilesInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap[] getFiles(
-		java.lang.String fileID, int start, int end) throws RemoteException {
+		long recordID, int start, int end) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> returnValue =
-				FilesInfoServiceUtil.getFiles(fileID, start, end);
+				FilesInfoServiceUtil.getFiles(recordID, start, end);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfoSoap.toSoapModels(returnValue);
 		}

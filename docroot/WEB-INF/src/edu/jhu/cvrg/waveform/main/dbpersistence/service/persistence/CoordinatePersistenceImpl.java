@@ -168,7 +168,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	 * @param CoordinateID the primary key for the new coordinate
 	 * @return the new coordinate
 	 */
-	public Coordinate create(String CoordinateID) {
+	public Coordinate create(long CoordinateID) {
 		Coordinate coordinate = new CoordinateImpl();
 
 		coordinate.setNew(true);
@@ -185,9 +185,9 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException if a coordinate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Coordinate remove(String CoordinateID)
+	public Coordinate remove(long CoordinateID)
 		throws NoSuchCoordinateException, SystemException {
-		return remove((Serializable)CoordinateID);
+		return remove(Long.valueOf(CoordinateID));
 	}
 
 	/**
@@ -319,7 +319,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	@Override
 	public Coordinate findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((String)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -330,7 +330,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException if a coordinate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Coordinate findByPrimaryKey(String CoordinateID)
+	public Coordinate findByPrimaryKey(long CoordinateID)
 		throws NoSuchCoordinateException, SystemException {
 		Coordinate coordinate = fetchByPrimaryKey(CoordinateID);
 
@@ -356,7 +356,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	@Override
 	public Coordinate fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((String)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -366,7 +366,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 	 * @return the coordinate, or <code>null</code> if a coordinate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Coordinate fetchByPrimaryKey(String CoordinateID)
+	public Coordinate fetchByPrimaryKey(long CoordinateID)
 		throws SystemException {
 		Coordinate coordinate = (Coordinate)EntityCacheUtil.getResult(CoordinateModelImpl.ENTITY_CACHE_ENABLED,
 				CoordinateImpl.class, CoordinateID);
@@ -384,7 +384,7 @@ public class CoordinatePersistenceImpl extends BasePersistenceImpl<Coordinate>
 				session = openSession();
 
 				coordinate = (Coordinate)session.get(CoordinateImpl.class,
-						CoordinateID);
+						Long.valueOf(CoordinateID));
 			}
 			catch (Exception e) {
 				hasException = true;

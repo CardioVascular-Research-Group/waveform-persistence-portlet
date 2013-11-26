@@ -31,11 +31,11 @@ public class UploadStatusLocalServiceClpInvoker {
 
 		_methodName1 = "createUploadStatus";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteUploadStatus";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteUploadStatus";
 
@@ -74,11 +74,11 @@ public class UploadStatusLocalServiceClpInvoker {
 
 		_methodName9 = "fetchUploadStatus";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getUploadStatus";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -123,12 +123,12 @@ public class UploadStatusLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return UploadStatusLocalServiceUtil.createUploadStatus((java.lang.String)arguments[0]);
+			return UploadStatusLocalServiceUtil.createUploadStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return UploadStatusLocalServiceUtil.deleteUploadStatus((java.lang.String)arguments[0]);
+			return UploadStatusLocalServiceUtil.deleteUploadStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -168,12 +168,12 @@ public class UploadStatusLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return UploadStatusLocalServiceUtil.fetchUploadStatus((java.lang.String)arguments[0]);
+			return UploadStatusLocalServiceUtil.fetchUploadStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return UploadStatusLocalServiceUtil.getUploadStatus((java.lang.String)arguments[0]);
+			return UploadStatusLocalServiceUtil.getUploadStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&

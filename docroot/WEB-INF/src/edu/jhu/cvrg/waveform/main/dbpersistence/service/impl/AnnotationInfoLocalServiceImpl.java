@@ -18,11 +18,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo;
+import edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord;
 import edu.jhu.cvrg.waveform.main.dbpersistence.service.base.AnnotationInfoLocalServiceBaseImpl;
 
 /**
@@ -46,12 +48,12 @@ public class AnnotationInfoLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.AnnotationInfoLocalServiceUtil} to access the annotation info local service.
 	 */
-	public AnnotationInfo addAnnotationInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, String recordID, String createdBy, String annotationType, String name, String bioportalRef, String lead, String startCoord, String endCoord, String unitMeasurement, String description, String value, Date timestamp) throws SystemException, PortalException {
-		UUID annotationID = UUID.randomUUID();
+	public AnnotationInfo addAnnotationInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, long recordID, String createdBy, String annotationType, String name, String bioportalRef, String lead, long startCoord, long endCoord, String unitMeasurement, String description, String value, Date timestamp) throws SystemException, PortalException {
+		long annotationID = CounterLocalServiceUtil.increment(AnnotationInfo.class.getName());
 		
-		AnnotationInfo annotation = annotationInfoPersistence.create(annotationID.toString());
+		AnnotationInfo annotation = annotationInfoPersistence.create(annotationID);
 		
-		annotation.setRecordID(recordID);
+		annotation.setDocumentRecordID(recordID);
 		annotation.setCreatedBy(createdBy);
 		annotation.setAnnotationType(annotationType);
 		annotation.setName(name);
@@ -66,22 +68,18 @@ public class AnnotationInfoLocalServiceImpl
 		
 		super.addAnnotationInfo(annotation);
 		
-		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, AnnotationInfo.class.getName(), annotation.getRecordID(), false, true, true);
+		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, AnnotationInfo.class.getName(), annotation.getDocumentRecordID(), false, true, true);
 		
 		return annotation;
 	}
 	
 	public AnnotationInfo deleteAnnotationInfo(AnnotationInfo annInfo) throws SystemException, PortalException {
-		String startCoord = annInfo.getStartingCoordinateID();
-		String endCoord = annInfo.getEndingCoordinateID();
+		long startCoord = annInfo.getStartingCoordinateID();
+		long endCoord = annInfo.getEndingCoordinateID();
 		
-		if(startCoord != null && !(startCoord.equals(""))) {
-			coordinateLocalService.deleteCoordinate(startCoord);
-		}
-		
-		if(endCoord != null && !(endCoord.equals(""))) {
-			coordinateLocalService.deleteCoordinate(endCoord);
-		}
+		coordinateLocalService.deleteCoordinate(startCoord);
+
+		coordinateLocalService.deleteCoordinate(endCoord);
 		
 		return annotationInfoPersistence.remove(annInfo);
 	}
@@ -92,23 +90,23 @@ public class AnnotationInfoLocalServiceImpl
 		return deleteAnnotationInfo(annInfo);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByRecord(String recordID) throws SystemException {
-		return annotationInfoPersistence.findByRecordID(recordID);
+	public List<AnnotationInfo> getAnnotationsByRecord(long recordID) throws SystemException {
+		return annotationInfoPersistence.findByDocumentRecordID(recordID);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByRecord(String recordID, int start, int end) throws SystemException {
-		return annotationInfoPersistence.findByRecordID(recordID, start, end);
+	public List<AnnotationInfo> getAnnotationsByRecord(long recordID, int start, int end) throws SystemException {
+		return annotationInfoPersistence.findByDocumentRecordID(recordID, start, end);
 	}
 	
-	public AnnotationInfo getAnnotation(String recordID, String name, String annotationType, String lead) throws SystemException, NoSuchAnnotationInfoException {
+	public AnnotationInfo getAnnotation(long recordID, String name, String annotationType, String lead) throws SystemException, NoSuchAnnotationInfoException {
 		return annotationInfoPersistence.findByAnnotationProperties(recordID, name, annotationType, lead);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByType(String recordID, String annotationType) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByType(long recordID, String annotationType) throws SystemException {
 		return annotationInfoPersistence.findByAnnotationType(annotationType, recordID);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByType(String recordID, String annotationType, int start, int end) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByType(long recordID, String annotationType, int start, int end) throws SystemException {
 		return annotationInfoPersistence.findByAnnotationType(annotationType, recordID, start, end);
 	}
 }

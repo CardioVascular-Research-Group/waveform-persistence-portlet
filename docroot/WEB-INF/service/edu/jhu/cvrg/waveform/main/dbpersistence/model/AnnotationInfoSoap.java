@@ -42,7 +42,7 @@ public class AnnotationInfoSoap implements Serializable {
 		soapModel.setUnitOfMeasurement(model.getUnitOfMeasurement());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setValue(model.getValue());
-		soapModel.setRecordID(model.getRecordID());
+		soapModel.setDocumentRecordID(model.getDocumentRecordID());
 		soapModel.setTimestamp(model.getTimestamp());
 
 		return soapModel;
@@ -88,19 +88,19 @@ public class AnnotationInfoSoap implements Serializable {
 	public AnnotationInfoSoap() {
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _AnnotationID;
 	}
 
-	public void setPrimaryKey(String pk) {
+	public void setPrimaryKey(long pk) {
 		setAnnotationID(pk);
 	}
 
-	public String getAnnotationID() {
+	public long getAnnotationID() {
 		return _AnnotationID;
 	}
 
-	public void setAnnotationID(String AnnotationID) {
+	public void setAnnotationID(long AnnotationID) {
 		_AnnotationID = AnnotationID;
 	}
 
@@ -144,19 +144,19 @@ public class AnnotationInfoSoap implements Serializable {
 		_Lead = Lead;
 	}
 
-	public String getStartingCoordinateID() {
+	public long getStartingCoordinateID() {
 		return _StartingCoordinateID;
 	}
 
-	public void setStartingCoordinateID(String StartingCoordinateID) {
+	public void setStartingCoordinateID(long StartingCoordinateID) {
 		_StartingCoordinateID = StartingCoordinateID;
 	}
 
-	public String getEndingCoordinateID() {
+	public long getEndingCoordinateID() {
 		return _EndingCoordinateID;
 	}
 
-	public void setEndingCoordinateID(String EndingCoordinateID) {
+	public void setEndingCoordinateID(long EndingCoordinateID) {
 		_EndingCoordinateID = EndingCoordinateID;
 	}
 
@@ -184,12 +184,12 @@ public class AnnotationInfoSoap implements Serializable {
 		_Value = Value;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public Date getTimestamp() {
@@ -200,17 +200,17 @@ public class AnnotationInfoSoap implements Serializable {
 		_Timestamp = Timestamp;
 	}
 
-	private String _AnnotationID;
+	private long _AnnotationID;
 	private String _CreatedBy;
 	private String _AnnotationType;
 	private String _Name;
 	private String _BioportalReference;
 	private String _Lead;
-	private String _StartingCoordinateID;
-	private String _EndingCoordinateID;
+	private long _StartingCoordinateID;
+	private long _EndingCoordinateID;
 	private String _UnitOfMeasurement;
 	private String _Description;
 	private String _Value;
-	private String _RecordID;
+	private long _DocumentRecordID;
 	private Date _Timestamp;
 }

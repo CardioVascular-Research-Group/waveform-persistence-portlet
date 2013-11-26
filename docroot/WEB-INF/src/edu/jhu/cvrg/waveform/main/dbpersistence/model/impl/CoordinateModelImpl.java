@@ -19,9 +19,12 @@ import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateModel;
@@ -59,11 +62,11 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 	 */
 	public static final String TABLE_NAME = "Database_Coordinate";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "CoordinateID", Types.VARCHAR },
+			{ "CoordinateID", Types.BIGINT },
 			{ "xCoordinate", Types.DOUBLE },
 			{ "yCoordinate", Types.DOUBLE }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_Coordinate (CoordinateID VARCHAR(75) not null primary key,xCoordinate DOUBLE,yCoordinate DOUBLE)";
+	public static final String TABLE_SQL_CREATE = "create table Database_Coordinate (CoordinateID LONG not null primary key,xCoordinate DOUBLE,yCoordinate DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table Database_Coordinate";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -122,20 +125,20 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 	public CoordinateModelImpl() {
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _CoordinateID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setCoordinateID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _CoordinateID;
+		return new Long(_CoordinateID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -159,7 +162,7 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String CoordinateID = (String)attributes.get("CoordinateID");
+		Long CoordinateID = (Long)attributes.get("CoordinateID");
 
 		if (CoordinateID != null) {
 			setCoordinateID(CoordinateID);
@@ -179,16 +182,11 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 	}
 
 	@JSON
-	public String getCoordinateID() {
-		if (_CoordinateID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _CoordinateID;
-		}
+	public long getCoordinateID() {
+		return _CoordinateID;
 	}
 
-	public void setCoordinateID(String CoordinateID) {
+	public void setCoordinateID(long CoordinateID) {
 		_CoordinateID = CoordinateID;
 	}
 
@@ -208,6 +206,19 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 
 	public void setYCoordinate(double yCoordinate) {
 		_yCoordinate = yCoordinate;
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Coordinate.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -235,9 +246,17 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 	}
 
 	public int compareTo(Coordinate coordinate) {
-		String primaryKey = coordinate.getPrimaryKey();
+		long primaryKey = coordinate.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -255,9 +274,9 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 			return false;
 		}
 
-		String primaryKey = coordinate.getPrimaryKey();
+		long primaryKey = coordinate.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -267,7 +286,7 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -279,12 +298,6 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 		CoordinateCacheModel coordinateCacheModel = new CoordinateCacheModel();
 
 		coordinateCacheModel.CoordinateID = getCoordinateID();
-
-		String CoordinateID = coordinateCacheModel.CoordinateID;
-
-		if ((CoordinateID != null) && (CoordinateID.length() == 0)) {
-			coordinateCacheModel.CoordinateID = null;
-		}
 
 		coordinateCacheModel.xCoordinate = getXCoordinate();
 
@@ -337,7 +350,7 @@ public class CoordinateModelImpl extends BaseModelImpl<Coordinate>
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
 			Coordinate.class
 		};
-	private String _CoordinateID;
+	private long _CoordinateID;
 	private double _xCoordinate;
 	private double _yCoordinate;
 	private Coordinate _escapedModelProxy;

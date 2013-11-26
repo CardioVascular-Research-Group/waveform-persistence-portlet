@@ -102,7 +102,7 @@ public abstract class AnnotationInfoLocalServiceBaseImpl
 	 * @param AnnotationID the primary key for the new annotation info
 	 * @return the new annotation info
 	 */
-	public AnnotationInfo createAnnotationInfo(String AnnotationID) {
+	public AnnotationInfo createAnnotationInfo(long AnnotationID) {
 		return annotationInfoPersistence.create(AnnotationID);
 	}
 
@@ -115,7 +115,7 @@ public abstract class AnnotationInfoLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public AnnotationInfo deleteAnnotationInfo(String AnnotationID)
+	public AnnotationInfo deleteAnnotationInfo(long AnnotationID)
 		throws PortalException, SystemException {
 		return annotationInfoPersistence.remove(AnnotationID);
 	}
@@ -207,7 +207,7 @@ public abstract class AnnotationInfoLocalServiceBaseImpl
 		return annotationInfoPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public AnnotationInfo fetchAnnotationInfo(String AnnotationID)
+	public AnnotationInfo fetchAnnotationInfo(long AnnotationID)
 		throws SystemException {
 		return annotationInfoPersistence.fetchByPrimaryKey(AnnotationID);
 	}
@@ -220,7 +220,7 @@ public abstract class AnnotationInfoLocalServiceBaseImpl
 	 * @throws PortalException if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo getAnnotationInfo(String AnnotationID)
+	public AnnotationInfo getAnnotationInfo(long AnnotationID)
 		throws PortalException, SystemException {
 		return annotationInfoPersistence.findByPrimaryKey(AnnotationID);
 	}

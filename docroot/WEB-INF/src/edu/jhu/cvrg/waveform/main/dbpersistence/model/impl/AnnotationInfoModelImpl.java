@@ -22,6 +22,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoModel;
@@ -60,21 +64,21 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	 */
 	public static final String TABLE_NAME = "Database_AnnotationInfo";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "AnnotationID", Types.VARCHAR },
+			{ "AnnotationID", Types.BIGINT },
 			{ "CreatedBy", Types.VARCHAR },
 			{ "AnnotationType", Types.VARCHAR },
 			{ "Name", Types.VARCHAR },
 			{ "BioportalReference", Types.VARCHAR },
 			{ "Lead", Types.VARCHAR },
-			{ "StartingCoordinateID", Types.VARCHAR },
-			{ "EndingCoordinateID", Types.VARCHAR },
+			{ "StartingCoordinateID", Types.BIGINT },
+			{ "EndingCoordinateID", Types.BIGINT },
 			{ "UnitOfMeasurement", Types.VARCHAR },
 			{ "Description", Types.VARCHAR },
 			{ "Value", Types.VARCHAR },
-			{ "RecordID", Types.VARCHAR },
+			{ "DocumentRecordID", Types.BIGINT },
 			{ "Timestamp", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_AnnotationInfo (AnnotationID VARCHAR(75) not null primary key,CreatedBy VARCHAR(75) null,AnnotationType VARCHAR(75) null,Name VARCHAR(75) null,BioportalReference VARCHAR(75) null,Lead VARCHAR(75) null,StartingCoordinateID VARCHAR(75) null,EndingCoordinateID VARCHAR(75) null,UnitOfMeasurement VARCHAR(75) null,Description VARCHAR(75) null,Value VARCHAR(75) null,RecordID VARCHAR(75) null,Timestamp DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Database_AnnotationInfo (AnnotationID LONG not null primary key,CreatedBy VARCHAR(75) null,AnnotationType VARCHAR(75) null,Name VARCHAR(75) null,BioportalReference VARCHAR(75) null,Lead VARCHAR(75) null,StartingCoordinateID LONG,EndingCoordinateID LONG,UnitOfMeasurement VARCHAR(75) null,Description VARCHAR(75) null,Value VARCHAR(75) null,DocumentRecordID LONG,Timestamp DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Database_AnnotationInfo";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -89,9 +93,9 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 				"value.object.column.bitmask.enabled.edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo"),
 			true);
 	public static long ANNOTATIONTYPE_COLUMN_BITMASK = 1L;
-	public static long LEAD_COLUMN_BITMASK = 2L;
-	public static long NAME_COLUMN_BITMASK = 4L;
-	public static long RECORDID_COLUMN_BITMASK = 8L;
+	public static long DOCUMENTRECORDID_COLUMN_BITMASK = 2L;
+	public static long LEAD_COLUMN_BITMASK = 4L;
+	public static long NAME_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -117,7 +121,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		model.setUnitOfMeasurement(soapModel.getUnitOfMeasurement());
 		model.setDescription(soapModel.getDescription());
 		model.setValue(soapModel.getValue());
-		model.setRecordID(soapModel.getRecordID());
+		model.setDocumentRecordID(soapModel.getDocumentRecordID());
 		model.setTimestamp(soapModel.getTimestamp());
 
 		return model;
@@ -149,20 +153,20 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	public AnnotationInfoModelImpl() {
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _AnnotationID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setAnnotationID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _AnnotationID;
+		return new Long(_AnnotationID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -188,7 +192,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		attributes.put("UnitOfMeasurement", getUnitOfMeasurement());
 		attributes.put("Description", getDescription());
 		attributes.put("Value", getValue());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("Timestamp", getTimestamp());
 
 		return attributes;
@@ -196,7 +200,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String AnnotationID = (String)attributes.get("AnnotationID");
+		Long AnnotationID = (Long)attributes.get("AnnotationID");
 
 		if (AnnotationID != null) {
 			setAnnotationID(AnnotationID);
@@ -232,14 +236,13 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 			setLead(Lead);
 		}
 
-		String StartingCoordinateID = (String)attributes.get(
-				"StartingCoordinateID");
+		Long StartingCoordinateID = (Long)attributes.get("StartingCoordinateID");
 
 		if (StartingCoordinateID != null) {
 			setStartingCoordinateID(StartingCoordinateID);
 		}
 
-		String EndingCoordinateID = (String)attributes.get("EndingCoordinateID");
+		Long EndingCoordinateID = (Long)attributes.get("EndingCoordinateID");
 
 		if (EndingCoordinateID != null) {
 			setEndingCoordinateID(EndingCoordinateID);
@@ -263,10 +266,10 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 			setValue(Value);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		Date Timestamp = (Date)attributes.get("Timestamp");
@@ -277,16 +280,11 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	}
 
 	@JSON
-	public String getAnnotationID() {
-		if (_AnnotationID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _AnnotationID;
-		}
+	public long getAnnotationID() {
+		return _AnnotationID;
 	}
 
-	public void setAnnotationID(String AnnotationID) {
+	public void setAnnotationID(long AnnotationID) {
 		_AnnotationID = AnnotationID;
 	}
 
@@ -391,30 +389,20 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	}
 
 	@JSON
-	public String getStartingCoordinateID() {
-		if (_StartingCoordinateID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _StartingCoordinateID;
-		}
+	public long getStartingCoordinateID() {
+		return _StartingCoordinateID;
 	}
 
-	public void setStartingCoordinateID(String StartingCoordinateID) {
+	public void setStartingCoordinateID(long StartingCoordinateID) {
 		_StartingCoordinateID = StartingCoordinateID;
 	}
 
 	@JSON
-	public String getEndingCoordinateID() {
-		if (_EndingCoordinateID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _EndingCoordinateID;
-		}
+	public long getEndingCoordinateID() {
+		return _EndingCoordinateID;
 	}
 
-	public void setEndingCoordinateID(String EndingCoordinateID) {
+	public void setEndingCoordinateID(long EndingCoordinateID) {
 		_EndingCoordinateID = EndingCoordinateID;
 	}
 
@@ -461,27 +449,24 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	}
 
 	@JSON
-	public String getRecordID() {
-		if (_RecordID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _RecordID;
-		}
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_columnBitmask |= RECORDID_COLUMN_BITMASK;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_columnBitmask |= DOCUMENTRECORDID_COLUMN_BITMASK;
 
-		if (_originalRecordID == null) {
-			_originalRecordID = _RecordID;
+		if (!_setOriginalDocumentRecordID) {
+			_setOriginalDocumentRecordID = true;
+
+			_originalDocumentRecordID = _DocumentRecordID;
 		}
 
-		_RecordID = RecordID;
+		_DocumentRecordID = DocumentRecordID;
 	}
 
-	public String getOriginalRecordID() {
-		return GetterUtil.getString(_originalRecordID);
+	public long getOriginalDocumentRecordID() {
+		return _originalDocumentRecordID;
 	}
 
 	@JSON
@@ -495,6 +480,19 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 
 	public long getColumnBitmask() {
 		return _columnBitmask;
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			AnnotationInfo.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -523,7 +521,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		annotationInfoImpl.setUnitOfMeasurement(getUnitOfMeasurement());
 		annotationInfoImpl.setDescription(getDescription());
 		annotationInfoImpl.setValue(getValue());
-		annotationInfoImpl.setRecordID(getRecordID());
+		annotationInfoImpl.setDocumentRecordID(getDocumentRecordID());
 		annotationInfoImpl.setTimestamp(getTimestamp());
 
 		annotationInfoImpl.resetOriginalValues();
@@ -532,9 +530,17 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	}
 
 	public int compareTo(AnnotationInfo annotationInfo) {
-		String primaryKey = annotationInfo.getPrimaryKey();
+		long primaryKey = annotationInfo.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -552,9 +558,9 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 			return false;
 		}
 
-		String primaryKey = annotationInfo.getPrimaryKey();
+		long primaryKey = annotationInfo.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -564,7 +570,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -577,7 +583,9 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 
 		annotationInfoModelImpl._originalLead = annotationInfoModelImpl._Lead;
 
-		annotationInfoModelImpl._originalRecordID = annotationInfoModelImpl._RecordID;
+		annotationInfoModelImpl._originalDocumentRecordID = annotationInfoModelImpl._DocumentRecordID;
+
+		annotationInfoModelImpl._setOriginalDocumentRecordID = false;
 
 		annotationInfoModelImpl._columnBitmask = 0;
 	}
@@ -587,12 +595,6 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		AnnotationInfoCacheModel annotationInfoCacheModel = new AnnotationInfoCacheModel();
 
 		annotationInfoCacheModel.AnnotationID = getAnnotationID();
-
-		String AnnotationID = annotationInfoCacheModel.AnnotationID;
-
-		if ((AnnotationID != null) && (AnnotationID.length() == 0)) {
-			annotationInfoCacheModel.AnnotationID = null;
-		}
 
 		annotationInfoCacheModel.CreatedBy = getCreatedBy();
 
@@ -636,20 +638,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 
 		annotationInfoCacheModel.StartingCoordinateID = getStartingCoordinateID();
 
-		String StartingCoordinateID = annotationInfoCacheModel.StartingCoordinateID;
-
-		if ((StartingCoordinateID != null) &&
-				(StartingCoordinateID.length() == 0)) {
-			annotationInfoCacheModel.StartingCoordinateID = null;
-		}
-
 		annotationInfoCacheModel.EndingCoordinateID = getEndingCoordinateID();
-
-		String EndingCoordinateID = annotationInfoCacheModel.EndingCoordinateID;
-
-		if ((EndingCoordinateID != null) && (EndingCoordinateID.length() == 0)) {
-			annotationInfoCacheModel.EndingCoordinateID = null;
-		}
 
 		annotationInfoCacheModel.UnitOfMeasurement = getUnitOfMeasurement();
 
@@ -675,13 +664,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 			annotationInfoCacheModel.Value = null;
 		}
 
-		annotationInfoCacheModel.RecordID = getRecordID();
-
-		String RecordID = annotationInfoCacheModel.RecordID;
-
-		if ((RecordID != null) && (RecordID.length() == 0)) {
-			annotationInfoCacheModel.RecordID = null;
-		}
+		annotationInfoCacheModel.DocumentRecordID = getDocumentRecordID();
 
 		Date Timestamp = getTimestamp();
 
@@ -721,8 +704,8 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		sb.append(getDescription());
 		sb.append(", Value=");
 		sb.append(getValue());
-		sb.append(", RecordID=");
-		sb.append(getRecordID());
+		sb.append(", DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append(", Timestamp=");
 		sb.append(getTimestamp());
 		sb.append("}");
@@ -783,8 +766,8 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 		sb.append(getValue());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>Timestamp</column-name><column-value><![CDATA[");
@@ -800,7 +783,7 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
 			AnnotationInfo.class
 		};
-	private String _AnnotationID;
+	private long _AnnotationID;
 	private String _CreatedBy;
 	private String _AnnotationType;
 	private String _originalAnnotationType;
@@ -809,13 +792,14 @@ public class AnnotationInfoModelImpl extends BaseModelImpl<AnnotationInfo>
 	private String _BioportalReference;
 	private String _Lead;
 	private String _originalLead;
-	private String _StartingCoordinateID;
-	private String _EndingCoordinateID;
+	private long _StartingCoordinateID;
+	private long _EndingCoordinateID;
 	private String _UnitOfMeasurement;
 	private String _Description;
 	private String _Value;
-	private String _RecordID;
-	private String _originalRecordID;
+	private long _DocumentRecordID;
+	private long _originalDocumentRecordID;
+	private boolean _setOriginalDocumentRecordID;
 	private Date _Timestamp;
 	private long _columnBitmask;
 	private AnnotationInfo _escapedModelProxy;

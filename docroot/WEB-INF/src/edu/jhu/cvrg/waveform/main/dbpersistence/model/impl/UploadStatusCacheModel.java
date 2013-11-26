@@ -45,8 +45,8 @@ public class UploadStatusCacheModel implements CacheModel<UploadStatus>,
 		sb.append(RecordCreation);
 		sb.append(", AnnotationCreation=");
 		sb.append(AnnotationCreation);
-		sb.append(", RecordID=");
-		sb.append(RecordID);
+		sb.append(", DocumentRecordID=");
+		sb.append(DocumentRecordID);
 		sb.append("}");
 
 		return sb.toString();
@@ -55,12 +55,7 @@ public class UploadStatusCacheModel implements CacheModel<UploadStatus>,
 	public UploadStatus toEntityModel() {
 		UploadStatusImpl uploadStatusImpl = new UploadStatusImpl();
 
-		if (StatusLogNumber == null) {
-			uploadStatusImpl.setStatusLogNumber(StringPool.BLANK);
-		}
-		else {
-			uploadStatusImpl.setStatusLogNumber(StatusLogNumber);
-		}
+		uploadStatusImpl.setStatusLogNumber(StatusLogNumber);
 
 		if (FileTransfer == null) {
 			uploadStatusImpl.setFileTransfer(StringPool.BLANK);
@@ -90,22 +85,17 @@ public class UploadStatusCacheModel implements CacheModel<UploadStatus>,
 			uploadStatusImpl.setAnnotationCreation(AnnotationCreation);
 		}
 
-		if (RecordID == null) {
-			uploadStatusImpl.setRecordID(StringPool.BLANK);
-		}
-		else {
-			uploadStatusImpl.setRecordID(RecordID);
-		}
+		uploadStatusImpl.setDocumentRecordID(DocumentRecordID);
 
 		uploadStatusImpl.resetOriginalValues();
 
 		return uploadStatusImpl;
 	}
 
-	public String StatusLogNumber;
+	public long StatusLogNumber;
 	public String FileTransfer;
 	public String FileConversion;
 	public String RecordCreation;
 	public String AnnotationCreation;
-	public String RecordID;
+	public long DocumentRecordID;
 }

@@ -34,25 +34,25 @@ public class FilesInfoServiceClpInvoker {
 		_methodName52 = "addFilesInfo";
 
 		_methodParameterTypes52 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "long", "long",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName53 = "deleteFilesInfo";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes53 = new String[] { "long" };
 
 		_methodName54 = "getFile";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "long" };
 
 		_methodName55 = "getFiles";
 
-		_methodParameterTypes55 = new String[] { "java.lang.String" };
+		_methodParameterTypes55 = new String[] { "long" };
 
 		_methodName56 = "getFiles";
 
-		_methodParameterTypes56 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes56 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -72,28 +72,29 @@ public class FilesInfoServiceClpInvoker {
 			return FilesInfoServiceUtil.addFilesInfo(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				((Long)arguments[3]).longValue(),
+				((Long)arguments[4]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return FilesInfoServiceUtil.deleteFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoServiceUtil.deleteFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return FilesInfoServiceUtil.getFile((java.lang.String)arguments[0]);
+			return FilesInfoServiceUtil.getFile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return FilesInfoServiceUtil.getFiles((java.lang.String)arguments[0]);
+			return FilesInfoServiceUtil.getFiles(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return FilesInfoServiceUtil.getFiles((java.lang.String)arguments[0],
+			return FilesInfoServiceUtil.getFiles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}

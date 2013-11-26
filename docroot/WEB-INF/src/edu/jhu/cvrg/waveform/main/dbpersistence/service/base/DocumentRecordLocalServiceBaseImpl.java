@@ -99,25 +99,25 @@ public abstract class DocumentRecordLocalServiceBaseImpl
 	/**
 	 * Creates a new document record with the primary key. Does not add the document record to the database.
 	 *
-	 * @param RecordID the primary key for the new document record
+	 * @param DocumentRecordID the primary key for the new document record
 	 * @return the new document record
 	 */
-	public DocumentRecord createDocumentRecord(String RecordID) {
-		return documentRecordPersistence.create(RecordID);
+	public DocumentRecord createDocumentRecord(long DocumentRecordID) {
+		return documentRecordPersistence.create(DocumentRecordID);
 	}
 
 	/**
 	 * Deletes the document record with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param RecordID the primary key of the document record
+	 * @param DocumentRecordID the primary key of the document record
 	 * @return the document record that was removed
 	 * @throws PortalException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public DocumentRecord deleteDocumentRecord(String RecordID)
+	public DocumentRecord deleteDocumentRecord(long DocumentRecordID)
 		throws PortalException, SystemException {
-		return documentRecordPersistence.remove(RecordID);
+		return documentRecordPersistence.remove(DocumentRecordID);
 	}
 
 	/**
@@ -207,22 +207,22 @@ public abstract class DocumentRecordLocalServiceBaseImpl
 		return documentRecordPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public DocumentRecord fetchDocumentRecord(String RecordID)
+	public DocumentRecord fetchDocumentRecord(long DocumentRecordID)
 		throws SystemException {
-		return documentRecordPersistence.fetchByPrimaryKey(RecordID);
+		return documentRecordPersistence.fetchByPrimaryKey(DocumentRecordID);
 	}
 
 	/**
 	 * Returns the document record with the primary key.
 	 *
-	 * @param RecordID the primary key of the document record
+	 * @param DocumentRecordID the primary key of the document record
 	 * @return the document record
 	 * @throws PortalException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord getDocumentRecord(String RecordID)
+	public DocumentRecord getDocumentRecord(long DocumentRecordID)
 		throws PortalException, SystemException {
-		return documentRecordPersistence.findByPrimaryKey(RecordID);
+		return documentRecordPersistence.findByPrimaryKey(DocumentRecordID);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

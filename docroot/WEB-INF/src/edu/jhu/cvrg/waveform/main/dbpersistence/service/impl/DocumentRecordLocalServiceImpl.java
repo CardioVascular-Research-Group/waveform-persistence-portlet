@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
@@ -49,9 +50,10 @@ public class DocumentRecordLocalServiceImpl
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.DocumentRecordLocalServiceUtil} to access the document record local service.
 	 */
 	public DocumentRecord addDocumentRecord(long liferayUserId, long liferayGroupId, long liferayCompanyId, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws SystemException, PortalException{
-		UUID recordID = UUID.randomUUID();
 		
-		DocumentRecord docRecord = documentRecordPersistence.create(recordID.toString());
+		long documentRecordID = CounterLocalServiceUtil.increment(DocumentRecord.class.getName());
+		
+		DocumentRecord docRecord = documentRecordPersistence.create(documentRecordID);
 		
 		docRecord.setUserID(liferayUserId);
 		docRecord.setRecordName(recordName);
@@ -69,7 +71,7 @@ public class DocumentRecordLocalServiceImpl
 		
 		super.addDocumentRecord(docRecord);
 		
-		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, DocumentRecord.class.getName(), docRecord.getRecordID(), false, true, true);
+		resourceLocalService.addResources(liferayCompanyId, liferayGroupId, liferayUserId, DocumentRecord.class.getName(), docRecord.getDocumentRecordID(), false, true, true);
 		
 		return docRecord;
 	}
@@ -80,16 +82,16 @@ public class DocumentRecordLocalServiceImpl
 		// all instances of the respective entities at once instead - BB 11/14/2013 
 		
 		// Delete file records first
-		String recordID = docRecord.getPrimaryKey();
+		long recordID = docRecord.getPrimaryKey();
 		
-		List<FilesInfo> fInfoList = filesInfoPersistence.findByRecordID(recordID);
+		List<FilesInfo> fInfoList = filesInfoPersistence.findByDocumentRecordID(recordID);
 		
 		for(FilesInfo filesInfo : fInfoList) {
 			filesInfoLocalService.deleteFilesInfo(filesInfo);
 		}
 		
 		// Now delete associated annotations
-		List<AnnotationInfo> annInfoList = annotationInfoPersistence.findByRecordID(recordID);
+		List<AnnotationInfo> annInfoList = annotationInfoPersistence.findByDocumentRecordID(recordID);
 		
 		for(AnnotationInfo annInfo : annInfoList) {
 			annotationInfoLocalService.deleteAnnotationInfo(annInfo);
@@ -139,7 +141,7 @@ public class DocumentRecordLocalServiceImpl
 		return documentRecordPersistence.findByRecordProperties(recordName, userID, subjectID, fileTreePath);
 	}
 	
-	public DocumentRecord updateDocumentRecord(String recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
+	public DocumentRecord updateDocumentRecord(long recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
 		DocumentRecord docRecord = documentRecordPersistence.findByPrimaryKey(recordID);
 		
 		docRecord.setUserID(userID);

@@ -31,7 +31,7 @@ public class DocumentRecordSoap implements Serializable {
 	public static DocumentRecordSoap toSoapModel(DocumentRecord model) {
 		DocumentRecordSoap soapModel = new DocumentRecordSoap();
 
-		soapModel.setRecordID(model.getRecordID());
+		soapModel.setDocumentRecordID(model.getDocumentRecordID());
 		soapModel.setRecordName(model.getRecordName());
 		soapModel.setUserID(model.getUserID());
 		soapModel.setSubjectID(model.getSubjectID());
@@ -89,20 +89,20 @@ public class DocumentRecordSoap implements Serializable {
 	public DocumentRecordSoap() {
 	}
 
-	public String getPrimaryKey() {
-		return _RecordID;
+	public long getPrimaryKey() {
+		return _DocumentRecordID;
 	}
 
-	public void setPrimaryKey(String pk) {
-		setRecordID(pk);
+	public void setPrimaryKey(long pk) {
+		setDocumentRecordID(pk);
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public String getRecordName() {
@@ -209,7 +209,7 @@ public class DocumentRecordSoap implements Serializable {
 		_AduGain = AduGain;
 	}
 
-	private String _RecordID;
+	private long _DocumentRecordID;
 	private String _RecordName;
 	private long _UserID;
 	private String _SubjectID;

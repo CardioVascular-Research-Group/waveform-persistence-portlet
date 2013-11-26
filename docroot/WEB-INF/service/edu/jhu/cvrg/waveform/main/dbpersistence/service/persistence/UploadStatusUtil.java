@@ -137,7 +137,7 @@ public class UploadStatusUtil {
 	* @return the new upload status
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus create(
-		java.lang.String StatusLogNumber) {
+		long StatusLogNumber) {
 		return getPersistence().create(StatusLogNumber);
 	}
 
@@ -150,7 +150,7 @@ public class UploadStatusUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus remove(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException {
 		return getPersistence().remove(StatusLogNumber);
@@ -172,7 +172,7 @@ public class UploadStatusUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus findByPrimaryKey(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException {
 		return getPersistence().findByPrimaryKey(StatusLogNumber);
@@ -186,7 +186,7 @@ public class UploadStatusUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus fetchByPrimaryKey(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(StatusLogNumber);
 	}

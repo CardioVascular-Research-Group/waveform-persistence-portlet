@@ -31,11 +31,11 @@ public class CoordinateLocalServiceClpInvoker {
 
 		_methodName1 = "createCoordinate";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteCoordinate";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteCoordinate";
 
@@ -74,11 +74,11 @@ public class CoordinateLocalServiceClpInvoker {
 
 		_methodName9 = "fetchCoordinate";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getCoordinate";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -116,7 +116,7 @@ public class CoordinateLocalServiceClpInvoker {
 		_methodName68 = "addCoordinate";
 
 		_methodParameterTypes68 = new String[] {
-				"long", "long", "long", "java.lang.String", "double", "double"
+				"long", "long", "long", "double", "double"
 			};
 
 		_methodName69 = "deleteCoordinate";
@@ -127,17 +127,15 @@ public class CoordinateLocalServiceClpInvoker {
 
 		_methodName70 = "deleteCoordinate";
 
-		_methodParameterTypes70 = new String[] { "java.lang.String" };
+		_methodParameterTypes70 = new String[] { "long" };
 
 		_methodName71 = "getCoordinate";
 
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
+		_methodParameterTypes71 = new String[] { "long" };
 
 		_methodName72 = "updateCoordinate";
 
-		_methodParameterTypes72 = new String[] {
-				"java.lang.String", "double", "double"
-			};
+		_methodParameterTypes72 = new String[] { "long", "double", "double" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -149,12 +147,12 @@ public class CoordinateLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return CoordinateLocalServiceUtil.createCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.createCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return CoordinateLocalServiceUtil.deleteCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.deleteCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -194,12 +192,12 @@ public class CoordinateLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return CoordinateLocalServiceUtil.fetchCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.fetchCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return CoordinateLocalServiceUtil.getCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.getCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -244,9 +242,8 @@ public class CoordinateLocalServiceClpInvoker {
 			return CoordinateLocalServiceUtil.addCoordinate(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3],
-				((Double)arguments[4]).doubleValue(),
-				((Double)arguments[5]).doubleValue());
+				((Double)arguments[3]).doubleValue(),
+				((Double)arguments[4]).doubleValue());
 		}
 
 		if (_methodName69.equals(name) &&
@@ -256,17 +253,17 @@ public class CoordinateLocalServiceClpInvoker {
 
 		if (_methodName70.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return CoordinateLocalServiceUtil.deleteCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.deleteCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return CoordinateLocalServiceUtil.getCoordinate((java.lang.String)arguments[0]);
+			return CoordinateLocalServiceUtil.getCoordinate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return CoordinateLocalServiceUtil.updateCoordinate((java.lang.String)arguments[0],
+			return CoordinateLocalServiceUtil.updateCoordinate(((Long)arguments[0]).longValue(),
 				((Double)arguments[1]).doubleValue(),
 				((Double)arguments[2]).doubleValue());
 		}

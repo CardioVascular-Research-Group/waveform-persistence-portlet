@@ -58,7 +58,7 @@ public class UploadStatusLocalServiceUtil {
 	* @return the new upload status
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus createUploadStatus(
-		java.lang.String StatusLogNumber) {
+		long StatusLogNumber) {
 		return getService().createUploadStatus(StatusLogNumber);
 	}
 
@@ -71,7 +71,7 @@ public class UploadStatusLocalServiceUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus deleteUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteUploadStatus(StatusLogNumber);
@@ -166,7 +166,7 @@ public class UploadStatusLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus fetchUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchUploadStatus(StatusLogNumber);
 	}
@@ -180,7 +180,7 @@ public class UploadStatusLocalServiceUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus getUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUploadStatus(StatusLogNumber);

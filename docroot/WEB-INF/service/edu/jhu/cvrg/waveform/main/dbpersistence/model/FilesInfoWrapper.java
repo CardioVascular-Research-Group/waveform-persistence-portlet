@@ -44,23 +44,23 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("DocumentID", getDocumentID());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("FileID", getFileID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 
 		return attributes;
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String DocumentID = (String)attributes.get("DocumentID");
+		Long FileID = (Long)attributes.get("FileID");
 
-		if (DocumentID != null) {
-			setDocumentID(DocumentID);
+		if (FileID != null) {
+			setFileID(FileID);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 	*
 	* @return the primary key of this files info
 	*/
-	public java.lang.String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _filesInfo.getPrimaryKey();
 	}
 
@@ -78,44 +78,44 @@ public class FilesInfoWrapper implements FilesInfo, ModelWrapper<FilesInfo> {
 	*
 	* @param primaryKey the primary key of this files info
 	*/
-	public void setPrimaryKey(java.lang.String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_filesInfo.setPrimaryKey(primaryKey);
 	}
 
 	/**
-	* Returns the document i d of this files info.
+	* Returns the file i d of this files info.
 	*
-	* @return the document i d of this files info
+	* @return the file i d of this files info
 	*/
-	public java.lang.String getDocumentID() {
-		return _filesInfo.getDocumentID();
+	public long getFileID() {
+		return _filesInfo.getFileID();
 	}
 
 	/**
-	* Sets the document i d of this files info.
+	* Sets the file i d of this files info.
 	*
-	* @param DocumentID the document i d of this files info
+	* @param FileID the file i d of this files info
 	*/
-	public void setDocumentID(java.lang.String DocumentID) {
-		_filesInfo.setDocumentID(DocumentID);
+	public void setFileID(long FileID) {
+		_filesInfo.setFileID(FileID);
 	}
 
 	/**
-	* Returns the record i d of this files info.
+	* Returns the document record i d of this files info.
 	*
-	* @return the record i d of this files info
+	* @return the document record i d of this files info
 	*/
-	public java.lang.String getRecordID() {
-		return _filesInfo.getRecordID();
+	public long getDocumentRecordID() {
+		return _filesInfo.getDocumentRecordID();
 	}
 
 	/**
-	* Sets the record i d of this files info.
+	* Sets the document record i d of this files info.
 	*
-	* @param RecordID the record i d of this files info
+	* @param DocumentRecordID the document record i d of this files info
 	*/
-	public void setRecordID(java.lang.String RecordID) {
-		_filesInfo.setRecordID(RecordID);
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_filesInfo.setDocumentRecordID(DocumentRecordID);
 	}
 
 	public boolean isNew() {

@@ -37,8 +37,8 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
-		sb.append("{RecordID=");
-		sb.append(RecordID);
+		sb.append("{DocumentRecordID=");
+		sb.append(DocumentRecordID);
 		sb.append(", RecordName=");
 		sb.append(RecordName);
 		sb.append(", UserID=");
@@ -73,12 +73,7 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 	public DocumentRecord toEntityModel() {
 		DocumentRecordImpl documentRecordImpl = new DocumentRecordImpl();
 
-		if (RecordID == null) {
-			documentRecordImpl.setRecordID(StringPool.BLANK);
-		}
-		else {
-			documentRecordImpl.setRecordID(RecordID);
-		}
+		documentRecordImpl.setDocumentRecordID(DocumentRecordID);
 
 		if (RecordName == null) {
 			documentRecordImpl.setRecordName(StringPool.BLANK);
@@ -145,7 +140,7 @@ public class DocumentRecordCacheModel implements CacheModel<DocumentRecord>,
 		return documentRecordImpl;
 	}
 
-	public String RecordID;
+	public long DocumentRecordID;
 	public String RecordName;
 	public long UserID;
 	public String SubjectID;

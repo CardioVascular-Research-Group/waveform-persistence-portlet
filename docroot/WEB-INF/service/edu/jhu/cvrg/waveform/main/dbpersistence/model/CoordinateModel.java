@@ -14,7 +14,6 @@
 
 package edu.jhu.cvrg.waveform.main.dbpersistence.model;
 
-import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -48,29 +47,28 @@ public interface CoordinateModel extends BaseModel<Coordinate> {
 	 *
 	 * @return the primary key of this coordinate
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this coordinate.
 	 *
 	 * @param primaryKey the primary key of this coordinate
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the coordinate i d of this coordinate.
 	 *
 	 * @return the coordinate i d of this coordinate
 	 */
-	@AutoEscape
-	public String getCoordinateID();
+	public long getCoordinateID();
 
 	/**
 	 * Sets the coordinate i d of this coordinate.
 	 *
 	 * @param CoordinateID the coordinate i d of this coordinate
 	 */
-	public void setCoordinateID(String CoordinateID);
+	public void setCoordinateID(long CoordinateID);
 
 	/**
 	 * Returns the x coordinate of this coordinate.

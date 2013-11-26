@@ -48,29 +48,28 @@ public interface UploadStatusModel extends BaseModel<UploadStatus> {
 	 *
 	 * @return the primary key of this upload status
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this upload status.
 	 *
 	 * @param primaryKey the primary key of this upload status
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the status log number of this upload status.
 	 *
 	 * @return the status log number of this upload status
 	 */
-	@AutoEscape
-	public String getStatusLogNumber();
+	public long getStatusLogNumber();
 
 	/**
 	 * Sets the status log number of this upload status.
 	 *
 	 * @param StatusLogNumber the status log number of this upload status
 	 */
-	public void setStatusLogNumber(String StatusLogNumber);
+	public void setStatusLogNumber(long StatusLogNumber);
 
 	/**
 	 * Returns the file transfer of this upload status.
@@ -133,19 +132,18 @@ public interface UploadStatusModel extends BaseModel<UploadStatus> {
 	public void setAnnotationCreation(String AnnotationCreation);
 
 	/**
-	 * Returns the record i d of this upload status.
+	 * Returns the document record i d of this upload status.
 	 *
-	 * @return the record i d of this upload status
+	 * @return the document record i d of this upload status
 	 */
-	@AutoEscape
-	public String getRecordID();
+	public long getDocumentRecordID();
 
 	/**
-	 * Sets the record i d of this upload status.
+	 * Sets the document record i d of this upload status.
 	 *
-	 * @param RecordID the record i d of this upload status
+	 * @param DocumentRecordID the document record i d of this upload status
 	 */
-	public void setRecordID(String RecordID);
+	public void setDocumentRecordID(long DocumentRecordID);
 
 	public boolean isNew();
 

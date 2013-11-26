@@ -30,8 +30,8 @@ public class FilesInfoSoap implements Serializable {
 	public static FilesInfoSoap toSoapModel(FilesInfo model) {
 		FilesInfoSoap soapModel = new FilesInfoSoap();
 
-		soapModel.setDocumentID(model.getDocumentID());
-		soapModel.setRecordID(model.getRecordID());
+		soapModel.setFileID(model.getFileID());
+		soapModel.setDocumentRecordID(model.getDocumentRecordID());
 
 		return soapModel;
 	}
@@ -76,30 +76,30 @@ public class FilesInfoSoap implements Serializable {
 	public FilesInfoSoap() {
 	}
 
-	public String getPrimaryKey() {
-		return _DocumentID;
+	public long getPrimaryKey() {
+		return _FileID;
 	}
 
-	public void setPrimaryKey(String pk) {
-		setDocumentID(pk);
+	public void setPrimaryKey(long pk) {
+		setFileID(pk);
 	}
 
-	public String getDocumentID() {
-		return _DocumentID;
+	public long getFileID() {
+		return _FileID;
 	}
 
-	public void setDocumentID(String DocumentID) {
-		_DocumentID = DocumentID;
+	public void setFileID(long FileID) {
+		_FileID = FileID;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
-	private String _DocumentID;
-	private String _RecordID;
+	private long _FileID;
+	private long _DocumentRecordID;
 }

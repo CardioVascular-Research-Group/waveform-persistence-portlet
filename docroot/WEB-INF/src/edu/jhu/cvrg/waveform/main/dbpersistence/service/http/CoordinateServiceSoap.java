@@ -67,12 +67,11 @@ import java.rmi.RemoteException;
 public class CoordinateServiceSoap {
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
-		throws RemoteException {
+		double xCoord, double yCoord) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate returnValue =
 				CoordinateServiceUtil.addCoordinate(liferayUserId,
-					liferayGroupId, liferayCompanyId, coordID, xCoord, yCoord);
+					liferayGroupId, liferayCompanyId, xCoord, yCoord);
 
 			return edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap.toSoapModel(returnValue);
 		}
@@ -84,7 +83,7 @@ public class CoordinateServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap deleteCoordinate(
-		java.lang.String coordID) throws RemoteException {
+		long coordID) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate returnValue =
 				CoordinateServiceUtil.deleteCoordinate(coordID);
@@ -99,7 +98,7 @@ public class CoordinateServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap getCoordinate(
-		java.lang.String coordID) throws RemoteException {
+		long coordID) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate returnValue =
 				CoordinateServiceUtil.getCoordinate(coordID);
@@ -114,8 +113,7 @@ public class CoordinateServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.CoordinateSoap updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
-		throws RemoteException {
+		long coordID, double xCoord, double yCoord) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate returnValue =
 				CoordinateServiceUtil.updateCoordinate(coordID, xCoord, yCoord);

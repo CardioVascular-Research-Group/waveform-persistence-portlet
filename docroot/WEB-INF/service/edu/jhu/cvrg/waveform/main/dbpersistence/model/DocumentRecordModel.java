@@ -50,29 +50,28 @@ public interface DocumentRecordModel extends BaseModel<DocumentRecord> {
 	 *
 	 * @return the primary key of this document record
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this document record.
 	 *
 	 * @param primaryKey the primary key of this document record
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the record i d of this document record.
+	 * Returns the document record i d of this document record.
 	 *
-	 * @return the record i d of this document record
+	 * @return the document record i d of this document record
 	 */
-	@AutoEscape
-	public String getRecordID();
+	public long getDocumentRecordID();
 
 	/**
-	 * Sets the record i d of this document record.
+	 * Sets the document record i d of this document record.
 	 *
-	 * @param RecordID the record i d of this document record
+	 * @param DocumentRecordID the document record i d of this document record
 	 */
-	public void setRecordID(String RecordID);
+	public void setDocumentRecordID(long DocumentRecordID);
 
 	/**
 	 * Returns the record name of this document record.

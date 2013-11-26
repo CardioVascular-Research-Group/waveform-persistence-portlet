@@ -85,10 +85,10 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 		_methodName13 = "updateDocumentRecord";
 
 		_methodParameterTypes13 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 	}
 
@@ -517,7 +517,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, long userID, java.lang.String recordName,
+		long recordID, long userID, java.lang.String recordName,
 		java.lang.String subjectID, java.lang.String originalFormat,
 		double samplingRate, java.lang.String fileTreePath, int leadCount,
 		int numPoints, java.util.Date dateUploaded, int age,
@@ -530,7 +530,7 @@ public class DocumentRecordServiceClp implements DocumentRecordService {
 			returnObj = _invokableService.invokeMethod(_methodName13,
 					_methodParameterTypes13,
 					new Object[] {
-						ClpSerializer.translateInput(recordID),
+						recordID,
 						
 					userID,
 						

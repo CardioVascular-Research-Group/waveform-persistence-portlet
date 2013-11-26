@@ -32,11 +32,11 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 
 		_methodName1 = "createDocumentRecord";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteDocumentRecord";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteDocumentRecord";
 
@@ -75,11 +75,11 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 
 		_methodName9 = "fetchDocumentRecord";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getDocumentRecord";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -125,49 +125,53 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 
 		_methodName20 = "deleteDocumentRecord";
 
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes20 = new String[] { "java.lang.String" };
+
+		_methodName21 = "deleteDocumentRecord";
+
+		_methodParameterTypes21 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
-
-		_methodName21 = "getByFileFormat";
-
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
 
 		_methodName22 = "getByFileFormat";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes22 = new String[] { "java.lang.String" };
 
-		_methodName23 = "getBySubjectID";
+		_methodName23 = "getByFileFormat";
 
-		_methodParameterTypes23 = new String[] { "java.lang.String" };
+		_methodParameterTypes23 = new String[] { "java.lang.String", "int", "int" };
 
 		_methodName24 = "getBySubjectID";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes24 = new String[] { "java.lang.String" };
 
-		_methodName25 = "getByScreenName";
+		_methodName25 = "getBySubjectID";
 
-		_methodParameterTypes25 = new String[] { "long" };
+		_methodParameterTypes25 = new String[] { "java.lang.String", "int", "int" };
 
 		_methodName26 = "getByScreenName";
 
-		_methodParameterTypes26 = new String[] { "long", "int", "int" };
+		_methodParameterTypes26 = new String[] { "long" };
 
-		_methodName27 = "getRecord";
+		_methodName27 = "getByScreenName";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes27 = new String[] { "long", "int", "int" };
+
+		_methodName28 = "getRecord";
+
+		_methodParameterTypes28 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName28 = "updateDocumentRecord";
+		_methodName29 = "updateDocumentRecord";
 
-		_methodParameterTypes28 = new String[] {
-				"java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String", "double",
-				"java.lang.String", "int", "int", "java.util.Date", "int",
-				"java.lang.String", "java.util.Date", "double"
+		_methodParameterTypes29 = new String[] {
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "double", "java.lang.String", "int", "int",
+				"java.util.Date", "int", "java.lang.String", "java.util.Date",
+				"double"
 			};
 	}
 
@@ -201,13 +205,12 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord createDocumentRecord(
-		java.lang.String RecordID) {
+		long DocumentRecordID) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(RecordID) });
+					_methodParameterTypes1, new Object[] { DocumentRecordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -225,15 +228,14 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(RecordID) });
+					_methodParameterTypes2, new Object[] { DocumentRecordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -450,14 +452,13 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(RecordID) });
+					_methodParameterTypes9, new Object[] { DocumentRecordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -479,15 +480,14 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(RecordID) });
+					_methodParameterTypes10, new Object[] { DocumentRecordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -781,6 +781,40 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
+		java.lang.String recordID)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(recordID) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
 		java.lang.String recordName, long userID, java.lang.String subjectID,
 		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -789,8 +823,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						ClpSerializer.translateInput(recordName),
 						
@@ -834,8 +868,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { ClpSerializer.translateInput(originalFormat) });
 		}
 		catch (Throwable t) {
@@ -863,8 +897,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						ClpSerializer.translateInput(originalFormat),
 						
@@ -898,8 +932,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(subjectID) });
 		}
 		catch (Throwable t) {
@@ -927,8 +961,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						ClpSerializer.translateInput(subjectID),
 						
@@ -961,8 +995,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25, new Object[] { userID });
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26, new Object[] { userID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -989,8 +1023,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26, new Object[] { userID, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27, new Object[] { userID, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1019,8 +1053,8 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						ClpSerializer.translateInput(recordName),
 						
@@ -1055,7 +1089,7 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, long userID, java.lang.String recordName,
+		long recordID, long userID, java.lang.String recordName,
 		java.lang.String subjectID, java.lang.String originalFormat,
 		double samplingRate, java.lang.String fileTreePath, int leadCount,
 		int numPoints, java.util.Date dateUploaded, int age,
@@ -1065,10 +1099,10 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
-						ClpSerializer.translateInput(recordID),
+						recordID,
 						
 					userID,
 						
@@ -1177,4 +1211,6 @@ public class DocumentRecordLocalServiceClp implements DocumentRecordLocalService
 	private String[] _methodParameterTypes27;
 	private String _methodName28;
 	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }

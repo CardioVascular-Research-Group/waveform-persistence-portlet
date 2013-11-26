@@ -60,7 +60,7 @@ public interface CoordinatePersistence extends BasePersistence<Coordinate> {
 	* @return the new coordinate
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate create(
-		java.lang.String CoordinateID);
+		long CoordinateID);
 
 	/**
 	* Removes the coordinate with the primary key from the database. Also notifies the appropriate model listeners.
@@ -71,7 +71,7 @@ public interface CoordinatePersistence extends BasePersistence<Coordinate> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate remove(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException;
 
@@ -89,7 +89,7 @@ public interface CoordinatePersistence extends BasePersistence<Coordinate> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate findByPrimaryKey(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException;
 
@@ -101,7 +101,7 @@ public interface CoordinatePersistence extends BasePersistence<Coordinate> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate fetchByPrimaryKey(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

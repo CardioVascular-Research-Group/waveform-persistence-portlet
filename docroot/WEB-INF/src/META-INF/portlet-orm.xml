@@ -20,7 +20,7 @@
 			<basic name="UnitOfMeasurement" />
 			<basic name="Description" />
 			<basic name="Value" />
-			<basic name="RecordID" />
+			<basic name="DocumentRecordID" />
 			<basic name="Timestamp">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -43,7 +43,7 @@
 	</mapped-superclass>
 	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.DocumentRecordModelImpl">
 		<attributes>
-			<id name="RecordID" />
+			<id name="DocumentRecordID" />
 			<basic name="RecordName" />
 			<basic name="UserID" />
 			<basic name="SubjectID" />
@@ -68,8 +68,8 @@
 	</mapped-superclass>
 	<mapped-superclass class="edu.jhu.cvrg.waveform.main.dbpersistence.model.impl.FilesInfoModelImpl">
 		<attributes>
-			<id name="DocumentID" />
-			<basic name="RecordID" />
+			<id name="FileID" />
+			<basic name="DocumentRecordID" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -82,7 +82,7 @@
 			<basic name="FileConversion" />
 			<basic name="RecordCreation" />
 			<basic name="AnnotationCreation" />
-			<basic name="RecordID" />
+			<basic name="DocumentRecordID" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

@@ -14,7 +14,6 @@
 
 package edu.jhu.cvrg.waveform.main.dbpersistence.model;
 
-import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -48,44 +47,42 @@ public interface FilesInfoModel extends BaseModel<FilesInfo> {
 	 *
 	 * @return the primary key of this files info
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this files info.
 	 *
 	 * @param primaryKey the primary key of this files info
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the document i d of this files info.
+	 * Returns the file i d of this files info.
 	 *
-	 * @return the document i d of this files info
+	 * @return the file i d of this files info
 	 */
-	@AutoEscape
-	public String getDocumentID();
+	public long getFileID();
 
 	/**
-	 * Sets the document i d of this files info.
+	 * Sets the file i d of this files info.
 	 *
-	 * @param DocumentID the document i d of this files info
+	 * @param FileID the file i d of this files info
 	 */
-	public void setDocumentID(String DocumentID);
+	public void setFileID(long FileID);
 
 	/**
-	 * Returns the record i d of this files info.
+	 * Returns the document record i d of this files info.
 	 *
-	 * @return the record i d of this files info
+	 * @return the document record i d of this files info
 	 */
-	@AutoEscape
-	public String getRecordID();
+	public long getDocumentRecordID();
 
 	/**
-	 * Sets the record i d of this files info.
+	 * Sets the document record i d of this files info.
 	 *
-	 * @param RecordID the record i d of this files info
+	 * @param DocumentRecordID the document record i d of this files info
 	 */
-	public void setRecordID(String RecordID);
+	public void setDocumentRecordID(long DocumentRecordID);
 
 	public boolean isNew();
 

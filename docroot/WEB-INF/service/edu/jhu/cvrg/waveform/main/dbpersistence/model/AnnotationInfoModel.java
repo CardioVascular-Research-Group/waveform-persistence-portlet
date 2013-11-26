@@ -50,29 +50,28 @@ public interface AnnotationInfoModel extends BaseModel<AnnotationInfo> {
 	 *
 	 * @return the primary key of this annotation info
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this annotation info.
 	 *
 	 * @param primaryKey the primary key of this annotation info
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the annotation i d of this annotation info.
 	 *
 	 * @return the annotation i d of this annotation info
 	 */
-	@AutoEscape
-	public String getAnnotationID();
+	public long getAnnotationID();
 
 	/**
 	 * Sets the annotation i d of this annotation info.
 	 *
 	 * @param AnnotationID the annotation i d of this annotation info
 	 */
-	public void setAnnotationID(String AnnotationID);
+	public void setAnnotationID(long AnnotationID);
 
 	/**
 	 * Returns the created by of this annotation info.
@@ -154,30 +153,28 @@ public interface AnnotationInfoModel extends BaseModel<AnnotationInfo> {
 	 *
 	 * @return the starting coordinate i d of this annotation info
 	 */
-	@AutoEscape
-	public String getStartingCoordinateID();
+	public long getStartingCoordinateID();
 
 	/**
 	 * Sets the starting coordinate i d of this annotation info.
 	 *
 	 * @param StartingCoordinateID the starting coordinate i d of this annotation info
 	 */
-	public void setStartingCoordinateID(String StartingCoordinateID);
+	public void setStartingCoordinateID(long StartingCoordinateID);
 
 	/**
 	 * Returns the ending coordinate i d of this annotation info.
 	 *
 	 * @return the ending coordinate i d of this annotation info
 	 */
-	@AutoEscape
-	public String getEndingCoordinateID();
+	public long getEndingCoordinateID();
 
 	/**
 	 * Sets the ending coordinate i d of this annotation info.
 	 *
 	 * @param EndingCoordinateID the ending coordinate i d of this annotation info
 	 */
-	public void setEndingCoordinateID(String EndingCoordinateID);
+	public void setEndingCoordinateID(long EndingCoordinateID);
 
 	/**
 	 * Returns the unit of measurement of this annotation info.
@@ -225,19 +222,18 @@ public interface AnnotationInfoModel extends BaseModel<AnnotationInfo> {
 	public void setValue(String Value);
 
 	/**
-	 * Returns the record i d of this annotation info.
+	 * Returns the document record i d of this annotation info.
 	 *
-	 * @return the record i d of this annotation info
+	 * @return the document record i d of this annotation info
 	 */
-	@AutoEscape
-	public String getRecordID();
+	public long getDocumentRecordID();
 
 	/**
-	 * Sets the record i d of this annotation info.
+	 * Sets the document record i d of this annotation info.
 	 *
-	 * @param RecordID the record i d of this annotation info
+	 * @param DocumentRecordID the document record i d of this annotation info
 	 */
-	public void setRecordID(String RecordID);
+	public void setDocumentRecordID(long DocumentRecordID);
 
 	/**
 	 * Returns the timestamp of this annotation info.

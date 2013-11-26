@@ -34,22 +34,20 @@ public class CoordinateServiceClp implements CoordinateService {
 		_methodName3 = "addCoordinate";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "java.lang.String", "double", "double"
+				"long", "long", "long", "double", "double"
 			};
 
 		_methodName4 = "deleteCoordinate";
 
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long" };
 
 		_methodName5 = "getCoordinate";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long" };
 
 		_methodName6 = "updateCoordinate";
 
-		_methodParameterTypes6 = new String[] {
-				"java.lang.String", "double", "double"
-			};
+		_methodParameterTypes6 = new String[] { "long", "double", "double" };
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -101,7 +99,7 @@ public class CoordinateServiceClp implements CoordinateService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
+		double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -115,8 +113,6 @@ public class CoordinateServiceClp implements CoordinateService {
 					liferayGroupId,
 						
 					liferayCompanyId,
-						
-					ClpSerializer.translateInput(coordID),
 						
 					xCoord,
 						
@@ -147,15 +143,14 @@ public class CoordinateServiceClp implements CoordinateService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate deleteCoordinate(
-		java.lang.String coordID)
+		long coordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
-					new Object[] { ClpSerializer.translateInput(coordID) });
+					_methodParameterTypes4, new Object[] { coordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -181,15 +176,14 @@ public class CoordinateServiceClp implements CoordinateService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate getCoordinate(
-		java.lang.String coordID)
+		long coordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
-					new Object[] { ClpSerializer.translateInput(coordID) });
+					_methodParameterTypes5, new Object[] { coordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -215,7 +209,7 @@ public class CoordinateServiceClp implements CoordinateService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
+		long coordID, double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -223,13 +217,7 @@ public class CoordinateServiceClp implements CoordinateService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] {
-						ClpSerializer.translateInput(coordID),
-						
-					xCoord,
-						
-					yCoord
-					});
+					new Object[] { coordID, xCoord, yCoord });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -67,13 +67,12 @@ import java.rmi.RemoteException;
 public class AnnotationInfoServiceSoap {
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap addAnnotationInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String recordID, java.lang.String createdBy,
+		long recordID, java.lang.String createdBy,
 		java.lang.String annotationType, java.lang.String name,
-		java.lang.String bioportalRef, java.lang.String lead,
-		java.lang.String startCoord, java.lang.String endCoord,
-		java.lang.String unitMeasurement, java.lang.String description,
-		java.lang.String value, java.util.Date timestamp)
-		throws RemoteException {
+		java.lang.String bioportalRef, java.lang.String lead, long startCoord,
+		long endCoord, java.lang.String unitMeasurement,
+		java.lang.String description, java.lang.String value,
+		java.util.Date timestamp) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo returnValue =
 				AnnotationInfoServiceUtil.addAnnotationInfo(liferayUserId,
@@ -106,7 +105,7 @@ public class AnnotationInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[] getAnnotationsByRecord(
-		java.lang.String recordID) throws RemoteException {
+		long recordID) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> returnValue =
 				AnnotationInfoServiceUtil.getAnnotationsByRecord(recordID);
@@ -121,8 +120,7 @@ public class AnnotationInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[] getAnnotationsByRecord(
-		java.lang.String recordID, int start, int end)
-		throws RemoteException {
+		long recordID, int start, int end) throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> returnValue =
 				AnnotationInfoServiceUtil.getAnnotationsByRecord(recordID,
@@ -138,9 +136,8 @@ public class AnnotationInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap getAnnotation(
-		java.lang.String recordID, java.lang.String name,
-		java.lang.String annotationType, java.lang.String lead)
-		throws RemoteException {
+		long recordID, java.lang.String name, java.lang.String annotationType,
+		java.lang.String lead) throws RemoteException {
 		try {
 			edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo returnValue =
 				AnnotationInfoServiceUtil.getAnnotation(recordID, name,
@@ -156,7 +153,7 @@ public class AnnotationInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[] getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType)
+		long recordID, java.lang.String annotationType)
 		throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> returnValue =
@@ -173,8 +170,8 @@ public class AnnotationInfoServiceSoap {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfoSoap[] getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType, int start,
-		int end) throws RemoteException {
+		long recordID, java.lang.String annotationType, int start, int end)
+		throws RemoteException {
 		try {
 			java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> returnValue =
 				AnnotationInfoServiceUtil.getAnnotationsByType(recordID,

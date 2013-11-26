@@ -58,7 +58,7 @@ public class CoordinateLocalServiceUtil {
 	* @return the new coordinate
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate createCoordinate(
-		java.lang.String CoordinateID) {
+		long CoordinateID) {
 		return getService().createCoordinate(CoordinateID);
 	}
 
@@ -69,11 +69,13 @@ public class CoordinateLocalServiceUtil {
 	* @return the coordinate that was removed
 	* @throws PortalException if a coordinate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate deleteCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return getService().deleteCoordinate(CoordinateID);
 	}
 
@@ -166,7 +168,7 @@ public class CoordinateLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate fetchCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchCoordinate(CoordinateID);
 	}
@@ -178,11 +180,13 @@ public class CoordinateLocalServiceUtil {
 	* @return the coordinate
 	* @throws PortalException if a coordinate with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate getCoordinate(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return getService().getCoordinate(CoordinateID);
 	}
 
@@ -276,16 +280,16 @@ public class CoordinateLocalServiceUtil {
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate addCoordinate(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String coordID, double xCoord, double yCoord)
+		double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCoordinate(liferayUserId, liferayGroupId,
-			liferayCompanyId, coordID, xCoord, yCoord);
+			liferayCompanyId, xCoord, yCoord);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate updateCoordinate(
-		java.lang.String coordID, double xCoord, double yCoord)
+		long coordID, double xCoord, double yCoord)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateCoordinate(coordID, xCoord, yCoord);

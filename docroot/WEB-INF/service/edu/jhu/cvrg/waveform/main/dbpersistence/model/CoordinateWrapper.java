@@ -52,7 +52,7 @@ public class CoordinateWrapper implements Coordinate, ModelWrapper<Coordinate> {
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String CoordinateID = (String)attributes.get("CoordinateID");
+		Long CoordinateID = (Long)attributes.get("CoordinateID");
 
 		if (CoordinateID != null) {
 			setCoordinateID(CoordinateID);
@@ -76,7 +76,7 @@ public class CoordinateWrapper implements Coordinate, ModelWrapper<Coordinate> {
 	*
 	* @return the primary key of this coordinate
 	*/
-	public java.lang.String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _coordinate.getPrimaryKey();
 	}
 
@@ -85,7 +85,7 @@ public class CoordinateWrapper implements Coordinate, ModelWrapper<Coordinate> {
 	*
 	* @param primaryKey the primary key of this coordinate
 	*/
-	public void setPrimaryKey(java.lang.String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_coordinate.setPrimaryKey(primaryKey);
 	}
 
@@ -94,7 +94,7 @@ public class CoordinateWrapper implements Coordinate, ModelWrapper<Coordinate> {
 	*
 	* @return the coordinate i d of this coordinate
 	*/
-	public java.lang.String getCoordinateID() {
+	public long getCoordinateID() {
 		return _coordinate.getCoordinateID();
 	}
 
@@ -103,7 +103,7 @@ public class CoordinateWrapper implements Coordinate, ModelWrapper<Coordinate> {
 	*
 	* @param CoordinateID the coordinate i d of this coordinate
 	*/
-	public void setCoordinateID(java.lang.String CoordinateID) {
+	public void setCoordinateID(long CoordinateID) {
 		_coordinate.setCoordinateID(CoordinateID);
 	}
 

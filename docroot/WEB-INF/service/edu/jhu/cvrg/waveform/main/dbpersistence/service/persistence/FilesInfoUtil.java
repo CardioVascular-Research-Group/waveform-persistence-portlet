@@ -133,27 +133,27 @@ public class FilesInfoUtil {
 	/**
 	* Creates a new files info with the primary key. Does not add the files info to the database.
 	*
-	* @param DocumentID the primary key for the new files info
+	* @param FileID the primary key for the new files info
 	* @return the new files info
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo create(
-		java.lang.String DocumentID) {
-		return getPersistence().create(DocumentID);
+		long FileID) {
+		return getPersistence().create(FileID);
 	}
 
 	/**
 	* Removes the files info with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param DocumentID the primary key of the files info
+	* @param FileID the primary key of the files info
 	* @return the files info that was removed
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo remove(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return getPersistence().remove(DocumentID);
+		return getPersistence().remove(FileID);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo updateImpl(
@@ -166,168 +166,176 @@ public class FilesInfoUtil {
 	/**
 	* Returns the files info with the primary key or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException} if it could not be found.
 	*
-	* @param DocumentID the primary key of the files info
+	* @param FileID the primary key of the files info
 	* @return the files info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo findByPrimaryKey(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return getPersistence().findByPrimaryKey(DocumentID);
+		return getPersistence().findByPrimaryKey(FileID);
 	}
 
 	/**
 	* Returns the files info with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param DocumentID the primary key of the files info
+	* @param FileID the primary key of the files info
 	* @return the files info, or <code>null</code> if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchByPrimaryKey(
-		java.lang.String DocumentID)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(DocumentID);
+		long FileID) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(FileID);
 	}
 
 	/**
-	* Returns all the files infos where RecordID = &#63;.
+	* Returns all the files infos where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the matching files infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByRecordID(
-		java.lang.String RecordID)
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByDocumentRecordID(
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByRecordID(RecordID);
+		return getPersistence().findByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**
-	* Returns a range of all the files infos where RecordID = &#63;.
+	* Returns a range of all the files infos where DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of files infos
 	* @param end the upper bound of the range of files infos (not inclusive)
 	* @return the range of matching files infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByRecordID(
-		java.lang.String RecordID, int start, int end)
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByDocumentRecordID(
+		long DocumentRecordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByRecordID(RecordID, start, end);
+		return getPersistence()
+				   .findByDocumentRecordID(DocumentRecordID, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the files infos where RecordID = &#63;.
+	* Returns an ordered range of all the files infos where DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of files infos
 	* @param end the upper bound of the range of files infos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching files infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByRecordID(
-		java.lang.String RecordID, int start, int end,
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> findByDocumentRecordID(
+		long DocumentRecordID, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByRecordID(RecordID, start, end, orderByComparator);
+				   .findByDocumentRecordID(DocumentRecordID, start, end,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the first files info in the ordered set where RecordID = &#63;.
+	* Returns the first files info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching files info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a matching files info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo findByRecordID_First(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo findByDocumentRecordID_First(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return getPersistence().findByRecordID_First(RecordID, orderByComparator);
+		return getPersistence()
+				   .findByDocumentRecordID_First(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the first files info in the ordered set where RecordID = &#63;.
+	* Returns the first files info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching files info, or <code>null</code> if a matching files info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchByRecordID_First(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchByDocumentRecordID_First(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByRecordID_First(RecordID, orderByComparator);
+				   .fetchByDocumentRecordID_First(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the last files info in the ordered set where RecordID = &#63;.
+	* Returns the last files info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching files info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a matching files info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo findByRecordID_Last(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo findByDocumentRecordID_Last(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return getPersistence().findByRecordID_Last(RecordID, orderByComparator);
+		return getPersistence()
+				   .findByDocumentRecordID_Last(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the last files info in the ordered set where RecordID = &#63;.
+	* Returns the last files info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching files info, or <code>null</code> if a matching files info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchByRecordID_Last(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchByDocumentRecordID_Last(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByRecordID_Last(RecordID, orderByComparator);
+		return getPersistence()
+				   .fetchByDocumentRecordID_Last(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the files infos before and after the current files info in the ordered set where RecordID = &#63;.
+	* Returns the files infos before and after the current files info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param DocumentID the primary key of the current files info
-	* @param RecordID the record i d
+	* @param FileID the primary key of the current files info
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next files info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo[] findByRecordID_PrevAndNext(
-		java.lang.String DocumentID, java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo[] findByDocumentRecordID_PrevAndNext(
+		long FileID, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
 		return getPersistence()
-				   .findByRecordID_PrevAndNext(DocumentID, RecordID,
-			orderByComparator);
+				   .findByDocumentRecordID_PrevAndNext(FileID,
+			DocumentRecordID, orderByComparator);
 	}
 
 	/**
@@ -380,14 +388,14 @@ public class FilesInfoUtil {
 	}
 
 	/**
-	* Removes all the files infos where RecordID = &#63; from the database.
+	* Removes all the files infos where DocumentRecordID = &#63; from the database.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByRecordID(java.lang.String RecordID)
+	public static void removeByDocumentRecordID(long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByRecordID(RecordID);
+		getPersistence().removeByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**
@@ -401,15 +409,15 @@ public class FilesInfoUtil {
 	}
 
 	/**
-	* Returns the number of files infos where RecordID = &#63;.
+	* Returns the number of files infos where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the number of matching files infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByRecordID(java.lang.String RecordID)
+	public static int countByDocumentRecordID(long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByRecordID(RecordID);
+		return getPersistence().countByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**

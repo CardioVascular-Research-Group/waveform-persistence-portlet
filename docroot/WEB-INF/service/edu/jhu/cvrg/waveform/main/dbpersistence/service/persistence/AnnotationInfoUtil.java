@@ -137,7 +137,7 @@ public class AnnotationInfoUtil {
 	* @return the new annotation info
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo create(
-		java.lang.String AnnotationID) {
+		long AnnotationID) {
 		return getPersistence().create(AnnotationID);
 	}
 
@@ -150,7 +150,7 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo remove(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence().remove(AnnotationID);
@@ -172,7 +172,7 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByPrimaryKey(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence().findByPrimaryKey(AnnotationID);
@@ -186,154 +186,163 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByPrimaryKey(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(AnnotationID);
 	}
 
 	/**
-	* Returns all the annotation infos where RecordID = &#63;.
+	* Returns all the annotation infos where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByRecordID(
-		java.lang.String RecordID)
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByDocumentRecordID(
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByRecordID(RecordID);
+		return getPersistence().findByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**
-	* Returns a range of all the annotation infos where RecordID = &#63;.
+	* Returns a range of all the annotation infos where DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of annotation infos
 	* @param end the upper bound of the range of annotation infos (not inclusive)
 	* @return the range of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByRecordID(
-		java.lang.String RecordID, int start, int end)
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByDocumentRecordID(
+		long DocumentRecordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByRecordID(RecordID, start, end);
+		return getPersistence()
+				   .findByDocumentRecordID(DocumentRecordID, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the annotation infos where RecordID = &#63;.
+	* Returns an ordered range of all the annotation infos where DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of annotation infos
 	* @param end the upper bound of the range of annotation infos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByRecordID(
-		java.lang.String RecordID, int start, int end,
+	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByDocumentRecordID(
+		long DocumentRecordID, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByRecordID(RecordID, start, end, orderByComparator);
+				   .findByDocumentRecordID(DocumentRecordID, start, end,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the first annotation info in the ordered set where RecordID = &#63;.
+	* Returns the first annotation info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByRecordID_First(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByDocumentRecordID_First(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
-		return getPersistence().findByRecordID_First(RecordID, orderByComparator);
+		return getPersistence()
+				   .findByDocumentRecordID_First(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the first annotation info in the ordered set where RecordID = &#63;.
+	* Returns the first annotation info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByRecordID_First(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByDocumentRecordID_First(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByRecordID_First(RecordID, orderByComparator);
+				   .fetchByDocumentRecordID_First(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the last annotation info in the ordered set where RecordID = &#63;.
+	* Returns the last annotation info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByRecordID_Last(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByDocumentRecordID_Last(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
-		return getPersistence().findByRecordID_Last(RecordID, orderByComparator);
+		return getPersistence()
+				   .findByDocumentRecordID_Last(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the last annotation info in the ordered set where RecordID = &#63;.
+	* Returns the last annotation info in the ordered set where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByRecordID_Last(
-		java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByDocumentRecordID_Last(
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByRecordID_Last(RecordID, orderByComparator);
+		return getPersistence()
+				   .fetchByDocumentRecordID_Last(DocumentRecordID,
+			orderByComparator);
 	}
 
 	/**
-	* Returns the annotation infos before and after the current annotation info in the ordered set where RecordID = &#63;.
+	* Returns the annotation infos before and after the current annotation info in the ordered set where DocumentRecordID = &#63;.
 	*
 	* @param AnnotationID the primary key of the current annotation info
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo[] findByRecordID_PrevAndNext(
-		java.lang.String AnnotationID, java.lang.String RecordID,
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo[] findByDocumentRecordID_PrevAndNext(
+		long AnnotationID, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
-				   .findByRecordID_PrevAndNext(AnnotationID, RecordID,
-			orderByComparator);
+				   .findByDocumentRecordID_PrevAndNext(AnnotationID,
+			DocumentRecordID, orderByComparator);
 	}
 
 	/**
-	* Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException} if it could not be found.
+	* Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException} if it could not be found.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param Name the name
 	* @param AnnotationType the annotation type
 	* @param Lead the lead
@@ -342,19 +351,19 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByAnnotationProperties(
-		java.lang.String RecordID, java.lang.String Name,
+		long DocumentRecordID, java.lang.String Name,
 		java.lang.String AnnotationType, java.lang.String Lead)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
-				   .findByAnnotationProperties(RecordID, Name, AnnotationType,
-			Lead);
+				   .findByAnnotationProperties(DocumentRecordID, Name,
+			AnnotationType, Lead);
 	}
 
 	/**
-	* Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param Name the name
 	* @param AnnotationType the annotation type
 	* @param Lead the lead
@@ -362,18 +371,18 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByAnnotationProperties(
-		java.lang.String RecordID, java.lang.String Name,
+		long DocumentRecordID, java.lang.String Name,
 		java.lang.String AnnotationType, java.lang.String Lead)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByAnnotationProperties(RecordID, Name, AnnotationType,
-			Lead);
+				   .fetchByAnnotationProperties(DocumentRecordID, Name,
+			AnnotationType, Lead);
 	}
 
 	/**
-	* Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param Name the name
 	* @param AnnotationType the annotation type
 	* @param Lead the lead
@@ -382,59 +391,61 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByAnnotationProperties(
-		java.lang.String RecordID, java.lang.String Name,
+		long DocumentRecordID, java.lang.String Name,
 		java.lang.String AnnotationType, java.lang.String Lead,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByAnnotationProperties(RecordID, Name, AnnotationType,
-			Lead, retrieveFromCache);
+				   .fetchByAnnotationProperties(DocumentRecordID, Name,
+			AnnotationType, Lead, retrieveFromCache);
 	}
 
 	/**
-	* Returns all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByAnnotationType(
-		java.lang.String AnnotationType, java.lang.String RecordID)
+		java.lang.String AnnotationType, long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByAnnotationType(AnnotationType, RecordID);
+		return getPersistence()
+				   .findByAnnotationType(AnnotationType, DocumentRecordID);
 	}
 
 	/**
-	* Returns a range of all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns a range of all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of annotation infos
 	* @param end the upper bound of the range of annotation infos (not inclusive)
 	* @return the range of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByAnnotationType(
-		java.lang.String AnnotationType, java.lang.String RecordID, int start,
+		java.lang.String AnnotationType, long DocumentRecordID, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByAnnotationType(AnnotationType, RecordID, start, end);
+				   .findByAnnotationType(AnnotationType, DocumentRecordID,
+			start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns an ordered range of all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param start the lower bound of the range of annotation infos
 	* @param end the upper bound of the range of annotation infos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -442,111 +453,111 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> findByAnnotationType(
-		java.lang.String AnnotationType, java.lang.String RecordID, int start,
+		java.lang.String AnnotationType, long DocumentRecordID, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByAnnotationType(AnnotationType, RecordID, start, end,
-			orderByComparator);
+				   .findByAnnotationType(AnnotationType, DocumentRecordID,
+			start, end, orderByComparator);
 	}
 
 	/**
-	* Returns the first annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the first annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByAnnotationType_First(
-		java.lang.String AnnotationType, java.lang.String RecordID,
+		java.lang.String AnnotationType, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
-				   .findByAnnotationType_First(AnnotationType, RecordID,
-			orderByComparator);
+				   .findByAnnotationType_First(AnnotationType,
+			DocumentRecordID, orderByComparator);
 	}
 
 	/**
-	* Returns the first annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the first annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByAnnotationType_First(
-		java.lang.String AnnotationType, java.lang.String RecordID,
+		java.lang.String AnnotationType, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByAnnotationType_First(AnnotationType, RecordID,
-			orderByComparator);
+				   .fetchByAnnotationType_First(AnnotationType,
+			DocumentRecordID, orderByComparator);
 	}
 
 	/**
-	* Returns the last annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the last annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo findByAnnotationType_Last(
-		java.lang.String AnnotationType, java.lang.String RecordID,
+		java.lang.String AnnotationType, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
-				   .findByAnnotationType_Last(AnnotationType, RecordID,
+				   .findByAnnotationType_Last(AnnotationType, DocumentRecordID,
 			orderByComparator);
 	}
 
 	/**
-	* Returns the last annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the last annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchByAnnotationType_Last(
-		java.lang.String AnnotationType, java.lang.String RecordID,
+		java.lang.String AnnotationType, long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByAnnotationType_Last(AnnotationType, RecordID,
-			orderByComparator);
+				   .fetchByAnnotationType_Last(AnnotationType,
+			DocumentRecordID, orderByComparator);
 	}
 
 	/**
-	* Returns the annotation infos before and after the current annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the annotation infos before and after the current annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationID the primary key of the current annotation info
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next annotation info
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo[] findByAnnotationType_PrevAndNext(
-		java.lang.String AnnotationID, java.lang.String AnnotationType,
-		java.lang.String RecordID,
+		long AnnotationID, java.lang.String AnnotationType,
+		long DocumentRecordID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
 				   .findByAnnotationType_PrevAndNext(AnnotationID,
-			AnnotationType, RecordID, orderByComparator);
+			AnnotationType, DocumentRecordID, orderByComparator);
 	}
 
 	/**
@@ -599,20 +610,20 @@ public class AnnotationInfoUtil {
 	}
 
 	/**
-	* Removes all the annotation infos where RecordID = &#63; from the database.
+	* Removes all the annotation infos where DocumentRecordID = &#63; from the database.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByRecordID(java.lang.String RecordID)
+	public static void removeByDocumentRecordID(long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByRecordID(RecordID);
+		getPersistence().removeByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**
-	* Removes the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; from the database.
+	* Removes the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; from the database.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param Name the name
 	* @param AnnotationType the annotation type
 	* @param Lead the lead
@@ -620,26 +631,26 @@ public class AnnotationInfoUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo removeByAnnotationProperties(
-		java.lang.String RecordID, java.lang.String Name,
+		long DocumentRecordID, java.lang.String Name,
 		java.lang.String AnnotationType, java.lang.String Lead)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return getPersistence()
-				   .removeByAnnotationProperties(RecordID, Name,
+				   .removeByAnnotationProperties(DocumentRecordID, Name,
 			AnnotationType, Lead);
 	}
 
 	/**
-	* Removes all the annotation infos where AnnotationType = &#63; and RecordID = &#63; from the database.
+	* Removes all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63; from the database.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByAnnotationType(java.lang.String AnnotationType,
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByAnnotationType(AnnotationType, RecordID);
+		getPersistence().removeByAnnotationType(AnnotationType, DocumentRecordID);
 	}
 
 	/**
@@ -653,48 +664,49 @@ public class AnnotationInfoUtil {
 	}
 
 	/**
-	* Returns the number of annotation infos where RecordID = &#63;.
+	* Returns the number of annotation infos where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the number of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByRecordID(java.lang.String RecordID)
+	public static int countByDocumentRecordID(long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByRecordID(RecordID);
+		return getPersistence().countByDocumentRecordID(DocumentRecordID);
 	}
 
 	/**
-	* Returns the number of annotation infos where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63;.
+	* Returns the number of annotation infos where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param Name the name
 	* @param AnnotationType the annotation type
 	* @param Lead the lead
 	* @return the number of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByAnnotationProperties(java.lang.String RecordID,
+	public static int countByAnnotationProperties(long DocumentRecordID,
 		java.lang.String Name, java.lang.String AnnotationType,
 		java.lang.String Lead)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .countByAnnotationProperties(RecordID, Name, AnnotationType,
-			Lead);
+				   .countByAnnotationProperties(DocumentRecordID, Name,
+			AnnotationType, Lead);
 	}
 
 	/**
-	* Returns the number of annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	* Returns the number of annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	*
 	* @param AnnotationType the annotation type
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the number of matching annotation infos
 	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByAnnotationType(java.lang.String AnnotationType,
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByAnnotationType(AnnotationType, RecordID);
+		return getPersistence()
+				   .countByAnnotationType(AnnotationType, DocumentRecordID);
 	}
 
 	/**

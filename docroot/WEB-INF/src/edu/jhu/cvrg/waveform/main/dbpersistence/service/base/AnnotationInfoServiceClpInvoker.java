@@ -34,11 +34,10 @@ public class AnnotationInfoServiceClpInvoker {
 		_methodName52 = "addAnnotationInfo";
 
 		_methodParameterTypes52 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date"
+				"java.lang.String", "long", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.util.Date"
 			};
 
 		_methodName53 = "deleteAnnotationInfo";
@@ -47,29 +46,27 @@ public class AnnotationInfoServiceClpInvoker {
 
 		_methodName54 = "getAnnotationsByRecord";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "long" };
 
 		_methodName55 = "getAnnotationsByRecord";
 
-		_methodParameterTypes55 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes55 = new String[] { "long", "int", "int" };
 
 		_methodName56 = "getAnnotation";
 
 		_methodParameterTypes56 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
 		_methodName57 = "getAnnotationsByType";
 
-		_methodParameterTypes57 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes57 = new String[] { "long", "java.lang.String" };
 
 		_methodName58 = "getAnnotationsByType";
 
 		_methodParameterTypes58 = new String[] {
-				"java.lang.String", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -90,11 +87,12 @@ public class AnnotationInfoServiceClpInvoker {
 			return AnnotationInfoServiceUtil.addAnnotationInfo(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				(java.lang.String)arguments[7], (java.lang.String)arguments[8],
-				(java.lang.String)arguments[9],
-				(java.lang.String)arguments[10],
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6], (java.lang.String)arguments[7],
+				(java.lang.String)arguments[8],
+				((Long)arguments[9]).longValue(),
+				((Long)arguments[10]).longValue(),
 				(java.lang.String)arguments[11],
 				(java.lang.String)arguments[12],
 				(java.lang.String)arguments[13], (java.util.Date)arguments[14]);
@@ -107,32 +105,32 @@ public class AnnotationInfoServiceClpInvoker {
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return AnnotationInfoServiceUtil.getAnnotationsByRecord((java.lang.String)arguments[0]);
+			return AnnotationInfoServiceUtil.getAnnotationsByRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return AnnotationInfoServiceUtil.getAnnotationsByRecord((java.lang.String)arguments[0],
+			return AnnotationInfoServiceUtil.getAnnotationsByRecord(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return AnnotationInfoServiceUtil.getAnnotation((java.lang.String)arguments[0],
+			return AnnotationInfoServiceUtil.getAnnotation(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return AnnotationInfoServiceUtil.getAnnotationsByType((java.lang.String)arguments[0],
+			return AnnotationInfoServiceUtil.getAnnotationsByType(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AnnotationInfoServiceUtil.getAnnotationsByType((java.lang.String)arguments[0],
+			return AnnotationInfoServiceUtil.getAnnotationsByType(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());

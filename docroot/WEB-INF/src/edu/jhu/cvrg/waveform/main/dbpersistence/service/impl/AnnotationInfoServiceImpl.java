@@ -45,7 +45,7 @@ public class AnnotationInfoServiceImpl extends AnnotationInfoServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.AnnotationInfoServiceUtil} to access the annotation info remote service.
 	 */
-	public AnnotationInfo addAnnotationInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, String recordID, String createdBy, String annotationType, String name, String bioportalRef, String lead, String startCoord, String endCoord, String unitMeasurement, String description, String value, Date timestamp) throws SystemException, PortalException {
+	public AnnotationInfo addAnnotationInfo(long liferayUserId, long liferayGroupId, long liferayCompanyId, long recordID, String createdBy, String annotationType, String name, String bioportalRef, String lead, long startCoord, long endCoord, String unitMeasurement, String description, String value, Date timestamp) throws SystemException, PortalException {
 
 		return AnnotationInfoLocalServiceUtil.addAnnotationInfo(liferayUserId, liferayGroupId, liferayCompanyId, recordID, createdBy, annotationType, name, bioportalRef, lead, startCoord, endCoord, unitMeasurement, description, value, timestamp);
 	}
@@ -55,23 +55,23 @@ public class AnnotationInfoServiceImpl extends AnnotationInfoServiceBaseImpl {
 		return AnnotationInfoLocalServiceUtil.deleteAnnotationInfo(annotationID);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByRecord(String recordID) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByRecord(long recordID) throws SystemException {
 		return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord(recordID);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByRecord(String recordID, int start, int end) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByRecord(long recordID, int start, int end) throws SystemException {
 		return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord(recordID);
 	}
 	
-	public AnnotationInfo getAnnotation(String recordID, String name, String annotationType, String lead) throws SystemException, NoSuchAnnotationInfoException {
+	public AnnotationInfo getAnnotation(long recordID, String name, String annotationType, String lead) throws SystemException, NoSuchAnnotationInfoException {
 		return AnnotationInfoLocalServiceUtil.getAnnotation(recordID, name, annotationType, lead);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByType(String recordID, String annotationType) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByType(long recordID, String annotationType) throws SystemException {
 		return AnnotationInfoLocalServiceUtil.getAnnotationsByType(recordID, annotationType);
 	}
 	
-	public List<AnnotationInfo> getAnnotationsByType(String recordID, String annotationType, int start, int end) throws SystemException {
+	public List<AnnotationInfo> getAnnotationsByType(long recordID, String annotationType, int start, int end) throws SystemException {
 		return AnnotationInfoLocalServiceUtil.getAnnotationsByType(recordID, annotationType);
 	}
 }

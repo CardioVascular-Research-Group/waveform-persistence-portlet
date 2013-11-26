@@ -78,36 +78,37 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_RECORDID = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_DOCUMENTRECORDID =
+		new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED,
 			AnnotationInfoImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByRecordID",
+			"findByDocumentRecordID",
 			new String[] {
-				String.class.getName(),
+				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID =
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID =
 		new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED,
 			AnnotationInfoImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRecordID",
-			new String[] { String.class.getName() },
-			AnnotationInfoModelImpl.RECORDID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_RECORDID = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByDocumentRecordID", new String[] { Long.class.getName() },
+			AnnotationInfoModelImpl.DOCUMENTRECORDID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_DOCUMENTRECORDID = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRecordID",
-			new String[] { String.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByDocumentRecordID", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED,
 			AnnotationInfoImpl.class, FINDER_CLASS_NAME_ENTITY,
 			"fetchByAnnotationProperties",
 			new String[] {
-				String.class.getName(), String.class.getName(),
+				Long.class.getName(), String.class.getName(),
 				String.class.getName(), String.class.getName()
 			},
-			AnnotationInfoModelImpl.RECORDID_COLUMN_BITMASK |
+			AnnotationInfoModelImpl.DOCUMENTRECORDID_COLUMN_BITMASK |
 			AnnotationInfoModelImpl.NAME_COLUMN_BITMASK |
 			AnnotationInfoModelImpl.ANNOTATIONTYPE_COLUMN_BITMASK |
 			AnnotationInfoModelImpl.LEAD_COLUMN_BITMASK);
@@ -116,7 +117,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByAnnotationProperties",
 			new String[] {
-				String.class.getName(), String.class.getName(),
+				Long.class.getName(), String.class.getName(),
 				String.class.getName(), String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ANNOTATIONTYPE =
@@ -125,7 +126,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			AnnotationInfoImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByAnnotationType",
 			new String[] {
-				String.class.getName(), String.class.getName(),
+				String.class.getName(), Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -135,13 +136,13 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED,
 			AnnotationInfoImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByAnnotationType",
-			new String[] { String.class.getName(), String.class.getName() },
+			new String[] { String.class.getName(), Long.class.getName() },
 			AnnotationInfoModelImpl.ANNOTATIONTYPE_COLUMN_BITMASK |
-			AnnotationInfoModelImpl.RECORDID_COLUMN_BITMASK);
+			AnnotationInfoModelImpl.DOCUMENTRECORDID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_ANNOTATIONTYPE = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByAnnotationType",
-			new String[] { String.class.getName(), String.class.getName() });
+			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 			AnnotationInfoModelImpl.FINDER_CACHE_ENABLED,
 			AnnotationInfoImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -166,7 +167,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES,
 			new Object[] {
-				annotationInfo.getRecordID(),
+				Long.valueOf(annotationInfo.getDocumentRecordID()),
 				
 			annotationInfo.getName(),
 				
@@ -250,7 +251,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	protected void clearUniqueFindersCache(AnnotationInfo annotationInfo) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES,
 			new Object[] {
-				annotationInfo.getRecordID(),
+				Long.valueOf(annotationInfo.getDocumentRecordID()),
 				
 			annotationInfo.getName(),
 				
@@ -266,7 +267,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @param AnnotationID the primary key for the new annotation info
 	 * @return the new annotation info
 	 */
-	public AnnotationInfo create(String AnnotationID) {
+	public AnnotationInfo create(long AnnotationID) {
 		AnnotationInfo annotationInfo = new AnnotationInfoImpl();
 
 		annotationInfo.setNew(true);
@@ -283,9 +284,9 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo remove(String AnnotationID)
+	public AnnotationInfo remove(long AnnotationID)
 		throws NoSuchAnnotationInfoException, SystemException {
-		return remove((Serializable)AnnotationID);
+		return remove(Long.valueOf(AnnotationID));
 	}
 
 	/**
@@ -387,19 +388,23 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		else {
 			if ((annotationInfoModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						annotationInfoModelImpl.getOriginalRecordID()
+						Long.valueOf(annotationInfoModelImpl.getOriginalDocumentRecordID())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECORDID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID,
 					args);
 
-				args = new Object[] { annotationInfoModelImpl.getRecordID() };
+				args = new Object[] {
+						Long.valueOf(annotationInfoModelImpl.getDocumentRecordID())
+					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECORDID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID,
 					args);
 			}
 
@@ -407,8 +412,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ANNOTATIONTYPE.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						annotationInfoModelImpl.getOriginalAnnotationType(),
-						
-						annotationInfoModelImpl.getOriginalRecordID()
+						Long.valueOf(annotationInfoModelImpl.getOriginalDocumentRecordID())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ANNOTATIONTYPE,
@@ -418,8 +422,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				args = new Object[] {
 						annotationInfoModelImpl.getAnnotationType(),
-						
-						annotationInfoModelImpl.getRecordID()
+						Long.valueOf(annotationInfoModelImpl.getDocumentRecordID())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ANNOTATIONTYPE,
@@ -436,7 +439,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		if (isNew) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES,
 				new Object[] {
-					annotationInfo.getRecordID(),
+					Long.valueOf(annotationInfo.getDocumentRecordID()),
 					
 				annotationInfo.getName(),
 					
@@ -449,7 +452,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			if ((annotationInfoModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						annotationInfoModelImpl.getOriginalRecordID(),
+						Long.valueOf(annotationInfoModelImpl.getOriginalDocumentRecordID()),
 						
 						annotationInfoModelImpl.getOriginalName(),
 						
@@ -466,7 +469,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_ANNOTATIONPROPERTIES,
 					new Object[] {
-						annotationInfo.getRecordID(),
+						Long.valueOf(annotationInfo.getDocumentRecordID()),
 						
 					annotationInfo.getName(),
 						
@@ -501,7 +504,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		annotationInfoImpl.setUnitOfMeasurement(annotationInfo.getUnitOfMeasurement());
 		annotationInfoImpl.setDescription(annotationInfo.getDescription());
 		annotationInfoImpl.setValue(annotationInfo.getValue());
-		annotationInfoImpl.setRecordID(annotationInfo.getRecordID());
+		annotationInfoImpl.setDocumentRecordID(annotationInfo.getDocumentRecordID());
 		annotationInfoImpl.setTimestamp(annotationInfo.getTimestamp());
 
 		return annotationInfoImpl;
@@ -518,7 +521,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	@Override
 	public AnnotationInfo findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((String)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -529,7 +532,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo findByPrimaryKey(String AnnotationID)
+	public AnnotationInfo findByPrimaryKey(long AnnotationID)
 		throws NoSuchAnnotationInfoException, SystemException {
 		AnnotationInfo annotationInfo = fetchByPrimaryKey(AnnotationID);
 
@@ -555,7 +558,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	@Override
 	public AnnotationInfo fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((String)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -565,7 +568,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @return the annotation info, or <code>null</code> if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo fetchByPrimaryKey(String AnnotationID)
+	public AnnotationInfo fetchByPrimaryKey(long AnnotationID)
 		throws SystemException {
 		AnnotationInfo annotationInfo = (AnnotationInfo)EntityCacheUtil.getResult(AnnotationInfoModelImpl.ENTITY_CACHE_ENABLED,
 				AnnotationInfoImpl.class, AnnotationID);
@@ -583,7 +586,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 				session = openSession();
 
 				annotationInfo = (AnnotationInfo)session.get(AnnotationInfoImpl.class,
-						AnnotationID);
+						Long.valueOf(AnnotationID));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -608,63 +611,68 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns all the annotation infos where RecordID = &#63;.
+	 * Returns all the annotation infos where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<AnnotationInfo> findByRecordID(String RecordID)
+	public List<AnnotationInfo> findByDocumentRecordID(long DocumentRecordID)
 		throws SystemException {
-		return findByRecordID(RecordID, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByDocumentRecordID(DocumentRecordID, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the annotation infos where RecordID = &#63;.
+	 * Returns a range of all the annotation infos where DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of annotation infos
 	 * @param end the upper bound of the range of annotation infos (not inclusive)
 	 * @return the range of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<AnnotationInfo> findByRecordID(String RecordID, int start,
-		int end) throws SystemException {
-		return findByRecordID(RecordID, start, end, null);
+	public List<AnnotationInfo> findByDocumentRecordID(long DocumentRecordID,
+		int start, int end) throws SystemException {
+		return findByDocumentRecordID(DocumentRecordID, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the annotation infos where RecordID = &#63;.
+	 * Returns an ordered range of all the annotation infos where DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of annotation infos
 	 * @param end the upper bound of the range of annotation infos (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<AnnotationInfo> findByRecordID(String RecordID, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<AnnotationInfo> findByDocumentRecordID(long DocumentRecordID,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID;
-			finderArgs = new Object[] { RecordID };
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID;
+			finderArgs = new Object[] { DocumentRecordID };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_RECORDID;
-			finderArgs = new Object[] { RecordID, start, end, orderByComparator };
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_DOCUMENTRECORDID;
+			finderArgs = new Object[] {
+					DocumentRecordID,
+					
+					start, end, orderByComparator
+				};
 		}
 
 		List<AnnotationInfo> list = (List<AnnotationInfo>)FinderCacheUtil.getResult(finderPath,
@@ -672,7 +680,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		if ((list != null) && !list.isEmpty()) {
 			for (AnnotationInfo annotationInfo : list) {
-				if (!Validator.equals(RecordID, annotationInfo.getRecordID())) {
+				if ((DocumentRecordID != annotationInfo.getDocumentRecordID())) {
 					list = null;
 
 					break;
@@ -693,17 +701,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			query.append(_SQL_SELECT_ANNOTATIONINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -721,9 +719,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				list = (List<AnnotationInfo>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -749,18 +745,18 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the first annotation info in the ordered set where RecordID = &#63;.
+	 * Returns the first annotation info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo findByRecordID_First(String RecordID,
+	public AnnotationInfo findByDocumentRecordID_First(long DocumentRecordID,
 		OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
-		AnnotationInfo annotationInfo = fetchByRecordID_First(RecordID,
+		AnnotationInfo annotationInfo = fetchByDocumentRecordID_First(DocumentRecordID,
 				orderByComparator);
 
 		if (annotationInfo != null) {
@@ -771,8 +767,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("RecordID=");
-		msg.append(RecordID);
+		msg.append("DocumentRecordID=");
+		msg.append(DocumentRecordID);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -780,17 +776,17 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the first annotation info in the ordered set where RecordID = &#63;.
+	 * Returns the first annotation info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo fetchByRecordID_First(String RecordID,
+	public AnnotationInfo fetchByDocumentRecordID_First(long DocumentRecordID,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<AnnotationInfo> list = findByRecordID(RecordID, 0, 1,
-				orderByComparator);
+		List<AnnotationInfo> list = findByDocumentRecordID(DocumentRecordID, 0,
+				1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -800,18 +796,18 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the last annotation info in the ordered set where RecordID = &#63;.
+	 * Returns the last annotation info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo findByRecordID_Last(String RecordID,
+	public AnnotationInfo findByDocumentRecordID_Last(long DocumentRecordID,
 		OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
-		AnnotationInfo annotationInfo = fetchByRecordID_Last(RecordID,
+		AnnotationInfo annotationInfo = fetchByDocumentRecordID_Last(DocumentRecordID,
 				orderByComparator);
 
 		if (annotationInfo != null) {
@@ -822,8 +818,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("RecordID=");
-		msg.append(RecordID);
+		msg.append("DocumentRecordID=");
+		msg.append(DocumentRecordID);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -831,19 +827,19 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the last annotation info in the ordered set where RecordID = &#63;.
+	 * Returns the last annotation info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo fetchByRecordID_Last(String RecordID,
+	public AnnotationInfo fetchByDocumentRecordID_Last(long DocumentRecordID,
 		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByRecordID(RecordID);
+		int count = countByDocumentRecordID(DocumentRecordID);
 
-		List<AnnotationInfo> list = findByRecordID(RecordID, count - 1, count,
-				orderByComparator);
+		List<AnnotationInfo> list = findByDocumentRecordID(DocumentRecordID,
+				count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -853,17 +849,18 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the annotation infos before and after the current annotation info in the ordered set where RecordID = &#63;.
+	 * Returns the annotation infos before and after the current annotation info in the ordered set where DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationID the primary key of the current annotation info
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo[] findByRecordID_PrevAndNext(String AnnotationID,
-		String RecordID, OrderByComparator orderByComparator)
+	public AnnotationInfo[] findByDocumentRecordID_PrevAndNext(
+		long AnnotationID, long DocumentRecordID,
+		OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
 		AnnotationInfo annotationInfo = findByPrimaryKey(AnnotationID);
 
@@ -874,13 +871,13 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			AnnotationInfo[] array = new AnnotationInfoImpl[3];
 
-			array[0] = getByRecordID_PrevAndNext(session, annotationInfo,
-					RecordID, orderByComparator, true);
+			array[0] = getByDocumentRecordID_PrevAndNext(session,
+					annotationInfo, DocumentRecordID, orderByComparator, true);
 
 			array[1] = annotationInfo;
 
-			array[2] = getByRecordID_PrevAndNext(session, annotationInfo,
-					RecordID, orderByComparator, false);
+			array[2] = getByDocumentRecordID_PrevAndNext(session,
+					annotationInfo, DocumentRecordID, orderByComparator, false);
 
 			return array;
 		}
@@ -892,8 +889,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		}
 	}
 
-	protected AnnotationInfo getByRecordID_PrevAndNext(Session session,
-		AnnotationInfo annotationInfo, String RecordID,
+	protected AnnotationInfo getByDocumentRecordID_PrevAndNext(
+		Session session, AnnotationInfo annotationInfo, long DocumentRecordID,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -907,17 +904,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		query.append(_SQL_SELECT_ANNOTATIONINFO_WHERE);
 
-		if (RecordID == null) {
-			query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-		}
-		else {
-			if (RecordID.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-			}
-		}
+		query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -984,9 +971,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (RecordID != null) {
-			qPos.add(RecordID);
-		}
+		qPos.add(DocumentRecordID);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(annotationInfo);
@@ -1007,9 +992,9 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException} if it could not be found.
+	 * Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException} if it could not be found.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param Name the name
 	 * @param AnnotationType the annotation type
 	 * @param Lead the lead
@@ -1017,10 +1002,10 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo findByAnnotationProperties(String RecordID,
+	public AnnotationInfo findByAnnotationProperties(long DocumentRecordID,
 		String Name, String AnnotationType, String Lead)
 		throws NoSuchAnnotationInfoException, SystemException {
-		AnnotationInfo annotationInfo = fetchByAnnotationProperties(RecordID,
+		AnnotationInfo annotationInfo = fetchByAnnotationProperties(DocumentRecordID,
 				Name, AnnotationType, Lead);
 
 		if (annotationInfo == null) {
@@ -1028,8 +1013,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("RecordID=");
-			msg.append(RecordID);
+			msg.append("DocumentRecordID=");
+			msg.append(DocumentRecordID);
 
 			msg.append(", Name=");
 			msg.append(Name);
@@ -1053,26 +1038,26 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param Name the name
 	 * @param AnnotationType the annotation type
 	 * @param Lead the lead
 	 * @return the matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo fetchByAnnotationProperties(String RecordID,
+	public AnnotationInfo fetchByAnnotationProperties(long DocumentRecordID,
 		String Name, String AnnotationType, String Lead)
 		throws SystemException {
-		return fetchByAnnotationProperties(RecordID, Name, AnnotationType,
-			Lead, true);
+		return fetchByAnnotationProperties(DocumentRecordID, Name,
+			AnnotationType, Lead, true);
 	}
 
 	/**
-	 * Returns the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param Name the name
 	 * @param AnnotationType the annotation type
 	 * @param Lead the lead
@@ -1080,10 +1065,12 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @return the matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo fetchByAnnotationProperties(String RecordID,
+	public AnnotationInfo fetchByAnnotationProperties(long DocumentRecordID,
 		String Name, String AnnotationType, String Lead,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID, Name, AnnotationType, Lead };
+		Object[] finderArgs = new Object[] {
+				DocumentRecordID, Name, AnnotationType, Lead
+			};
 
 		Object result = null;
 
@@ -1095,7 +1082,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		if (result instanceof AnnotationInfo) {
 			AnnotationInfo annotationInfo = (AnnotationInfo)result;
 
-			if (!Validator.equals(RecordID, annotationInfo.getRecordID()) ||
+			if ((DocumentRecordID != annotationInfo.getDocumentRecordID()) ||
 					!Validator.equals(Name, annotationInfo.getName()) ||
 					!Validator.equals(AnnotationType,
 						annotationInfo.getAnnotationType()) ||
@@ -1109,17 +1096,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			query.append(_SQL_SELECT_ANNOTATIONINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_DOCUMENTRECORDID_2);
 
 			if (Name == null) {
 				query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_NAME_1);
@@ -1168,9 +1145,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				if (Name != null) {
 					qPos.add(Name);
@@ -1199,8 +1174,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 					cacheResult(annotationInfo);
 
-					if ((annotationInfo.getRecordID() == null) ||
-							!annotationInfo.getRecordID().equals(RecordID) ||
+					if ((annotationInfo.getDocumentRecordID() != DocumentRecordID) ||
 							(annotationInfo.getName() == null) ||
 							!annotationInfo.getName().equals(Name) ||
 							(annotationInfo.getAnnotationType() == null) ||
@@ -1238,47 +1212,48 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<AnnotationInfo> findByAnnotationType(String AnnotationType,
-		String RecordID) throws SystemException {
-		return findByAnnotationType(AnnotationType, RecordID,
+		long DocumentRecordID) throws SystemException {
+		return findByAnnotationType(AnnotationType, DocumentRecordID,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns a range of all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of annotation infos
 	 * @param end the upper bound of the range of annotation infos (not inclusive)
 	 * @return the range of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<AnnotationInfo> findByAnnotationType(String AnnotationType,
-		String RecordID, int start, int end) throws SystemException {
-		return findByAnnotationType(AnnotationType, RecordID, start, end, null);
+		long DocumentRecordID, int start, int end) throws SystemException {
+		return findByAnnotationType(AnnotationType, DocumentRecordID, start,
+			end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns an ordered range of all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of annotation infos
 	 * @param end the upper bound of the range of annotation infos (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -1286,20 +1261,20 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<AnnotationInfo> findByAnnotationType(String AnnotationType,
-		String RecordID, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		long DocumentRecordID, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ANNOTATIONTYPE;
-			finderArgs = new Object[] { AnnotationType, RecordID };
+			finderArgs = new Object[] { AnnotationType, DocumentRecordID };
 		}
 		else {
 			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ANNOTATIONTYPE;
 			finderArgs = new Object[] {
-					AnnotationType, RecordID,
+					AnnotationType, DocumentRecordID,
 					
 					start, end, orderByComparator
 				};
@@ -1312,7 +1287,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			for (AnnotationInfo annotationInfo : list) {
 				if (!Validator.equals(AnnotationType,
 							annotationInfo.getAnnotationType()) ||
-						!Validator.equals(RecordID, annotationInfo.getRecordID())) {
+						(DocumentRecordID != annotationInfo.getDocumentRecordID())) {
 					list = null;
 
 					break;
@@ -1345,17 +1320,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 				}
 			}
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_ANNOTATIONTYPE_DOCUMENTRECORDID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -1377,9 +1342,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 					qPos.add(AnnotationType);
 				}
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				list = (List<AnnotationInfo>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -1405,20 +1368,20 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the first annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the first annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public AnnotationInfo findByAnnotationType_First(String AnnotationType,
-		String RecordID, OrderByComparator orderByComparator)
+		long DocumentRecordID, OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
 		AnnotationInfo annotationInfo = fetchByAnnotationType_First(AnnotationType,
-				RecordID, orderByComparator);
+				DocumentRecordID, orderByComparator);
 
 		if (annotationInfo != null) {
 			return annotationInfo;
@@ -1431,8 +1394,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		msg.append("AnnotationType=");
 		msg.append(AnnotationType);
 
-		msg.append(", RecordID=");
-		msg.append(RecordID);
+		msg.append(", DocumentRecordID=");
+		msg.append(DocumentRecordID);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1440,19 +1403,19 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the first annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the first annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public AnnotationInfo fetchByAnnotationType_First(String AnnotationType,
-		String RecordID, OrderByComparator orderByComparator)
+		long DocumentRecordID, OrderByComparator orderByComparator)
 		throws SystemException {
 		List<AnnotationInfo> list = findByAnnotationType(AnnotationType,
-				RecordID, 0, 1, orderByComparator);
+				DocumentRecordID, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1462,20 +1425,20 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the last annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the last annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public AnnotationInfo findByAnnotationType_Last(String AnnotationType,
-		String RecordID, OrderByComparator orderByComparator)
+		long DocumentRecordID, OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
 		AnnotationInfo annotationInfo = fetchByAnnotationType_Last(AnnotationType,
-				RecordID, orderByComparator);
+				DocumentRecordID, orderByComparator);
 
 		if (annotationInfo != null) {
 			return annotationInfo;
@@ -1488,8 +1451,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 		msg.append("AnnotationType=");
 		msg.append(AnnotationType);
 
-		msg.append(", RecordID=");
-		msg.append(RecordID);
+		msg.append(", DocumentRecordID=");
+		msg.append(DocumentRecordID);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1497,21 +1460,21 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the last annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the last annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching annotation info, or <code>null</code> if a matching annotation info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public AnnotationInfo fetchByAnnotationType_Last(String AnnotationType,
-		String RecordID, OrderByComparator orderByComparator)
+		long DocumentRecordID, OrderByComparator orderByComparator)
 		throws SystemException {
-		int count = countByAnnotationType(AnnotationType, RecordID);
+		int count = countByAnnotationType(AnnotationType, DocumentRecordID);
 
 		List<AnnotationInfo> list = findByAnnotationType(AnnotationType,
-				RecordID, count - 1, count, orderByComparator);
+				DocumentRecordID, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1521,18 +1484,18 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the annotation infos before and after the current annotation info in the ordered set where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the annotation infos before and after the current annotation info in the ordered set where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationID the primary key of the current annotation info
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next annotation info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException if a annotation info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public AnnotationInfo[] findByAnnotationType_PrevAndNext(
-		String AnnotationID, String AnnotationType, String RecordID,
+		long AnnotationID, String AnnotationType, long DocumentRecordID,
 		OrderByComparator orderByComparator)
 		throws NoSuchAnnotationInfoException, SystemException {
 		AnnotationInfo annotationInfo = findByPrimaryKey(AnnotationID);
@@ -1545,12 +1508,12 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			AnnotationInfo[] array = new AnnotationInfoImpl[3];
 
 			array[0] = getByAnnotationType_PrevAndNext(session, annotationInfo,
-					AnnotationType, RecordID, orderByComparator, true);
+					AnnotationType, DocumentRecordID, orderByComparator, true);
 
 			array[1] = annotationInfo;
 
 			array[2] = getByAnnotationType_PrevAndNext(session, annotationInfo,
-					AnnotationType, RecordID, orderByComparator, false);
+					AnnotationType, DocumentRecordID, orderByComparator, false);
 
 			return array;
 		}
@@ -1563,8 +1526,9 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	protected AnnotationInfo getByAnnotationType_PrevAndNext(Session session,
-		AnnotationInfo annotationInfo, String AnnotationType, String RecordID,
-		OrderByComparator orderByComparator, boolean previous) {
+		AnnotationInfo annotationInfo, String AnnotationType,
+		long DocumentRecordID, OrderByComparator orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1589,17 +1553,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			}
 		}
 
-		if (RecordID == null) {
-			query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_1);
-		}
-		else {
-			if (RecordID.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_2);
-			}
-		}
+		query.append(_FINDER_COLUMN_ANNOTATIONTYPE_DOCUMENTRECORDID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -1670,9 +1624,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 			qPos.add(AnnotationType);
 		}
 
-		if (RecordID != null) {
-			qPos.add(RecordID);
-		}
+		qPos.add(DocumentRecordID);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(annotationInfo);
@@ -1808,47 +1760,49 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Removes all the annotation infos where RecordID = &#63; from the database.
+	 * Removes all the annotation infos where DocumentRecordID = &#63; from the database.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByRecordID(String RecordID) throws SystemException {
-		for (AnnotationInfo annotationInfo : findByRecordID(RecordID)) {
+	public void removeByDocumentRecordID(long DocumentRecordID)
+		throws SystemException {
+		for (AnnotationInfo annotationInfo : findByDocumentRecordID(
+				DocumentRecordID)) {
 			remove(annotationInfo);
 		}
 	}
 
 	/**
-	 * Removes the annotation info where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; from the database.
+	 * Removes the annotation info where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63; from the database.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param Name the name
 	 * @param AnnotationType the annotation type
 	 * @param Lead the lead
 	 * @return the annotation info that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AnnotationInfo removeByAnnotationProperties(String RecordID,
+	public AnnotationInfo removeByAnnotationProperties(long DocumentRecordID,
 		String Name, String AnnotationType, String Lead)
 		throws NoSuchAnnotationInfoException, SystemException {
-		AnnotationInfo annotationInfo = findByAnnotationProperties(RecordID,
+		AnnotationInfo annotationInfo = findByAnnotationProperties(DocumentRecordID,
 				Name, AnnotationType, Lead);
 
 		return remove(annotationInfo);
 	}
 
 	/**
-	 * Removes all the annotation infos where AnnotationType = &#63; and RecordID = &#63; from the database.
+	 * Removes all the annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63; from the database.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByAnnotationType(String AnnotationType, String RecordID)
-		throws SystemException {
+	public void removeByAnnotationType(String AnnotationType,
+		long DocumentRecordID) throws SystemException {
 		for (AnnotationInfo annotationInfo : findByAnnotationType(
-				AnnotationType, RecordID)) {
+				AnnotationType, DocumentRecordID)) {
 			remove(annotationInfo);
 		}
 	}
@@ -1865,16 +1819,17 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the number of annotation infos where RecordID = &#63;.
+	 * Returns the number of annotation infos where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the number of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByRecordID(String RecordID) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID };
+	public int countByDocumentRecordID(long DocumentRecordID)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { DocumentRecordID };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RECORDID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1882,17 +1837,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			query.append(_SQL_COUNT_ANNOTATIONINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 			String sql = query.toString();
 
@@ -1905,9 +1850,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1919,7 +1862,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_RECORDID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1930,18 +1873,20 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the number of annotation infos where RecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63;.
+	 * Returns the number of annotation infos where DocumentRecordID = &#63; and Name = &#63; and AnnotationType = &#63; and Lead = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param Name the name
 	 * @param AnnotationType the annotation type
 	 * @param Lead the lead
 	 * @return the number of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByAnnotationProperties(String RecordID, String Name,
+	public int countByAnnotationProperties(long DocumentRecordID, String Name,
 		String AnnotationType, String Lead) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID, Name, AnnotationType, Lead };
+		Object[] finderArgs = new Object[] {
+				DocumentRecordID, Name, AnnotationType, Lead
+			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ANNOTATIONPROPERTIES,
 				finderArgs, this);
@@ -1951,17 +1896,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 			query.append(_SQL_COUNT_ANNOTATIONINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_DOCUMENTRECORDID_2);
 
 			if (Name == null) {
 				query.append(_FINDER_COLUMN_ANNOTATIONPROPERTIES_NAME_1);
@@ -2010,9 +1945,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				if (Name != null) {
 					qPos.add(Name);
@@ -2047,16 +1980,16 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	}
 
 	/**
-	 * Returns the number of annotation infos where AnnotationType = &#63; and RecordID = &#63;.
+	 * Returns the number of annotation infos where AnnotationType = &#63; and DocumentRecordID = &#63;.
 	 *
 	 * @param AnnotationType the annotation type
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the number of matching annotation infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByAnnotationType(String AnnotationType, String RecordID)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { AnnotationType, RecordID };
+	public int countByAnnotationType(String AnnotationType,
+		long DocumentRecordID) throws SystemException {
+		Object[] finderArgs = new Object[] { AnnotationType, DocumentRecordID };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ANNOTATIONTYPE,
 				finderArgs, this);
@@ -2078,17 +2011,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 				}
 			}
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_ANNOTATIONTYPE_DOCUMENTRECORDID_2);
 
 			String sql = query.toString();
 
@@ -2105,9 +2028,7 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 					qPos.add(AnnotationType);
 				}
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2216,12 +2137,10 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	private static final String _SQL_SELECT_ANNOTATIONINFO_WHERE = "SELECT annotationInfo FROM AnnotationInfo annotationInfo WHERE ";
 	private static final String _SQL_COUNT_ANNOTATIONINFO = "SELECT COUNT(annotationInfo) FROM AnnotationInfo annotationInfo";
 	private static final String _SQL_COUNT_ANNOTATIONINFO_WHERE = "SELECT COUNT(annotationInfo) FROM AnnotationInfo annotationInfo WHERE ";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_1 = "annotationInfo.RecordID IS NULL";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_2 = "annotationInfo.RecordID = ?";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_3 = "(annotationInfo.RecordID IS NULL OR annotationInfo.RecordID = ?)";
-	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_1 = "annotationInfo.RecordID IS NULL AND ";
-	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_2 = "annotationInfo.RecordID = ? AND ";
-	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_RECORDID_3 = "(annotationInfo.RecordID IS NULL OR annotationInfo.RecordID = ?) AND ";
+	private static final String _FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2 =
+		"annotationInfo.DocumentRecordID = ?";
+	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_DOCUMENTRECORDID_2 =
+		"annotationInfo.DocumentRecordID = ? AND ";
 	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_NAME_1 = "annotationInfo.Name IS NULL AND ";
 	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_NAME_2 = "annotationInfo.Name = ? AND ";
 	private static final String _FINDER_COLUMN_ANNOTATIONPROPERTIES_NAME_3 = "(annotationInfo.Name IS NULL OR annotationInfo.Name = ?) AND ";
@@ -2237,9 +2156,8 @@ public class AnnotationInfoPersistenceImpl extends BasePersistenceImpl<Annotatio
 	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_ANNOTATIONTYPE_1 = "annotationInfo.AnnotationType IS NULL AND ";
 	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_ANNOTATIONTYPE_2 = "annotationInfo.AnnotationType = ? AND ";
 	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_ANNOTATIONTYPE_3 = "(annotationInfo.AnnotationType IS NULL OR annotationInfo.AnnotationType = ?) AND ";
-	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_1 = "annotationInfo.RecordID IS NULL";
-	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_2 = "annotationInfo.RecordID = ?";
-	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_RECORDID_3 = "(annotationInfo.RecordID IS NULL OR annotationInfo.RecordID = ?)";
+	private static final String _FINDER_COLUMN_ANNOTATIONTYPE_DOCUMENTRECORDID_2 =
+		"annotationInfo.DocumentRecordID = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "annotationInfo.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No AnnotationInfo exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AnnotationInfo exists with the key {";

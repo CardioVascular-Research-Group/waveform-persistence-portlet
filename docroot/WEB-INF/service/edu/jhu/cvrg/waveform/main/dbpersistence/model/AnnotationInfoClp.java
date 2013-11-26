@@ -46,20 +46,20 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		return AnnotationInfo.class.getName();
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _AnnotationID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setAnnotationID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _AnnotationID;
+		return new Long(_AnnotationID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		attributes.put("UnitOfMeasurement", getUnitOfMeasurement());
 		attributes.put("Description", getDescription());
 		attributes.put("Value", getValue());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("Timestamp", getTimestamp());
 
 		return attributes;
@@ -85,7 +85,7 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String AnnotationID = (String)attributes.get("AnnotationID");
+		Long AnnotationID = (Long)attributes.get("AnnotationID");
 
 		if (AnnotationID != null) {
 			setAnnotationID(AnnotationID);
@@ -121,14 +121,13 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 			setLead(Lead);
 		}
 
-		String StartingCoordinateID = (String)attributes.get(
-				"StartingCoordinateID");
+		Long StartingCoordinateID = (Long)attributes.get("StartingCoordinateID");
 
 		if (StartingCoordinateID != null) {
 			setStartingCoordinateID(StartingCoordinateID);
 		}
 
-		String EndingCoordinateID = (String)attributes.get("EndingCoordinateID");
+		Long EndingCoordinateID = (Long)attributes.get("EndingCoordinateID");
 
 		if (EndingCoordinateID != null) {
 			setEndingCoordinateID(EndingCoordinateID);
@@ -152,10 +151,10 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 			setValue(Value);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		Date Timestamp = (Date)attributes.get("Timestamp");
@@ -165,11 +164,11 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		}
 	}
 
-	public String getAnnotationID() {
+	public long getAnnotationID() {
 		return _AnnotationID;
 	}
 
-	public void setAnnotationID(String AnnotationID) {
+	public void setAnnotationID(long AnnotationID) {
 		_AnnotationID = AnnotationID;
 	}
 
@@ -213,19 +212,19 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		_Lead = Lead;
 	}
 
-	public String getStartingCoordinateID() {
+	public long getStartingCoordinateID() {
 		return _StartingCoordinateID;
 	}
 
-	public void setStartingCoordinateID(String StartingCoordinateID) {
+	public void setStartingCoordinateID(long StartingCoordinateID) {
 		_StartingCoordinateID = StartingCoordinateID;
 	}
 
-	public String getEndingCoordinateID() {
+	public long getEndingCoordinateID() {
 		return _EndingCoordinateID;
 	}
 
-	public void setEndingCoordinateID(String EndingCoordinateID) {
+	public void setEndingCoordinateID(long EndingCoordinateID) {
 		_EndingCoordinateID = EndingCoordinateID;
 	}
 
@@ -253,12 +252,12 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		_Value = Value;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public Date getTimestamp() {
@@ -309,16 +308,24 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		clone.setUnitOfMeasurement(getUnitOfMeasurement());
 		clone.setDescription(getDescription());
 		clone.setValue(getValue());
-		clone.setRecordID(getRecordID());
+		clone.setDocumentRecordID(getDocumentRecordID());
 		clone.setTimestamp(getTimestamp());
 
 		return clone;
 	}
 
 	public int compareTo(AnnotationInfo annotationInfo) {
-		String primaryKey = annotationInfo.getPrimaryKey();
+		long primaryKey = annotationInfo.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -336,9 +343,9 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 			return false;
 		}
 
-		String primaryKey = annotationInfo.getPrimaryKey();
+		long primaryKey = annotationInfo.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -348,7 +355,7 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -377,8 +384,8 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		sb.append(getDescription());
 		sb.append(", Value=");
 		sb.append(getValue());
-		sb.append(", RecordID=");
-		sb.append(getRecordID());
+		sb.append(", DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append(", Timestamp=");
 		sb.append(getTimestamp());
 		sb.append("}");
@@ -439,8 +446,8 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		sb.append(getValue());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>Timestamp</column-name><column-value><![CDATA[");
@@ -452,18 +459,18 @@ public class AnnotationInfoClp extends BaseModelImpl<AnnotationInfo>
 		return sb.toString();
 	}
 
-	private String _AnnotationID;
+	private long _AnnotationID;
 	private String _CreatedBy;
 	private String _AnnotationType;
 	private String _Name;
 	private String _BioportalReference;
 	private String _Lead;
-	private String _StartingCoordinateID;
-	private String _EndingCoordinateID;
+	private long _StartingCoordinateID;
+	private long _EndingCoordinateID;
 	private String _UnitOfMeasurement;
 	private String _Description;
 	private String _Value;
-	private String _RecordID;
+	private long _DocumentRecordID;
 	private Date _Timestamp;
 	private BaseModel<?> _annotationInfoRemoteModel;
 }

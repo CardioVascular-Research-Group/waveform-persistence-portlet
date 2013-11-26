@@ -35,7 +35,7 @@ public class UploadStatusSoap implements Serializable {
 		soapModel.setFileConversion(model.getFileConversion());
 		soapModel.setRecordCreation(model.getRecordCreation());
 		soapModel.setAnnotationCreation(model.getAnnotationCreation());
-		soapModel.setRecordID(model.getRecordID());
+		soapModel.setDocumentRecordID(model.getDocumentRecordID());
 
 		return soapModel;
 	}
@@ -80,19 +80,19 @@ public class UploadStatusSoap implements Serializable {
 	public UploadStatusSoap() {
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _StatusLogNumber;
 	}
 
-	public void setPrimaryKey(String pk) {
+	public void setPrimaryKey(long pk) {
 		setStatusLogNumber(pk);
 	}
 
-	public String getStatusLogNumber() {
+	public long getStatusLogNumber() {
 		return _StatusLogNumber;
 	}
 
-	public void setStatusLogNumber(String StatusLogNumber) {
+	public void setStatusLogNumber(long StatusLogNumber) {
 		_StatusLogNumber = StatusLogNumber;
 	}
 
@@ -128,18 +128,18 @@ public class UploadStatusSoap implements Serializable {
 		_AnnotationCreation = AnnotationCreation;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
-	private String _StatusLogNumber;
+	private long _StatusLogNumber;
 	private String _FileTransfer;
 	private String _FileConversion;
 	private String _RecordCreation;
 	private String _AnnotationCreation;
-	private String _RecordID;
+	private long _DocumentRecordID;
 }

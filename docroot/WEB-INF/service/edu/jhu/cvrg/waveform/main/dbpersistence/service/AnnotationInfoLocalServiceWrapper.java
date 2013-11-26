@@ -53,7 +53,7 @@ public class AnnotationInfoLocalServiceWrapper
 	* @return the new annotation info
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo createAnnotationInfo(
-		java.lang.String AnnotationID) {
+		long AnnotationID) {
 		return _annotationInfoLocalService.createAnnotationInfo(AnnotationID);
 	}
 
@@ -66,7 +66,7 @@ public class AnnotationInfoLocalServiceWrapper
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo deleteAnnotationInfo(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.deleteAnnotationInfo(AnnotationID);
@@ -163,7 +163,7 @@ public class AnnotationInfoLocalServiceWrapper
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo fetchAnnotationInfo(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.fetchAnnotationInfo(AnnotationID);
 	}
@@ -177,7 +177,7 @@ public class AnnotationInfoLocalServiceWrapper
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo getAnnotationInfo(
-		java.lang.String AnnotationID)
+		long AnnotationID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.getAnnotationInfo(AnnotationID);
@@ -275,12 +275,12 @@ public class AnnotationInfoLocalServiceWrapper
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo addAnnotationInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String recordID, java.lang.String createdBy,
+		long recordID, java.lang.String createdBy,
 		java.lang.String annotationType, java.lang.String name,
-		java.lang.String bioportalRef, java.lang.String lead,
-		java.lang.String startCoord, java.lang.String endCoord,
-		java.lang.String unitMeasurement, java.lang.String description,
-		java.lang.String value, java.util.Date timestamp)
+		java.lang.String bioportalRef, java.lang.String lead, long startCoord,
+		long endCoord, java.lang.String unitMeasurement,
+		java.lang.String description, java.lang.String value,
+		java.util.Date timestamp)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.addAnnotationInfo(liferayUserId,
@@ -289,22 +289,29 @@ public class AnnotationInfoLocalServiceWrapper
 			unitMeasurement, description, value, timestamp);
 	}
 
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo deleteAnnotationInfo(
+		java.lang.String annotationID)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _annotationInfoLocalService.deleteAnnotationInfo(annotationID);
+	}
+
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByRecord(
-		java.lang.String recordID)
+		long recordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.getAnnotationsByRecord(recordID);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByRecord(
-		java.lang.String recordID, int start, int end)
+		long recordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.getAnnotationsByRecord(recordID,
 			start, end);
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo getAnnotation(
-		java.lang.String recordID, java.lang.String name,
-		java.lang.String annotationType, java.lang.String lead)
+		long recordID, java.lang.String name, java.lang.String annotationType,
+		java.lang.String lead)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		return _annotationInfoLocalService.getAnnotation(recordID, name,
@@ -312,15 +319,15 @@ public class AnnotationInfoLocalServiceWrapper
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType)
+		long recordID, java.lang.String annotationType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.getAnnotationsByType(recordID,
 			annotationType);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		long recordID, java.lang.String annotationType, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _annotationInfoLocalService.getAnnotationsByType(recordID,
 			annotationType, start, end);
 	}

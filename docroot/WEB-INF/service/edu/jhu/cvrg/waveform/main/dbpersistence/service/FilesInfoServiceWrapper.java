@@ -57,7 +57,7 @@ public class FilesInfoServiceWrapper implements FilesInfoService,
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID,
+		long documentID, long fileListID,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -66,29 +66,29 @@ public class FilesInfoServiceWrapper implements FilesInfoService,
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo deleteFilesInfo(
-		java.lang.String docID)
+		long docID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _filesInfoService.deleteFilesInfo(docID);
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFile(
-		java.lang.String documentID)
+		long fileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return _filesInfoService.getFile(documentID);
+		return _filesInfoService.getFile(fileID);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID)
+		long recordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _filesInfoService.getFiles(fileID);
+		return _filesInfoService.getFiles(recordID);
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID, int start, int end)
+		long recordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _filesInfoService.getFiles(fileID, start, end);
+		return _filesInfoService.getFiles(recordID, start, end);
 	}
 
 	/**

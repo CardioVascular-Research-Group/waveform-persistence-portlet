@@ -54,27 +54,29 @@ public class FilesInfoLocalServiceUtil {
 	/**
 	* Creates a new files info with the primary key. Does not add the files info to the database.
 	*
-	* @param DocumentID the primary key for the new files info
+	* @param FileID the primary key for the new files info
 	* @return the new files info
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo createFilesInfo(
-		java.lang.String DocumentID) {
-		return getService().createFilesInfo(DocumentID);
+		long FileID) {
+		return getService().createFilesInfo(FileID);
 	}
 
 	/**
 	* Deletes the files info with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param DocumentID the primary key of the files info
+	* @param FileID the primary key of the files info
 	* @return the files info that was removed
 	* @throws PortalException if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo deleteFilesInfo(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteFilesInfo(DocumentID);
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
+		return getService().deleteFilesInfo(FileID);
 	}
 
 	/**
@@ -166,24 +168,23 @@ public class FilesInfoLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchFilesInfo(
-		java.lang.String DocumentID)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchFilesInfo(DocumentID);
+		long FileID) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFilesInfo(FileID);
 	}
 
 	/**
 	* Returns the files info with the primary key.
 	*
-	* @param DocumentID the primary key of the files info
+	* @param FileID the primary key of the files info
 	* @return the files info
 	* @throws PortalException if a files info with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFilesInfo(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getFilesInfo(DocumentID);
+		return getService().getFilesInfo(FileID);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -276,31 +277,31 @@ public class FilesInfoLocalServiceUtil {
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID)
+		long fileID, long docRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addFilesInfo(liferayUserId, liferayGroupId,
-			liferayCompanyId, documentID, fileListID);
+			liferayCompanyId, fileID, docRecordID);
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFile(
-		java.lang.String documentID)
+		long fileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
-		return getService().getFile(documentID);
+		return getService().getFile(fileID);
 	}
 
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID)
+		long docRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getFiles(fileID);
+		return getService().getFiles(docRecordID);
 	}
 
 	public static java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID, int start, int end)
+		long docRecordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getFiles(fileID, start, end);
+		return getService().getFiles(docRecordID, start, end);
 	}
 
 	public static void clearService() {

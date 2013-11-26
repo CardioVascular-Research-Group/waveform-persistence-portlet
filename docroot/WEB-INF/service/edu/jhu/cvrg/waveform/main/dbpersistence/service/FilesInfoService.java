@@ -66,29 +66,29 @@ public interface FilesInfoService extends BaseService, InvokableService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID,
+		long documentID, long fileListID,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo deleteFilesInfo(
-		java.lang.String docID)
+		long docID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFile(
-		java.lang.String documentID)
+		long fileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID)
+		long recordID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID, int start, int end)
+		long recordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

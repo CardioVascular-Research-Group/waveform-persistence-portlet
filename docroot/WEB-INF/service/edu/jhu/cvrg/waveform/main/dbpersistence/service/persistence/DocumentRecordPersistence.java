@@ -56,22 +56,22 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	/**
 	* Creates a new document record with the primary key. Does not add the document record to the database.
 	*
-	* @param RecordID the primary key for the new document record
+	* @param DocumentRecordID the primary key for the new document record
 	* @return the new document record
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord create(
-		java.lang.String RecordID);
+		long DocumentRecordID);
 
 	/**
 	* Removes the document record with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record that was removed
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord remove(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
@@ -83,25 +83,25 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	/**
 	* Returns the document record with the primary key or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByPrimaryKey(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
 	/**
 	* Returns the document record with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record, or <code>null</code> if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByPrimaryKey(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -210,7 +210,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	/**
 	* Returns the document records before and after the current document record in the ordered set where OriginalFormat = &#63;.
 	*
-	* @param RecordID the primary key of the current document record
+	* @param DocumentRecordID the primary key of the current document record
 	* @param OriginalFormat the original format
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next document record
@@ -218,45 +218,45 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord[] findByOriginalFormat_PrevAndNext(
-		java.lang.String RecordID, java.lang.String OriginalFormat,
+		long DocumentRecordID, java.lang.String OriginalFormat,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
 	/**
-	* Returns the document record where RecordID = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
+	* Returns the document record where DocumentRecordID = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the matching document record
 	* @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a matching document record could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByGetRecordName(
-		java.lang.String RecordID)
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord findByRecordName(
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
 	/**
-	* Returns the document record where RecordID = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the document record where DocumentRecordID = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the matching document record, or <code>null</code> if a matching document record could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByGetRecordName(
-		java.lang.String RecordID)
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByRecordName(
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the document record where RecordID = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the document record where DocumentRecordID = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching document record, or <code>null</code> if a matching document record could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByGetRecordName(
-		java.lang.String RecordID, boolean retrieveFromCache)
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchByRecordName(
+		long DocumentRecordID, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -365,7 +365,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	/**
 	* Returns the document records before and after the current document record in the ordered set where SubjectID = &#63;.
 	*
-	* @param RecordID the primary key of the current document record
+	* @param DocumentRecordID the primary key of the current document record
 	* @param SubjectID the subject i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next document record
@@ -373,7 +373,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord[] findBySubjectID_PrevAndNext(
-		java.lang.String RecordID, java.lang.String SubjectID,
+		long DocumentRecordID, java.lang.String SubjectID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
@@ -483,7 +483,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	/**
 	* Returns the document records before and after the current document record in the ordered set where UserID = &#63;.
 	*
-	* @param RecordID the primary key of the current document record
+	* @param DocumentRecordID the primary key of the current document record
 	* @param UserID the user i d
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next document record
@@ -491,7 +491,7 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord[] findByUserID_PrevAndNext(
-		java.lang.String RecordID, long UserID,
+		long DocumentRecordID, long UserID,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
@@ -597,14 +597,14 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the document record where RecordID = &#63; from the database.
+	* Removes the document record where DocumentRecordID = &#63; from the database.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the document record that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord removeByGetRecordName(
-		java.lang.String RecordID)
+	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord removeByRecordName(
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException;
 
@@ -661,13 +661,13 @@ public interface DocumentRecordPersistence extends BasePersistence<DocumentRecor
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of document records where RecordID = &#63;.
+	* Returns the number of document records where DocumentRecordID = &#63;.
 	*
-	* @param RecordID the record i d
+	* @param DocumentRecordID the document record i d
 	* @return the number of matching document records
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByGetRecordName(java.lang.String RecordID)
+	public int countByRecordName(long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

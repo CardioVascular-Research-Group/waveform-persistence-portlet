@@ -31,11 +31,11 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 
 		_methodName1 = "createFilesInfo";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteFilesInfo";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteFilesInfo";
 
@@ -74,11 +74,11 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 
 		_methodName9 = "fetchFilesInfo";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getFilesInfo";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -116,20 +116,20 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 		_methodName19 = "addFilesInfo";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String"
+				"long", "long", "long", "long", "long"
 			};
 
 		_methodName20 = "getFile";
 
-		_methodParameterTypes20 = new String[] { "java.lang.String" };
+		_methodParameterTypes20 = new String[] { "long" };
 
 		_methodName21 = "getFiles";
 
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] { "long" };
 
 		_methodName22 = "getFiles";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes22 = new String[] { "long", "int", "int" };
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
@@ -162,13 +162,12 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo createFilesInfo(
-		java.lang.String DocumentID) {
+		long FileID) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] { ClpSerializer.translateInput(DocumentID) });
+					_methodParameterTypes1, new Object[] { FileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -186,15 +185,15 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo deleteFilesInfo(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] { ClpSerializer.translateInput(DocumentID) });
+					_methodParameterTypes2, new Object[] { FileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -205,6 +204,10 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException) {
+				throw (edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -406,14 +409,12 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo fetchFilesInfo(
-		java.lang.String DocumentID)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long FileID) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] { ClpSerializer.translateInput(DocumentID) });
+					_methodParameterTypes9, new Object[] { FileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -435,15 +436,14 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFilesInfo(
-		java.lang.String DocumentID)
+		long FileID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] { ClpSerializer.translateInput(DocumentID) });
+					_methodParameterTypes10, new Object[] { FileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -665,7 +665,7 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID)
+		long fileID, long docRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -680,9 +680,9 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 						
 					liferayCompanyId,
 						
-					ClpSerializer.translateInput(documentID),
+					fileID,
 						
-					ClpSerializer.translateInput(fileListID)
+					docRecordID
 					});
 		}
 		catch (Throwable t) {
@@ -709,15 +709,14 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFile(
-		java.lang.String documentID)
+		long fileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
-					new Object[] { ClpSerializer.translateInput(documentID) });
+					_methodParameterTypes20, new Object[] { fileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -743,14 +742,13 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID)
+		long docRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
-					new Object[] { ClpSerializer.translateInput(fileID) });
+					_methodParameterTypes21, new Object[] { docRecordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -772,20 +770,14 @@ public class FilesInfoLocalServiceClp implements FilesInfoLocalService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID, int start, int end)
+		long docRecordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
-					new Object[] {
-						ClpSerializer.translateInput(fileID),
-						
-					start,
-						
-					end
-					});
+					new Object[] { docRecordID, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -41,20 +41,20 @@ public class CoordinateServiceImpl extends CoordinateServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.CoordinateServiceUtil} to access the coordinate remote service.
 	 */
-	public Coordinate addCoordinate(long liferayUserId, long liferayGroupId, long liferayCompanyId, String coordID, double xCoord, double yCoord) throws SystemException, PortalException{
+	public Coordinate addCoordinate(long liferayUserId, long liferayGroupId, long liferayCompanyId, double xCoord, double yCoord) throws SystemException, PortalException{
 
-		return CoordinateLocalServiceUtil.addCoordinate(liferayUserId, liferayGroupId, liferayCompanyId, coordID, xCoord, yCoord);
+		return CoordinateLocalServiceUtil.addCoordinate(liferayUserId, liferayGroupId, liferayCompanyId, xCoord, yCoord);
 	}
 	
-	public Coordinate deleteCoordinate(String coordID) throws SystemException, PortalException {
+	public Coordinate deleteCoordinate(long coordID) throws SystemException, PortalException {
 		return CoordinateLocalServiceUtil.deleteCoordinate(coordID);
 	}
 	
-	public Coordinate getCoordinate(String coordID) throws SystemException, PortalException {
+	public Coordinate getCoordinate(long coordID) throws SystemException, PortalException {
 		return CoordinateLocalServiceUtil.getCoordinate(coordID);
 	}
 	
-	public Coordinate updateCoordinate(String coordID, double xCoord, double yCoord) throws SystemException, PortalException{
+	public Coordinate updateCoordinate(long coordID, double xCoord, double yCoord) throws SystemException, PortalException{
 
 		return CoordinateLocalServiceUtil.updateCoordinate(coordID, xCoord, yCoord);
 	}

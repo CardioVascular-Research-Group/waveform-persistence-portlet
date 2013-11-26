@@ -46,27 +46,27 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		return DocumentRecord.class.getName();
 	}
 
-	public String getPrimaryKey() {
-		return _RecordID;
+	public long getPrimaryKey() {
+		return _DocumentRecordID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
-		setRecordID(primaryKey);
+	public void setPrimaryKey(long primaryKey) {
+		setDocumentRecordID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _RecordID;
+		return new Long(_DocumentRecordID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("RecordName", getRecordName());
 		attributes.put("UserID", getUserID());
 		attributes.put("SubjectID", getSubjectID());
@@ -86,10 +86,10 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		String RecordName = (String)attributes.get("RecordName");
@@ -171,12 +171,12 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		}
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public String getRecordName() {
@@ -312,7 +312,7 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 	public Object clone() {
 		DocumentRecordClp clone = new DocumentRecordClp();
 
-		clone.setRecordID(getRecordID());
+		clone.setDocumentRecordID(getDocumentRecordID());
 		clone.setRecordName(getRecordName());
 		clone.setUserID(getUserID());
 		clone.setSubjectID(getSubjectID());
@@ -331,9 +331,17 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 	}
 
 	public int compareTo(DocumentRecord documentRecord) {
-		String primaryKey = documentRecord.getPrimaryKey();
+		long primaryKey = documentRecord.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -351,9 +359,9 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 			return false;
 		}
 
-		String primaryKey = documentRecord.getPrimaryKey();
+		long primaryKey = documentRecord.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -363,15 +371,15 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
-		sb.append("{RecordID=");
-		sb.append(getRecordID());
+		sb.append("{DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append(", RecordName=");
 		sb.append(getRecordName());
 		sb.append(", UserID=");
@@ -412,8 +420,8 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>RecordName</column-name><column-value><![CDATA[");
@@ -473,7 +481,7 @@ public class DocumentRecordClp extends BaseModelImpl<DocumentRecord>
 		return sb.toString();
 	}
 
-	private String _RecordID;
+	private long _DocumentRecordID;
 	private String _RecordName;
 	private long _UserID;
 	private String _SubjectID;

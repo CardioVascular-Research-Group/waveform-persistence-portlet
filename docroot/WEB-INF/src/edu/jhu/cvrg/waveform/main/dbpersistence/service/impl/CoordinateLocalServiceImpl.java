@@ -14,11 +14,13 @@
 
 package edu.jhu.cvrg.waveform.main.dbpersistence.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate;
+import edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord;
 import edu.jhu.cvrg.waveform.main.dbpersistence.service.base.CoordinateLocalServiceBaseImpl;
 
 /**
@@ -41,8 +43,10 @@ public class CoordinateLocalServiceImpl extends CoordinateLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link edu.jhu.cvrg.waveform.main.dbpersistence.service.CoordinateLocalServiceUtil} to access the coordinate local service.
 	 */
-	public Coordinate addCoordinate(long liferayUserId, long liferayGroupId, long liferayCompanyId, String coordID, double xCoord, double yCoord) throws SystemException, PortalException{
+	public Coordinate addCoordinate(long liferayUserId, long liferayGroupId, long liferayCompanyId, double xCoord, double yCoord) throws SystemException, PortalException{
 
+		long coordID = CounterLocalServiceUtil.increment(DocumentRecord.class.getName());
+		
 		Coordinate coordinate = coordinatePersistence.create(coordID);
 		
 		coordinate.setXCoordinate(xCoord);
@@ -59,15 +63,15 @@ public class CoordinateLocalServiceImpl extends CoordinateLocalServiceBaseImpl {
 		return coordinatePersistence.remove(coord);
 	}
 	
-	public Coordinate deleteCoordinate(String coordID) throws SystemException, NoSuchCoordinateException {
+	public Coordinate deleteCoordinate(long coordID) throws SystemException, NoSuchCoordinateException {
 		return coordinatePersistence.remove(coordID);
 	}
 	
-	public Coordinate getCoordinate(String coordID) throws NoSuchCoordinateException, SystemException {
+	public Coordinate getCoordinate(long coordID) throws NoSuchCoordinateException, SystemException {
 		return coordinatePersistence.findByPrimaryKey(coordID);
 	}
 	
-	public Coordinate updateCoordinate(String coordID, double xCoord, double yCoord) throws SystemException, PortalException{
+	public Coordinate updateCoordinate(long coordID, double xCoord, double yCoord) throws SystemException, PortalException{
 
 		Coordinate coordinate = coordinatePersistence.findByPrimaryKey(coordID);
 		

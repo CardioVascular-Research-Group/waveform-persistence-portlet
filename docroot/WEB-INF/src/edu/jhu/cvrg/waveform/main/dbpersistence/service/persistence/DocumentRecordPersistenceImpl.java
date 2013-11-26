@@ -100,15 +100,15 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByOriginalFormat",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_GETRECORDNAME = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_RECORDNAME = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED,
 			DocumentRecordImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByGetRecordName", new String[] { String.class.getName() },
-			DocumentRecordModelImpl.RECORDID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_GETRECORDNAME = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
+			"fetchByRecordName", new String[] { Long.class.getName() },
+			DocumentRecordModelImpl.DOCUMENTRECORDID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_RECORDNAME = new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGetRecordName",
-			new String[] { String.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRecordName",
+			new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_SUBJECTID =
 		new FinderPath(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
 			DocumentRecordModelImpl.FINDER_CACHE_ENABLED,
@@ -194,8 +194,9 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			DocumentRecordImpl.class, documentRecord.getPrimaryKey(),
 			documentRecord);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
-			new Object[] { documentRecord.getRecordID() }, documentRecord);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDNAME,
+			new Object[] { Long.valueOf(documentRecord.getDocumentRecordID()) },
+			documentRecord);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 			new Object[] {
@@ -280,8 +281,8 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	protected void clearUniqueFindersCache(DocumentRecord documentRecord) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
-			new Object[] { documentRecord.getRecordID() });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RECORDNAME,
+			new Object[] { Long.valueOf(documentRecord.getDocumentRecordID()) });
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 			new Object[] {
@@ -297,14 +298,14 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	/**
 	 * Creates a new document record with the primary key. Does not add the document record to the database.
 	 *
-	 * @param RecordID the primary key for the new document record
+	 * @param DocumentRecordID the primary key for the new document record
 	 * @return the new document record
 	 */
-	public DocumentRecord create(String RecordID) {
+	public DocumentRecord create(long DocumentRecordID) {
 		DocumentRecord documentRecord = new DocumentRecordImpl();
 
 		documentRecord.setNew(true);
-		documentRecord.setPrimaryKey(RecordID);
+		documentRecord.setPrimaryKey(DocumentRecordID);
 
 		return documentRecord;
 	}
@@ -312,14 +313,14 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	/**
 	 * Removes the document record with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param RecordID the primary key of the document record
+	 * @param DocumentRecordID the primary key of the document record
 	 * @return the document record that was removed
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord remove(String RecordID)
+	public DocumentRecord remove(long DocumentRecordID)
 		throws NoSuchDocumentRecordException, SystemException {
-		return remove((Serializable)RecordID);
+		return remove(Long.valueOf(DocumentRecordID));
 	}
 
 	/**
@@ -483,8 +484,9 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			documentRecord);
 
 		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
-				new Object[] { documentRecord.getRecordID() }, documentRecord);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDNAME,
+				new Object[] { Long.valueOf(
+						documentRecord.getDocumentRecordID()) }, documentRecord);
 
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDPROPERTIES,
 				new Object[] {
@@ -498,20 +500,21 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 		}
 		else {
 			if ((documentRecordModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_GETRECORDNAME.getColumnBitmask()) != 0) {
+					FINDER_PATH_FETCH_BY_RECORDNAME.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						documentRecordModelImpl.getOriginalRecordID()
+						Long.valueOf(documentRecordModelImpl.getOriginalDocumentRecordID())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GETRECORDNAME,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECORDNAME,
 					args);
 
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RECORDNAME,
 					args);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
-					new Object[] { documentRecord.getRecordID() },
-					documentRecord);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDNAME,
+					new Object[] {
+						Long.valueOf(documentRecord.getDocumentRecordID())
+					}, documentRecord);
 			}
 
 			if ((documentRecordModelImpl.getColumnBitmask() &
@@ -556,7 +559,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 		documentRecordImpl.setNew(documentRecord.isNew());
 		documentRecordImpl.setPrimaryKey(documentRecord.getPrimaryKey());
 
-		documentRecordImpl.setRecordID(documentRecord.getRecordID());
+		documentRecordImpl.setDocumentRecordID(documentRecord.getDocumentRecordID());
 		documentRecordImpl.setRecordName(documentRecord.getRecordName());
 		documentRecordImpl.setUserID(documentRecord.getUserID());
 		documentRecordImpl.setSubjectID(documentRecord.getSubjectID());
@@ -585,28 +588,28 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	@Override
 	public DocumentRecord findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((String)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the document record with the primary key or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
 	 *
-	 * @param RecordID the primary key of the document record
+	 * @param DocumentRecordID the primary key of the document record
 	 * @return the document record
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord findByPrimaryKey(String RecordID)
+	public DocumentRecord findByPrimaryKey(long DocumentRecordID)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = fetchByPrimaryKey(RecordID);
+		DocumentRecord documentRecord = fetchByPrimaryKey(DocumentRecordID);
 
 		if (documentRecord == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + RecordID);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + DocumentRecordID);
 			}
 
 			throw new NoSuchDocumentRecordException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				RecordID);
+				DocumentRecordID);
 		}
 
 		return documentRecord;
@@ -622,20 +625,20 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	@Override
 	public DocumentRecord fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((String)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the document record with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param RecordID the primary key of the document record
+	 * @param DocumentRecordID the primary key of the document record
 	 * @return the document record, or <code>null</code> if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord fetchByPrimaryKey(String RecordID)
+	public DocumentRecord fetchByPrimaryKey(long DocumentRecordID)
 		throws SystemException {
 		DocumentRecord documentRecord = (DocumentRecord)EntityCacheUtil.getResult(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DocumentRecordImpl.class, RecordID);
+				DocumentRecordImpl.class, DocumentRecordID);
 
 		if (documentRecord == _nullDocumentRecord) {
 			return null;
@@ -650,7 +653,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				session = openSession();
 
 				documentRecord = (DocumentRecord)session.get(DocumentRecordImpl.class,
-						RecordID);
+						Long.valueOf(DocumentRecordID));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -663,7 +666,8 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(DocumentRecordModelImpl.ENTITY_CACHE_ENABLED,
-						DocumentRecordImpl.class, RecordID, _nullDocumentRecord);
+						DocumentRecordImpl.class, DocumentRecordID,
+						_nullDocumentRecord);
 				}
 
 				closeSession(session);
@@ -927,17 +931,18 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	/**
 	 * Returns the document records before and after the current document record in the ordered set where OriginalFormat = &#63;.
 	 *
-	 * @param RecordID the primary key of the current document record
+	 * @param DocumentRecordID the primary key of the current document record
 	 * @param OriginalFormat the original format
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next document record
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord[] findByOriginalFormat_PrevAndNext(String RecordID,
-		String OriginalFormat, OrderByComparator orderByComparator)
+	public DocumentRecord[] findByOriginalFormat_PrevAndNext(
+		long DocumentRecordID, String OriginalFormat,
+		OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = findByPrimaryKey(RecordID);
+		DocumentRecord documentRecord = findByPrimaryKey(DocumentRecordID);
 
 		Session session = null;
 
@@ -1079,24 +1084,24 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	/**
-	 * Returns the document record where RecordID = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
+	 * Returns the document record where DocumentRecordID = &#63; or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException} if it could not be found.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the matching document record
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord findByGetRecordName(String RecordID)
+	public DocumentRecord findByRecordName(long DocumentRecordID)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = fetchByGetRecordName(RecordID);
+		DocumentRecord documentRecord = fetchByRecordName(DocumentRecordID);
 
 		if (documentRecord == null) {
 			StringBundler msg = new StringBundler(4);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("RecordID=");
-			msg.append(RecordID);
+			msg.append("DocumentRecordID=");
+			msg.append(DocumentRecordID);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1111,40 +1116,40 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	/**
-	 * Returns the document record where RecordID = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the document record where DocumentRecordID = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the matching document record, or <code>null</code> if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord fetchByGetRecordName(String RecordID)
+	public DocumentRecord fetchByRecordName(long DocumentRecordID)
 		throws SystemException {
-		return fetchByGetRecordName(RecordID, true);
+		return fetchByRecordName(DocumentRecordID, true);
 	}
 
 	/**
-	 * Returns the document record where RecordID = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the document record where DocumentRecordID = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching document record, or <code>null</code> if a matching document record could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord fetchByGetRecordName(String RecordID,
+	public DocumentRecord fetchByRecordName(long DocumentRecordID,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID };
+		Object[] finderArgs = new Object[] { DocumentRecordID };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_RECORDNAME,
 					finderArgs, this);
 		}
 
 		if (result instanceof DocumentRecord) {
 			DocumentRecord documentRecord = (DocumentRecord)result;
 
-			if (!Validator.equals(RecordID, documentRecord.getRecordID())) {
+			if ((DocumentRecordID != documentRecord.getDocumentRecordID())) {
 				result = null;
 			}
 		}
@@ -1154,17 +1159,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 			query.append(_SQL_SELECT_DOCUMENTRECORD_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_RECORDNAME_DOCUMENTRECORDID_2);
 
 			String sql = query.toString();
 
@@ -1177,9 +1172,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				List<DocumentRecord> list = q.list();
 
@@ -1188,7 +1181,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 				DocumentRecord documentRecord = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDNAME,
 						finderArgs, list);
 				}
 				else {
@@ -1196,9 +1189,8 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 					cacheResult(documentRecord);
 
-					if ((documentRecord.getRecordID() == null) ||
-							!documentRecord.getRecordID().equals(RecordID)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
+					if ((documentRecord.getDocumentRecordID() != DocumentRecordID)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RECORDNAME,
 							finderArgs, documentRecord);
 					}
 				}
@@ -1210,7 +1202,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_GETRECORDNAME,
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RECORDNAME,
 						finderArgs);
 				}
 
@@ -1475,17 +1467,17 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	/**
 	 * Returns the document records before and after the current document record in the ordered set where SubjectID = &#63;.
 	 *
-	 * @param RecordID the primary key of the current document record
+	 * @param DocumentRecordID the primary key of the current document record
 	 * @param SubjectID the subject i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next document record
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord[] findBySubjectID_PrevAndNext(String RecordID,
+	public DocumentRecord[] findBySubjectID_PrevAndNext(long DocumentRecordID,
 		String SubjectID, OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = findByPrimaryKey(RecordID);
+		DocumentRecord documentRecord = findByPrimaryKey(DocumentRecordID);
 
 		Session session = null;
 
@@ -1860,17 +1852,17 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	/**
 	 * Returns the document records before and after the current document record in the ordered set where UserID = &#63;.
 	 *
-	 * @param RecordID the primary key of the current document record
+	 * @param DocumentRecordID the primary key of the current document record
 	 * @param UserID the user i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next document record
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchDocumentRecordException if a document record with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord[] findByUserID_PrevAndNext(String RecordID,
+	public DocumentRecord[] findByUserID_PrevAndNext(long DocumentRecordID,
 		long UserID, OrderByComparator orderByComparator)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = findByPrimaryKey(RecordID);
+		DocumentRecord documentRecord = findByPrimaryKey(DocumentRecordID);
 
 		Session session = null;
 
@@ -2349,15 +2341,15 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	/**
-	 * Removes the document record where RecordID = &#63; from the database.
+	 * Removes the document record where DocumentRecordID = &#63; from the database.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the document record that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public DocumentRecord removeByGetRecordName(String RecordID)
+	public DocumentRecord removeByRecordName(long DocumentRecordID)
 		throws NoSuchDocumentRecordException, SystemException {
-		DocumentRecord documentRecord = findByGetRecordName(RecordID);
+		DocumentRecord documentRecord = findByRecordName(DocumentRecordID);
 
 		return remove(documentRecord);
 	}
@@ -2483,16 +2475,17 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	}
 
 	/**
-	 * Returns the number of document records where RecordID = &#63;.
+	 * Returns the number of document records where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the number of matching document records
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByGetRecordName(String RecordID) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID };
+	public int countByRecordName(long DocumentRecordID)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { DocumentRecordID };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GETRECORDNAME,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RECORDNAME,
 				finderArgs, this);
 
 		if (count == null) {
@@ -2500,17 +2493,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 			query.append(_SQL_COUNT_DOCUMENTRECORD_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_GETRECORDNAME_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_RECORDNAME_DOCUMENTRECORDID_2);
 
 			String sql = query.toString();
 
@@ -2523,9 +2506,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -2537,7 +2518,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GETRECORDNAME,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_RECORDNAME,
 					finderArgs, count);
 
 				closeSession(session);
@@ -2862,9 +2843,7 @@ public class DocumentRecordPersistenceImpl extends BasePersistenceImpl<DocumentR
 	private static final String _FINDER_COLUMN_ORIGINALFORMAT_ORIGINALFORMAT_1 = "documentRecord.OriginalFormat IS NULL";
 	private static final String _FINDER_COLUMN_ORIGINALFORMAT_ORIGINALFORMAT_2 = "documentRecord.OriginalFormat = ?";
 	private static final String _FINDER_COLUMN_ORIGINALFORMAT_ORIGINALFORMAT_3 = "(documentRecord.OriginalFormat IS NULL OR documentRecord.OriginalFormat = ?)";
-	private static final String _FINDER_COLUMN_GETRECORDNAME_RECORDID_1 = "documentRecord.RecordID IS NULL";
-	private static final String _FINDER_COLUMN_GETRECORDNAME_RECORDID_2 = "documentRecord.RecordID = ?";
-	private static final String _FINDER_COLUMN_GETRECORDNAME_RECORDID_3 = "(documentRecord.RecordID IS NULL OR documentRecord.RecordID = ?)";
+	private static final String _FINDER_COLUMN_RECORDNAME_DOCUMENTRECORDID_2 = "documentRecord.DocumentRecordID = ?";
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_1 = "documentRecord.SubjectID IS NULL";
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_2 = "documentRecord.SubjectID = ?";
 	private static final String _FINDER_COLUMN_SUBJECTID_SUBJECTID_3 = "(documentRecord.SubjectID IS NULL OR documentRecord.SubjectID = ?)";

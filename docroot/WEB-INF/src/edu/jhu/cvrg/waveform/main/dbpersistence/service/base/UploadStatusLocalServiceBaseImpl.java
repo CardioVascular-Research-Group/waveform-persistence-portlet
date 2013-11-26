@@ -102,7 +102,7 @@ public abstract class UploadStatusLocalServiceBaseImpl
 	 * @param StatusLogNumber the primary key for the new upload status
 	 * @return the new upload status
 	 */
-	public UploadStatus createUploadStatus(String StatusLogNumber) {
+	public UploadStatus createUploadStatus(long StatusLogNumber) {
 		return uploadStatusPersistence.create(StatusLogNumber);
 	}
 
@@ -115,7 +115,7 @@ public abstract class UploadStatusLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public UploadStatus deleteUploadStatus(String StatusLogNumber)
+	public UploadStatus deleteUploadStatus(long StatusLogNumber)
 		throws PortalException, SystemException {
 		return uploadStatusPersistence.remove(StatusLogNumber);
 	}
@@ -206,7 +206,7 @@ public abstract class UploadStatusLocalServiceBaseImpl
 		return uploadStatusPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public UploadStatus fetchUploadStatus(String StatusLogNumber)
+	public UploadStatus fetchUploadStatus(long StatusLogNumber)
 		throws SystemException {
 		return uploadStatusPersistence.fetchByPrimaryKey(StatusLogNumber);
 	}
@@ -219,7 +219,7 @@ public abstract class UploadStatusLocalServiceBaseImpl
 	 * @throws PortalException if a upload status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public UploadStatus getUploadStatus(String StatusLogNumber)
+	public UploadStatus getUploadStatus(long StatusLogNumber)
 		throws PortalException, SystemException {
 		return uploadStatusPersistence.findByPrimaryKey(StatusLogNumber);
 	}

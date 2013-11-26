@@ -61,7 +61,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fileTreePath" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.dbpersistence.main.waveform.cvrg.jhu.edu" xmlns:rtns="http://model.dbpersistence.main.waveform.cvrg.jhu.edu" name="updateDocumentRecord" qname="operNS:updateDocumentRecord" returnQName="updateDocumentRecordReturn" returnType="rtns:DocumentRecordSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userID" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recordName" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="subjectID" type="tns:string"></parameter>

@@ -102,7 +102,7 @@ public abstract class CoordinateLocalServiceBaseImpl
 	 * @param CoordinateID the primary key for the new coordinate
 	 * @return the new coordinate
 	 */
-	public Coordinate createCoordinate(String CoordinateID) {
+	public Coordinate createCoordinate(long CoordinateID) {
 		return coordinatePersistence.create(CoordinateID);
 	}
 
@@ -113,10 +113,12 @@ public abstract class CoordinateLocalServiceBaseImpl
 	 * @return the coordinate that was removed
 	 * @throws PortalException if a coordinate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
+	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Coordinate deleteCoordinate(String CoordinateID)
-		throws PortalException, SystemException {
+	public Coordinate deleteCoordinate(long CoordinateID)
+		throws PortalException, SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return coordinatePersistence.remove(CoordinateID);
 	}
 
@@ -206,7 +208,7 @@ public abstract class CoordinateLocalServiceBaseImpl
 		return coordinatePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public Coordinate fetchCoordinate(String CoordinateID)
+	public Coordinate fetchCoordinate(long CoordinateID)
 		throws SystemException {
 		return coordinatePersistence.fetchByPrimaryKey(CoordinateID);
 	}
@@ -218,9 +220,11 @@ public abstract class CoordinateLocalServiceBaseImpl
 	 * @return the coordinate
 	 * @throws PortalException if a coordinate with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
+	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException
 	 */
-	public Coordinate getCoordinate(String CoordinateID)
-		throws PortalException, SystemException {
+	public Coordinate getCoordinate(long CoordinateID)
+		throws PortalException, SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return coordinatePersistence.findByPrimaryKey(CoordinateID);
 	}
 

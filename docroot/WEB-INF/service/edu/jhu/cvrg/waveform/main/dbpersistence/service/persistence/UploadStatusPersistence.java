@@ -60,7 +60,7 @@ public interface UploadStatusPersistence extends BasePersistence<UploadStatus> {
 	* @return the new upload status
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus create(
-		java.lang.String StatusLogNumber);
+		long StatusLogNumber);
 
 	/**
 	* Removes the upload status with the primary key from the database. Also notifies the appropriate model listeners.
@@ -71,7 +71,7 @@ public interface UploadStatusPersistence extends BasePersistence<UploadStatus> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus remove(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException;
 
@@ -89,7 +89,7 @@ public interface UploadStatusPersistence extends BasePersistence<UploadStatus> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus findByPrimaryKey(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException;
 
@@ -101,7 +101,7 @@ public interface UploadStatusPersistence extends BasePersistence<UploadStatus> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus fetchByPrimaryKey(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

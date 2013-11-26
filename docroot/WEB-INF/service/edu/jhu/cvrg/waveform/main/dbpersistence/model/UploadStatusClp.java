@@ -45,20 +45,20 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		return UploadStatus.class.getName();
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _StatusLogNumber;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setStatusLogNumber(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _StatusLogNumber;
+		return new Long(_StatusLogNumber);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -70,14 +70,14 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		attributes.put("FileConversion", getFileConversion());
 		attributes.put("RecordCreation", getRecordCreation());
 		attributes.put("AnnotationCreation", getAnnotationCreation());
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String StatusLogNumber = (String)attributes.get("StatusLogNumber");
+		Long StatusLogNumber = (Long)attributes.get("StatusLogNumber");
 
 		if (StatusLogNumber != null) {
 			setStatusLogNumber(StatusLogNumber);
@@ -107,18 +107,18 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 			setAnnotationCreation(AnnotationCreation);
 		}
 
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 	}
 
-	public String getStatusLogNumber() {
+	public long getStatusLogNumber() {
 		return _StatusLogNumber;
 	}
 
-	public void setStatusLogNumber(String StatusLogNumber) {
+	public void setStatusLogNumber(long StatusLogNumber) {
 		_StatusLogNumber = StatusLogNumber;
 	}
 
@@ -154,12 +154,12 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		_AnnotationCreation = AnnotationCreation;
 	}
 
-	public String getRecordID() {
-		return _RecordID;
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_RecordID = RecordID;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_DocumentRecordID = DocumentRecordID;
 	}
 
 	public BaseModel<?> getUploadStatusRemoteModel() {
@@ -194,15 +194,23 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		clone.setFileConversion(getFileConversion());
 		clone.setRecordCreation(getRecordCreation());
 		clone.setAnnotationCreation(getAnnotationCreation());
-		clone.setRecordID(getRecordID());
+		clone.setDocumentRecordID(getDocumentRecordID());
 
 		return clone;
 	}
 
 	public int compareTo(UploadStatus uploadStatus) {
-		String primaryKey = uploadStatus.getPrimaryKey();
+		long primaryKey = uploadStatus.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -220,9 +228,9 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 			return false;
 		}
 
-		String primaryKey = uploadStatus.getPrimaryKey();
+		long primaryKey = uploadStatus.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -232,7 +240,7 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -249,8 +257,8 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		sb.append(getRecordCreation());
 		sb.append(", AnnotationCreation=");
 		sb.append(getAnnotationCreation());
-		sb.append(", RecordID=");
-		sb.append(getRecordID());
+		sb.append(", DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append("}");
 
 		return sb.toString();
@@ -284,8 +292,8 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		sb.append(getAnnotationCreation());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -293,11 +301,11 @@ public class UploadStatusClp extends BaseModelImpl<UploadStatus>
 		return sb.toString();
 	}
 
-	private String _StatusLogNumber;
+	private long _StatusLogNumber;
 	private String _FileTransfer;
 	private String _FileConversion;
 	private String _RecordCreation;
 	private String _AnnotationCreation;
-	private String _RecordID;
+	private long _DocumentRecordID;
 	private BaseModel<?> _uploadStatusRemoteModel;
 }

@@ -22,6 +22,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord;
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecordModel;
@@ -60,7 +64,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	 */
 	public static final String TABLE_NAME = "Database_DocumentRecord";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "RecordID", Types.VARCHAR },
+			{ "DocumentRecordID", Types.BIGINT },
 			{ "RecordName", Types.VARCHAR },
 			{ "UserID", Types.BIGINT },
 			{ "SubjectID", Types.VARCHAR },
@@ -75,7 +79,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			{ "DateOfRecording", Types.TIMESTAMP },
 			{ "AduGain", Types.DOUBLE }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (RecordID VARCHAR(75) not null primary key,RecordName VARCHAR(75) null,UserID LONG,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE)";
+	public static final String TABLE_SQL_CREATE = "create table Database_DocumentRecord (DocumentRecordID LONG not null primary key,RecordName VARCHAR(75) null,UserID LONG,SubjectID VARCHAR(75) null,OriginalFormat VARCHAR(75) null,SamplingRate DOUBLE,FileTreePath VARCHAR(75) null,LeadCount INTEGER,NumberOfPoints INTEGER,DateOfUpload DATE null,Age INTEGER,Gender VARCHAR(75) null,DateOfRecording DATE null,AduGain DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table Database_DocumentRecord";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -89,9 +93,9 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord"),
 			true);
-	public static long FILETREEPATH_COLUMN_BITMASK = 1L;
-	public static long ORIGINALFORMAT_COLUMN_BITMASK = 2L;
-	public static long RECORDID_COLUMN_BITMASK = 4L;
+	public static long DOCUMENTRECORDID_COLUMN_BITMASK = 1L;
+	public static long FILETREEPATH_COLUMN_BITMASK = 2L;
+	public static long ORIGINALFORMAT_COLUMN_BITMASK = 4L;
 	public static long RECORDNAME_COLUMN_BITMASK = 8L;
 	public static long SUBJECTID_COLUMN_BITMASK = 16L;
 	public static long USERID_COLUMN_BITMASK = 32L;
@@ -109,7 +113,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 		DocumentRecord model = new DocumentRecordImpl();
 
-		model.setRecordID(soapModel.getRecordID());
+		model.setDocumentRecordID(soapModel.getDocumentRecordID());
 		model.setRecordName(soapModel.getRecordName());
 		model.setUserID(soapModel.getUserID());
 		model.setSubjectID(soapModel.getSubjectID());
@@ -153,20 +157,20 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public DocumentRecordModelImpl() {
 	}
 
-	public String getPrimaryKey() {
-		return _RecordID;
+	public long getPrimaryKey() {
+		return _DocumentRecordID;
 	}
 
-	public void setPrimaryKey(String primaryKey) {
-		setRecordID(primaryKey);
+	public void setPrimaryKey(long primaryKey) {
+		setDocumentRecordID(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return _RecordID;
+		return new Long(_DocumentRecordID);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -181,7 +185,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("RecordName", getRecordName());
 		attributes.put("UserID", getUserID());
 		attributes.put("SubjectID", getSubjectID());
@@ -201,10 +205,10 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		String RecordName = (String)attributes.get("RecordName");
@@ -287,27 +291,24 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	}
 
 	@JSON
-	public String getRecordID() {
-		if (_RecordID == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _RecordID;
-		}
+	public long getDocumentRecordID() {
+		return _DocumentRecordID;
 	}
 
-	public void setRecordID(String RecordID) {
-		_columnBitmask |= RECORDID_COLUMN_BITMASK;
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_columnBitmask |= DOCUMENTRECORDID_COLUMN_BITMASK;
 
-		if (_originalRecordID == null) {
-			_originalRecordID = _RecordID;
+		if (!_setOriginalDocumentRecordID) {
+			_setOriginalDocumentRecordID = true;
+
+			_originalDocumentRecordID = _DocumentRecordID;
 		}
 
-		_RecordID = RecordID;
+		_DocumentRecordID = DocumentRecordID;
 	}
 
-	public String getOriginalRecordID() {
-		return GetterUtil.getString(_originalRecordID);
+	public long getOriginalDocumentRecordID() {
+		return _originalDocumentRecordID;
 	}
 
 	@JSON
@@ -509,6 +510,19 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			DocumentRecord.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public DocumentRecord toEscapedModel() {
 		if (_escapedModelProxy == null) {
 			_escapedModelProxy = (DocumentRecord)ProxyUtil.newProxyInstance(_classLoader,
@@ -523,7 +537,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public Object clone() {
 		DocumentRecordImpl documentRecordImpl = new DocumentRecordImpl();
 
-		documentRecordImpl.setRecordID(getRecordID());
+		documentRecordImpl.setDocumentRecordID(getDocumentRecordID());
 		documentRecordImpl.setRecordName(getRecordName());
 		documentRecordImpl.setUserID(getUserID());
 		documentRecordImpl.setSubjectID(getSubjectID());
@@ -544,9 +558,17 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	}
 
 	public int compareTo(DocumentRecord documentRecord) {
-		String primaryKey = documentRecord.getPrimaryKey();
+		long primaryKey = documentRecord.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -564,9 +586,9 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 			return false;
 		}
 
-		String primaryKey = documentRecord.getPrimaryKey();
+		long primaryKey = documentRecord.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -576,14 +598,16 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public void resetOriginalValues() {
 		DocumentRecordModelImpl documentRecordModelImpl = this;
 
-		documentRecordModelImpl._originalRecordID = documentRecordModelImpl._RecordID;
+		documentRecordModelImpl._originalDocumentRecordID = documentRecordModelImpl._DocumentRecordID;
+
+		documentRecordModelImpl._setOriginalDocumentRecordID = false;
 
 		documentRecordModelImpl._originalRecordName = documentRecordModelImpl._RecordName;
 
@@ -604,13 +628,7 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public CacheModel<DocumentRecord> toCacheModel() {
 		DocumentRecordCacheModel documentRecordCacheModel = new DocumentRecordCacheModel();
 
-		documentRecordCacheModel.RecordID = getRecordID();
-
-		String RecordID = documentRecordCacheModel.RecordID;
-
-		if ((RecordID != null) && (RecordID.length() == 0)) {
-			documentRecordCacheModel.RecordID = null;
-		}
+		documentRecordCacheModel.DocumentRecordID = getDocumentRecordID();
 
 		documentRecordCacheModel.RecordName = getRecordName();
 
@@ -689,8 +707,8 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
-		sb.append("{RecordID=");
-		sb.append(getRecordID());
+		sb.append("{DocumentRecordID=");
+		sb.append(getDocumentRecordID());
 		sb.append(", RecordName=");
 		sb.append(getRecordName());
 		sb.append(", UserID=");
@@ -731,8 +749,8 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>RecordID</column-name><column-value><![CDATA[");
-		sb.append(getRecordID());
+			"<column><column-name>DocumentRecordID</column-name><column-value><![CDATA[");
+		sb.append(getDocumentRecordID());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>RecordName</column-name><column-value><![CDATA[");
@@ -796,8 +814,9 @@ public class DocumentRecordModelImpl extends BaseModelImpl<DocumentRecord>
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
 			DocumentRecord.class
 		};
-	private String _RecordID;
-	private String _originalRecordID;
+	private long _DocumentRecordID;
+	private long _originalDocumentRecordID;
+	private boolean _setOriginalDocumentRecordID;
 	private String _RecordName;
 	private String _originalRecordName;
 	private long _UserID;

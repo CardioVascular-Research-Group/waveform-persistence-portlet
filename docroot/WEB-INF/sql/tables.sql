@@ -1,27 +1,27 @@
 create table Database_AnnotationInfo (
-	AnnotationID VARCHAR(75) not null primary key,
+	AnnotationID LONG not null primary key,
 	CreatedBy VARCHAR(75) null,
 	AnnotationType VARCHAR(75) null,
 	Name VARCHAR(75) null,
 	BioportalReference VARCHAR(75) null,
 	Lead VARCHAR(75) null,
-	StartingCoordinateID VARCHAR(75) null,
-	EndingCoordinateID VARCHAR(75) null,
+	StartingCoordinateID LONG,
+	EndingCoordinateID LONG,
 	UnitOfMeasurement VARCHAR(75) null,
 	Description VARCHAR(75) null,
 	Value VARCHAR(75) null,
-	RecordID VARCHAR(75) null,
+	DocumentRecordID LONG,
 	Timestamp DATE null
 );
 
 create table Database_Coordinate (
-	CoordinateID VARCHAR(75) not null primary key,
+	CoordinateID LONG not null primary key,
 	xCoordinate DOUBLE,
 	yCoordinate DOUBLE
 );
 
 create table Database_DocumentRecord (
-	RecordID VARCHAR(75) not null primary key,
+	DocumentRecordID LONG not null primary key,
 	RecordName VARCHAR(75) null,
 	UserID LONG,
 	SubjectID VARCHAR(75) null,
@@ -38,15 +38,15 @@ create table Database_DocumentRecord (
 );
 
 create table Database_FilesInfo (
-	DocumentID VARCHAR(75) not null primary key,
-	RecordID VARCHAR(75) null
+	FileID LONG not null primary key,
+	DocumentRecordID LONG
 );
 
 create table Database_UploadStatus (
-	StatusLogNumber VARCHAR(75) not null primary key,
+	StatusLogNumber LONG not null primary key,
 	FileTransfer VARCHAR(75) null,
 	FileConversion VARCHAR(75) null,
 	RecordCreation VARCHAR(75) null,
 	AnnotationCreation VARCHAR(75) null,
-	RecordID VARCHAR(75) null
+	DocumentRecordID LONG
 );

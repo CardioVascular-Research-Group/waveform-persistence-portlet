@@ -64,7 +64,7 @@ public interface UploadStatusLocalService extends BaseLocalService,
 	* @return the new upload status
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus createUploadStatus(
-		java.lang.String StatusLogNumber);
+		long StatusLogNumber);
 
 	/**
 	* Deletes the upload status with the primary key from the database. Also notifies the appropriate model listeners.
@@ -75,7 +75,7 @@ public interface UploadStatusLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus deleteUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -156,7 +156,7 @@ public interface UploadStatusLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus fetchUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -169,7 +169,7 @@ public interface UploadStatusLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.UploadStatus getUploadStatus(
-		java.lang.String StatusLogNumber)
+		long StatusLogNumber)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

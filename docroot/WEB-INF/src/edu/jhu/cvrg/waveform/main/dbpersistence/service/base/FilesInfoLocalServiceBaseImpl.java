@@ -98,25 +98,27 @@ public abstract class FilesInfoLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new files info with the primary key. Does not add the files info to the database.
 	 *
-	 * @param DocumentID the primary key for the new files info
+	 * @param FileID the primary key for the new files info
 	 * @return the new files info
 	 */
-	public FilesInfo createFilesInfo(String DocumentID) {
-		return filesInfoPersistence.create(DocumentID);
+	public FilesInfo createFilesInfo(long FileID) {
+		return filesInfoPersistence.create(FileID);
 	}
 
 	/**
 	 * Deletes the files info with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param DocumentID the primary key of the files info
+	 * @param FileID the primary key of the files info
 	 * @return the files info that was removed
 	 * @throws PortalException if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
+	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public FilesInfo deleteFilesInfo(String DocumentID)
-		throws PortalException, SystemException {
-		return filesInfoPersistence.remove(DocumentID);
+	public FilesInfo deleteFilesInfo(long FileID)
+		throws PortalException, SystemException,
+			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
+		return filesInfoPersistence.remove(FileID);
 	}
 
 	/**
@@ -205,22 +207,21 @@ public abstract class FilesInfoLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return filesInfoPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
-	public FilesInfo fetchFilesInfo(String DocumentID)
-		throws SystemException {
-		return filesInfoPersistence.fetchByPrimaryKey(DocumentID);
+	public FilesInfo fetchFilesInfo(long FileID) throws SystemException {
+		return filesInfoPersistence.fetchByPrimaryKey(FileID);
 	}
 
 	/**
 	 * Returns the files info with the primary key.
 	 *
-	 * @param DocumentID the primary key of the files info
+	 * @param FileID the primary key of the files info
 	 * @return the files info
 	 * @throws PortalException if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo getFilesInfo(String DocumentID)
+	public FilesInfo getFilesInfo(long FileID)
 		throws PortalException, SystemException {
-		return filesInfoPersistence.findByPrimaryKey(DocumentID);
+		return filesInfoPersistence.findByPrimaryKey(FileID);
 	}
 
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)

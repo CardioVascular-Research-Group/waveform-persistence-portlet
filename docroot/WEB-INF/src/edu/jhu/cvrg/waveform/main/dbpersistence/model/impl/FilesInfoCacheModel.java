@@ -15,7 +15,6 @@
 package edu.jhu.cvrg.waveform.main.dbpersistence.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo;
@@ -34,10 +33,10 @@ public class FilesInfoCacheModel implements CacheModel<FilesInfo>, Serializable 
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{DocumentID=");
-		sb.append(DocumentID);
-		sb.append(", RecordID=");
-		sb.append(RecordID);
+		sb.append("{FileID=");
+		sb.append(FileID);
+		sb.append(", DocumentRecordID=");
+		sb.append(DocumentRecordID);
 		sb.append("}");
 
 		return sb.toString();
@@ -46,25 +45,14 @@ public class FilesInfoCacheModel implements CacheModel<FilesInfo>, Serializable 
 	public FilesInfo toEntityModel() {
 		FilesInfoImpl filesInfoImpl = new FilesInfoImpl();
 
-		if (DocumentID == null) {
-			filesInfoImpl.setDocumentID(StringPool.BLANK);
-		}
-		else {
-			filesInfoImpl.setDocumentID(DocumentID);
-		}
-
-		if (RecordID == null) {
-			filesInfoImpl.setRecordID(StringPool.BLANK);
-		}
-		else {
-			filesInfoImpl.setRecordID(RecordID);
-		}
+		filesInfoImpl.setFileID(FileID);
+		filesInfoImpl.setDocumentRecordID(DocumentRecordID);
 
 		filesInfoImpl.resetOriginalValues();
 
 		return filesInfoImpl;
 	}
 
-	public String DocumentID;
-	public String RecordID;
+	public long FileID;
+	public long DocumentRecordID;
 }

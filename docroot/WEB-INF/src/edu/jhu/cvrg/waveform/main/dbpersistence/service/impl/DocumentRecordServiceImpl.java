@@ -90,7 +90,7 @@ public class DocumentRecordServiceImpl extends DocumentRecordServiceBaseImpl {
 		return DocumentRecordLocalServiceUtil.getRecord(recordName, userID, subjectID, fileTreePath);
 	}
 	
-	public DocumentRecord updateDocumentRecord(String recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
+	public DocumentRecord updateDocumentRecord(long recordID, long userID, String recordName, String subjectID, String originalFormat, double samplingRate, String fileTreePath, int leadCount, int numPoints, Date dateUploaded, int age, String gender, Date dateRecorded, double aduGain) throws NoSuchDocumentRecordException, SystemException {
 		return DocumentRecordLocalServiceUtil.updateDocumentRecord(recordID, userID, recordName, subjectID, originalFormat, samplingRate, fileTreePath, leadCount, numPoints, dateUploaded, age, gender, dateRecorded, aduGain);
 	}
 }

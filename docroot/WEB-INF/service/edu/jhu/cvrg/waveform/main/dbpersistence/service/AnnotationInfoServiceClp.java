@@ -34,11 +34,10 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 		_methodName3 = "addAnnotationInfo";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date"
+				"java.lang.String", "long", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.util.Date"
 			};
 
 		_methodName4 = "deleteAnnotationInfo";
@@ -47,29 +46,27 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 
 		_methodName5 = "getAnnotationsByRecord";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long" };
 
 		_methodName6 = "getAnnotationsByRecord";
 
-		_methodParameterTypes6 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes6 = new String[] { "long", "int", "int" };
 
 		_methodName7 = "getAnnotation";
 
 		_methodParameterTypes7 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
 		_methodName8 = "getAnnotationsByType";
 
-		_methodParameterTypes8 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes8 = new String[] { "long", "java.lang.String" };
 
 		_methodName9 = "getAnnotationsByType";
 
 		_methodParameterTypes9 = new String[] {
-				"java.lang.String", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -122,12 +119,12 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo addAnnotationInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String recordID, java.lang.String createdBy,
+		long recordID, java.lang.String createdBy,
 		java.lang.String annotationType, java.lang.String name,
-		java.lang.String bioportalRef, java.lang.String lead,
-		java.lang.String startCoord, java.lang.String endCoord,
-		java.lang.String unitMeasurement, java.lang.String description,
-		java.lang.String value, java.util.Date timestamp)
+		java.lang.String bioportalRef, java.lang.String lead, long startCoord,
+		long endCoord, java.lang.String unitMeasurement,
+		java.lang.String description, java.lang.String value,
+		java.util.Date timestamp)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -142,7 +139,7 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 						
 					liferayCompanyId,
 						
-					ClpSerializer.translateInput(recordID),
+					recordID,
 						
 					ClpSerializer.translateInput(createdBy),
 						
@@ -154,9 +151,9 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 						
 					ClpSerializer.translateInput(lead),
 						
-					ClpSerializer.translateInput(startCoord),
+					startCoord,
 						
-					ClpSerializer.translateInput(endCoord),
+					endCoord,
 						
 					ClpSerializer.translateInput(unitMeasurement),
 						
@@ -225,14 +222,13 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByRecord(
-		java.lang.String recordID)
+		long recordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
-					new Object[] { ClpSerializer.translateInput(recordID) });
+					_methodParameterTypes5, new Object[] { recordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -254,20 +250,14 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByRecord(
-		java.lang.String recordID, int start, int end)
+		long recordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] {
-						ClpSerializer.translateInput(recordID),
-						
-					start,
-						
-					end
-					});
+					new Object[] { recordID, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -289,8 +279,8 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo getAnnotation(
-		java.lang.String recordID, java.lang.String name,
-		java.lang.String annotationType, java.lang.String lead)
+		long recordID, java.lang.String name, java.lang.String annotationType,
+		java.lang.String lead)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchAnnotationInfoException {
 		Object returnObj = null;
@@ -299,7 +289,7 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 			returnObj = _invokableService.invokeMethod(_methodName7,
 					_methodParameterTypes7,
 					new Object[] {
-						ClpSerializer.translateInput(recordID),
+						recordID,
 						
 					ClpSerializer.translateInput(name),
 						
@@ -332,7 +322,7 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType)
+		long recordID, java.lang.String annotationType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -340,7 +330,7 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 			returnObj = _invokableService.invokeMethod(_methodName8,
 					_methodParameterTypes8,
 					new Object[] {
-						ClpSerializer.translateInput(recordID),
+						recordID,
 						
 					ClpSerializer.translateInput(annotationType)
 					});
@@ -365,15 +355,15 @@ public class AnnotationInfoServiceClp implements AnnotationInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.AnnotationInfo> getAnnotationsByType(
-		java.lang.String recordID, java.lang.String annotationType, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		long recordID, java.lang.String annotationType, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName9,
 					_methodParameterTypes9,
 					new Object[] {
-						ClpSerializer.translateInput(recordID),
+						recordID,
 						
 					ClpSerializer.translateInput(annotationType),
 						

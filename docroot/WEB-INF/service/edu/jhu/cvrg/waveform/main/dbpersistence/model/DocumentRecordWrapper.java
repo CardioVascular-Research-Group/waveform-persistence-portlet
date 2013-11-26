@@ -46,7 +46,7 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("RecordID", getRecordID());
+		attributes.put("DocumentRecordID", getDocumentRecordID());
 		attributes.put("RecordName", getRecordName());
 		attributes.put("UserID", getUserID());
 		attributes.put("SubjectID", getSubjectID());
@@ -65,10 +65,10 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	}
 
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String RecordID = (String)attributes.get("RecordID");
+		Long DocumentRecordID = (Long)attributes.get("DocumentRecordID");
 
-		if (RecordID != null) {
-			setRecordID(RecordID);
+		if (DocumentRecordID != null) {
+			setDocumentRecordID(DocumentRecordID);
 		}
 
 		String RecordName = (String)attributes.get("RecordName");
@@ -155,7 +155,7 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	*
 	* @return the primary key of this document record
 	*/
-	public java.lang.String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _documentRecord.getPrimaryKey();
 	}
 
@@ -164,26 +164,26 @@ public class DocumentRecordWrapper implements DocumentRecord,
 	*
 	* @param primaryKey the primary key of this document record
 	*/
-	public void setPrimaryKey(java.lang.String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_documentRecord.setPrimaryKey(primaryKey);
 	}
 
 	/**
-	* Returns the record i d of this document record.
+	* Returns the document record i d of this document record.
 	*
-	* @return the record i d of this document record
+	* @return the document record i d of this document record
 	*/
-	public java.lang.String getRecordID() {
-		return _documentRecord.getRecordID();
+	public long getDocumentRecordID() {
+		return _documentRecord.getDocumentRecordID();
 	}
 
 	/**
-	* Sets the record i d of this document record.
+	* Sets the document record i d of this document record.
 	*
-	* @param RecordID the record i d of this document record
+	* @param DocumentRecordID the document record i d of this document record
 	*/
-	public void setRecordID(java.lang.String RecordID) {
-		_documentRecord.setRecordID(RecordID);
+	public void setDocumentRecordID(long DocumentRecordID) {
+		_documentRecord.setDocumentRecordID(DocumentRecordID);
 	}
 
 	/**

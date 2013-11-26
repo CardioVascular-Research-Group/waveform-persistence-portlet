@@ -134,7 +134,7 @@ public class DocumentRecordServiceWrapper implements DocumentRecordService,
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, long userID, java.lang.String recordName,
+		long recordID, long userID, java.lang.String recordName,
 		java.lang.String subjectID, java.lang.String originalFormat,
 		double samplingRate, java.lang.String fileTreePath, int leadCount,
 		int numPoints, java.util.Date dateUploaded, int age,

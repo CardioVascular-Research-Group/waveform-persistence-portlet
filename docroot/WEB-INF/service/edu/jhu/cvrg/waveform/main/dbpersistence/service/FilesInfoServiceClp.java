@@ -34,25 +34,25 @@ public class FilesInfoServiceClp implements FilesInfoService {
 		_methodName3 = "addFilesInfo";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "long", "long",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName4 = "deleteFilesInfo";
 
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long" };
 
 		_methodName5 = "getFile";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long" };
 
 		_methodName6 = "getFiles";
 
-		_methodParameterTypes6 = new String[] { "java.lang.String" };
+		_methodParameterTypes6 = new String[] { "long" };
 
 		_methodName7 = "getFiles";
 
-		_methodParameterTypes7 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes7 = new String[] { "long", "int", "int" };
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -104,7 +104,7 @@ public class FilesInfoServiceClp implements FilesInfoService {
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo addFilesInfo(
 		long liferayUserId, long liferayGroupId, long liferayCompanyId,
-		java.lang.String documentID, java.lang.String fileListID,
+		long documentID, long fileListID,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -120,9 +120,9 @@ public class FilesInfoServiceClp implements FilesInfoService {
 						
 					liferayCompanyId,
 						
-					ClpSerializer.translateInput(documentID),
+					documentID,
 						
-					ClpSerializer.translateInput(fileListID),
+					fileListID,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -151,15 +151,14 @@ public class FilesInfoServiceClp implements FilesInfoService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo deleteFilesInfo(
-		java.lang.String docID)
+		long docID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
-					new Object[] { ClpSerializer.translateInput(docID) });
+					_methodParameterTypes4, new Object[] { docID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -185,15 +184,14 @@ public class FilesInfoServiceClp implements FilesInfoService {
 	}
 
 	public edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo getFile(
-		java.lang.String documentID)
+		long fileID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
-					new Object[] { ClpSerializer.translateInput(documentID) });
+					_methodParameterTypes5, new Object[] { fileID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -219,14 +217,13 @@ public class FilesInfoServiceClp implements FilesInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID)
+		long recordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
-					new Object[] { ClpSerializer.translateInput(fileID) });
+					_methodParameterTypes6, new Object[] { recordID });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -248,20 +245,14 @@ public class FilesInfoServiceClp implements FilesInfoService {
 	}
 
 	public java.util.List<edu.jhu.cvrg.waveform.main.dbpersistence.model.FilesInfo> getFiles(
-		java.lang.String fileID, int start, int end)
+		long recordID, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName7,
 					_methodParameterTypes7,
-					new Object[] {
-						ClpSerializer.translateInput(fileID),
-						
-					start,
-						
-					end
-					});
+					new Object[] { recordID, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

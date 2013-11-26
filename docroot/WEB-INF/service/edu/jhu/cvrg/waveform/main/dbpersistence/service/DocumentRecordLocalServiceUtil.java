@@ -54,27 +54,27 @@ public class DocumentRecordLocalServiceUtil {
 	/**
 	* Creates a new document record with the primary key. Does not add the document record to the database.
 	*
-	* @param RecordID the primary key for the new document record
+	* @param DocumentRecordID the primary key for the new document record
 	* @return the new document record
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord createDocumentRecord(
-		java.lang.String RecordID) {
-		return getService().createDocumentRecord(RecordID);
+		long DocumentRecordID) {
+		return getService().createDocumentRecord(DocumentRecordID);
 	}
 
 	/**
 	* Deletes the document record with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record that was removed
 	* @throws PortalException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteDocumentRecord(RecordID);
+		return getService().deleteDocumentRecord(DocumentRecordID);
 	}
 
 	/**
@@ -168,24 +168,24 @@ public class DocumentRecordLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord fetchDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchDocumentRecord(RecordID);
+		return getService().fetchDocumentRecord(DocumentRecordID);
 	}
 
 	/**
 	* Returns the document record with the primary key.
 	*
-	* @param RecordID the primary key of the document record
+	* @param DocumentRecordID the primary key of the document record
 	* @return the document record
 	* @throws PortalException if a document record with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord getDocumentRecord(
-		java.lang.String RecordID)
+		long DocumentRecordID)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDocumentRecord(RecordID);
+		return getService().getDocumentRecord(DocumentRecordID);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -293,6 +293,13 @@ public class DocumentRecordLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
+		java.lang.String recordID)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteDocumentRecord(recordID);
+	}
+
+	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord deleteDocumentRecord(
 		java.lang.String recordName, long userID, java.lang.String subjectID,
 		java.lang.String fileTreePath)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -348,7 +355,7 @@ public class DocumentRecordLocalServiceUtil {
 	}
 
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.DocumentRecord updateDocumentRecord(
-		java.lang.String recordID, long userID, java.lang.String recordName,
+		long recordID, long userID, java.lang.String recordName,
 		java.lang.String subjectID, java.lang.String originalFormat,
 		double samplingRate, java.lang.String fileTreePath, int leadCount,
 		int numPoints, java.util.Date dateUploaded, int age,

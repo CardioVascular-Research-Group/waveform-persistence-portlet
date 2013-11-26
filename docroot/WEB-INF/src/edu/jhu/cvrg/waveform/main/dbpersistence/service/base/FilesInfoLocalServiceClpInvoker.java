@@ -31,11 +31,11 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		_methodName1 = "createFilesInfo";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteFilesInfo";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteFilesInfo";
 
@@ -74,11 +74,11 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		_methodName9 = "fetchFilesInfo";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getFilesInfo";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -116,7 +116,7 @@ public class FilesInfoLocalServiceClpInvoker {
 		_methodName68 = "addFilesInfo";
 
 		_methodParameterTypes68 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String"
+				"long", "long", "long", "long", "long"
 			};
 
 		_methodName69 = "deleteFilesInfo";
@@ -127,19 +127,19 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		_methodName70 = "deleteFilesInfo";
 
-		_methodParameterTypes70 = new String[] { "java.lang.String" };
+		_methodParameterTypes70 = new String[] { "long" };
 
 		_methodName71 = "getFile";
 
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
+		_methodParameterTypes71 = new String[] { "long" };
 
 		_methodName72 = "getFiles";
 
-		_methodParameterTypes72 = new String[] { "java.lang.String" };
+		_methodParameterTypes72 = new String[] { "long" };
 
 		_methodName73 = "getFiles";
 
-		_methodParameterTypes73 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes73 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -151,12 +151,12 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.createFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.createFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.deleteFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.deleteFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -196,12 +196,12 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.fetchFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.fetchFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.getFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.getFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -246,7 +246,8 @@ public class FilesInfoLocalServiceClpInvoker {
 			return FilesInfoLocalServiceUtil.addFilesInfo(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4]);
+				((Long)arguments[3]).longValue(),
+				((Long)arguments[4]).longValue());
 		}
 
 		if (_methodName69.equals(name) &&
@@ -256,22 +257,22 @@ public class FilesInfoLocalServiceClpInvoker {
 
 		if (_methodName70.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.deleteFilesInfo((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.deleteFilesInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.getFile((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.getFile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.getFiles((java.lang.String)arguments[0]);
+			return FilesInfoLocalServiceUtil.getFiles(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return FilesInfoLocalServiceUtil.getFiles((java.lang.String)arguments[0],
+			return FilesInfoLocalServiceUtil.getFiles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}

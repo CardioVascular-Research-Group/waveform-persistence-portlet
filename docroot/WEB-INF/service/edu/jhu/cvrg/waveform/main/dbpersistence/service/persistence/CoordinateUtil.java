@@ -137,7 +137,7 @@ public class CoordinateUtil {
 	* @return the new coordinate
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate create(
-		java.lang.String CoordinateID) {
+		long CoordinateID) {
 		return getPersistence().create(CoordinateID);
 	}
 
@@ -150,7 +150,7 @@ public class CoordinateUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate remove(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return getPersistence().remove(CoordinateID);
@@ -172,7 +172,7 @@ public class CoordinateUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate findByPrimaryKey(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchCoordinateException {
 		return getPersistence().findByPrimaryKey(CoordinateID);
@@ -186,7 +186,7 @@ public class CoordinateUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static edu.jhu.cvrg.waveform.main.dbpersistence.model.Coordinate fetchByPrimaryKey(
-		java.lang.String CoordinateID)
+		long CoordinateID)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(CoordinateID);
 	}

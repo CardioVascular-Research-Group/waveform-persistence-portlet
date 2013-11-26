@@ -168,7 +168,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	 * @param StatusLogNumber the primary key for the new upload status
 	 * @return the new upload status
 	 */
-	public UploadStatus create(String StatusLogNumber) {
+	public UploadStatus create(long StatusLogNumber) {
 		UploadStatus uploadStatus = new UploadStatusImpl();
 
 		uploadStatus.setNew(true);
@@ -185,9 +185,9 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException if a upload status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public UploadStatus remove(String StatusLogNumber)
+	public UploadStatus remove(long StatusLogNumber)
 		throws NoSuchUploadStatusException, SystemException {
-		return remove((Serializable)StatusLogNumber);
+		return remove(Long.valueOf(StatusLogNumber));
 	}
 
 	/**
@@ -306,7 +306,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 		uploadStatusImpl.setFileConversion(uploadStatus.getFileConversion());
 		uploadStatusImpl.setRecordCreation(uploadStatus.getRecordCreation());
 		uploadStatusImpl.setAnnotationCreation(uploadStatus.getAnnotationCreation());
-		uploadStatusImpl.setRecordID(uploadStatus.getRecordID());
+		uploadStatusImpl.setDocumentRecordID(uploadStatus.getDocumentRecordID());
 
 		return uploadStatusImpl;
 	}
@@ -322,7 +322,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	@Override
 	public UploadStatus findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((String)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -333,7 +333,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchUploadStatusException if a upload status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public UploadStatus findByPrimaryKey(String StatusLogNumber)
+	public UploadStatus findByPrimaryKey(long StatusLogNumber)
 		throws NoSuchUploadStatusException, SystemException {
 		UploadStatus uploadStatus = fetchByPrimaryKey(StatusLogNumber);
 
@@ -359,7 +359,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	@Override
 	public UploadStatus fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((String)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
@@ -369,7 +369,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 	 * @return the upload status, or <code>null</code> if a upload status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public UploadStatus fetchByPrimaryKey(String StatusLogNumber)
+	public UploadStatus fetchByPrimaryKey(long StatusLogNumber)
 		throws SystemException {
 		UploadStatus uploadStatus = (UploadStatus)EntityCacheUtil.getResult(UploadStatusModelImpl.ENTITY_CACHE_ENABLED,
 				UploadStatusImpl.class, StatusLogNumber);
@@ -387,7 +387,7 @@ public class UploadStatusPersistenceImpl extends BasePersistenceImpl<UploadStatu
 				session = openSession();
 
 				uploadStatus = (UploadStatus)session.get(UploadStatusImpl.class,
-						StatusLogNumber);
+						Long.valueOf(StatusLogNumber));
 			}
 			catch (Exception e) {
 				hasException = true;

@@ -77,19 +77,19 @@ public class CoordinateSoap implements Serializable {
 	public CoordinateSoap() {
 	}
 
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _CoordinateID;
 	}
 
-	public void setPrimaryKey(String pk) {
+	public void setPrimaryKey(long pk) {
 		setCoordinateID(pk);
 	}
 
-	public String getCoordinateID() {
+	public long getCoordinateID() {
 		return _CoordinateID;
 	}
 
-	public void setCoordinateID(String CoordinateID) {
+	public void setCoordinateID(long CoordinateID) {
 		_CoordinateID = CoordinateID;
 	}
 
@@ -109,7 +109,7 @@ public class CoordinateSoap implements Serializable {
 		_yCoordinate = yCoordinate;
 	}
 
-	private String _CoordinateID;
+	private long _CoordinateID;
 	private double _xCoordinate;
 	private double _yCoordinate;
 }

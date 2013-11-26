@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -78,25 +77,26 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_RECORDID = new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_DOCUMENTRECORDID =
+		new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
 			FilesInfoModelImpl.FINDER_CACHE_ENABLED, FilesInfoImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRecordID",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByDocumentRecordID",
 			new String[] {
-				String.class.getName(),
+				Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID =
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID =
 		new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
 			FilesInfoModelImpl.FINDER_CACHE_ENABLED, FilesInfoImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRecordID",
-			new String[] { String.class.getName() },
-			FilesInfoModelImpl.RECORDID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_RECORDID = new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByDocumentRecordID", new String[] { Long.class.getName() },
+			FilesInfoModelImpl.DOCUMENTRECORDID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_DOCUMENTRECORDID = new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
 			FilesInfoModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRecordID",
-			new String[] { String.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByDocumentRecordID", new String[] { Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
 			FilesInfoModelImpl.FINDER_CACHE_ENABLED, FilesInfoImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -187,14 +187,14 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	/**
 	 * Creates a new files info with the primary key. Does not add the files info to the database.
 	 *
-	 * @param DocumentID the primary key for the new files info
+	 * @param FileID the primary key for the new files info
 	 * @return the new files info
 	 */
-	public FilesInfo create(String DocumentID) {
+	public FilesInfo create(long FileID) {
 		FilesInfo filesInfo = new FilesInfoImpl();
 
 		filesInfo.setNew(true);
-		filesInfo.setPrimaryKey(DocumentID);
+		filesInfo.setPrimaryKey(FileID);
 
 		return filesInfo;
 	}
@@ -202,14 +202,14 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	/**
 	 * Removes the files info with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param DocumentID the primary key of the files info
+	 * @param FileID the primary key of the files info
 	 * @return the files info that was removed
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo remove(String DocumentID)
+	public FilesInfo remove(long FileID)
 		throws NoSuchFilesInfoException, SystemException {
-		return remove((Serializable)DocumentID);
+		return remove(Long.valueOf(FileID));
 	}
 
 	/**
@@ -311,19 +311,23 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 		else {
 			if ((filesInfoModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						filesInfoModelImpl.getOriginalRecordID()
+						Long.valueOf(filesInfoModelImpl.getOriginalDocumentRecordID())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECORDID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID,
 					args);
 
-				args = new Object[] { filesInfoModelImpl.getRecordID() };
+				args = new Object[] {
+						Long.valueOf(filesInfoModelImpl.getDocumentRecordID())
+					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECORDID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID,
 					args);
 			}
 		}
@@ -344,8 +348,8 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 		filesInfoImpl.setNew(filesInfo.isNew());
 		filesInfoImpl.setPrimaryKey(filesInfo.getPrimaryKey());
 
-		filesInfoImpl.setDocumentID(filesInfo.getDocumentID());
-		filesInfoImpl.setRecordID(filesInfo.getRecordID());
+		filesInfoImpl.setFileID(filesInfo.getFileID());
+		filesInfoImpl.setDocumentRecordID(filesInfo.getDocumentRecordID());
 
 		return filesInfoImpl;
 	}
@@ -361,28 +365,28 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	@Override
 	public FilesInfo findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey((String)primaryKey);
+		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the files info with the primary key or throws a {@link edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException} if it could not be found.
 	 *
-	 * @param DocumentID the primary key of the files info
+	 * @param FileID the primary key of the files info
 	 * @return the files info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo findByPrimaryKey(String DocumentID)
+	public FilesInfo findByPrimaryKey(long FileID)
 		throws NoSuchFilesInfoException, SystemException {
-		FilesInfo filesInfo = fetchByPrimaryKey(DocumentID);
+		FilesInfo filesInfo = fetchByPrimaryKey(FileID);
 
 		if (filesInfo == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + DocumentID);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + FileID);
 			}
 
 			throw new NoSuchFilesInfoException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				DocumentID);
+				FileID);
 		}
 
 		return filesInfo;
@@ -398,20 +402,19 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	@Override
 	public FilesInfo fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey((String)primaryKey);
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
 	 * Returns the files info with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param DocumentID the primary key of the files info
+	 * @param FileID the primary key of the files info
 	 * @return the files info, or <code>null</code> if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo fetchByPrimaryKey(String DocumentID)
-		throws SystemException {
+	public FilesInfo fetchByPrimaryKey(long FileID) throws SystemException {
 		FilesInfo filesInfo = (FilesInfo)EntityCacheUtil.getResult(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
-				FilesInfoImpl.class, DocumentID);
+				FilesInfoImpl.class, FileID);
 
 		if (filesInfo == _nullFilesInfo) {
 			return null;
@@ -426,7 +429,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 				session = openSession();
 
 				filesInfo = (FilesInfo)session.get(FilesInfoImpl.class,
-						DocumentID);
+						Long.valueOf(FileID));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -439,7 +442,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 				}
 				else if (!hasException) {
 					EntityCacheUtil.putResult(FilesInfoModelImpl.ENTITY_CACHE_ENABLED,
-						FilesInfoImpl.class, DocumentID, _nullFilesInfo);
+						FilesInfoImpl.class, FileID, _nullFilesInfo);
 				}
 
 				closeSession(session);
@@ -450,63 +453,68 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Returns all the files infos where RecordID = &#63;.
+	 * Returns all the files infos where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the matching files infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FilesInfo> findByRecordID(String RecordID)
+	public List<FilesInfo> findByDocumentRecordID(long DocumentRecordID)
 		throws SystemException {
-		return findByRecordID(RecordID, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByDocumentRecordID(DocumentRecordID, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the files infos where RecordID = &#63;.
+	 * Returns a range of all the files infos where DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of files infos
 	 * @param end the upper bound of the range of files infos (not inclusive)
 	 * @return the range of matching files infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FilesInfo> findByRecordID(String RecordID, int start, int end)
-		throws SystemException {
-		return findByRecordID(RecordID, start, end, null);
+	public List<FilesInfo> findByDocumentRecordID(long DocumentRecordID,
+		int start, int end) throws SystemException {
+		return findByDocumentRecordID(DocumentRecordID, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the files infos where RecordID = &#63;.
+	 * Returns an ordered range of all the files infos where DocumentRecordID = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param start the lower bound of the range of files infos
 	 * @param end the upper bound of the range of files infos (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching files infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FilesInfo> findByRecordID(String RecordID, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+	public List<FilesInfo> findByDocumentRecordID(long DocumentRecordID,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECORDID;
-			finderArgs = new Object[] { RecordID };
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_DOCUMENTRECORDID;
+			finderArgs = new Object[] { DocumentRecordID };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_RECORDID;
-			finderArgs = new Object[] { RecordID, start, end, orderByComparator };
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_DOCUMENTRECORDID;
+			finderArgs = new Object[] {
+					DocumentRecordID,
+					
+					start, end, orderByComparator
+				};
 		}
 
 		List<FilesInfo> list = (List<FilesInfo>)FinderCacheUtil.getResult(finderPath,
@@ -514,7 +522,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 		if ((list != null) && !list.isEmpty()) {
 			for (FilesInfo filesInfo : list) {
-				if (!Validator.equals(RecordID, filesInfo.getRecordID())) {
+				if ((DocumentRecordID != filesInfo.getDocumentRecordID())) {
 					list = null;
 
 					break;
@@ -535,17 +543,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 			query.append(_SQL_SELECT_FILESINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -563,9 +561,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				list = (List<FilesInfo>)QueryUtil.list(q, getDialect(), start,
 						end);
@@ -591,18 +587,19 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Returns the first files info in the ordered set where RecordID = &#63;.
+	 * Returns the first files info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching files info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a matching files info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo findByRecordID_First(String RecordID,
+	public FilesInfo findByDocumentRecordID_First(long DocumentRecordID,
 		OrderByComparator orderByComparator)
 		throws NoSuchFilesInfoException, SystemException {
-		FilesInfo filesInfo = fetchByRecordID_First(RecordID, orderByComparator);
+		FilesInfo filesInfo = fetchByDocumentRecordID_First(DocumentRecordID,
+				orderByComparator);
 
 		if (filesInfo != null) {
 			return filesInfo;
@@ -612,8 +609,8 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("RecordID=");
-		msg.append(RecordID);
+		msg.append("DocumentRecordID=");
+		msg.append(DocumentRecordID);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -621,67 +618,16 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Returns the first files info in the ordered set where RecordID = &#63;.
+	 * Returns the first files info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching files info, or <code>null</code> if a matching files info could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo fetchByRecordID_First(String RecordID,
+	public FilesInfo fetchByDocumentRecordID_First(long DocumentRecordID,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<FilesInfo> list = findByRecordID(RecordID, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last files info in the ordered set where RecordID = &#63;.
-	 *
-	 * @param RecordID the record i d
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching files info
-	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a matching files info could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FilesInfo findByRecordID_Last(String RecordID,
-		OrderByComparator orderByComparator)
-		throws NoSuchFilesInfoException, SystemException {
-		FilesInfo filesInfo = fetchByRecordID_Last(RecordID, orderByComparator);
-
-		if (filesInfo != null) {
-			return filesInfo;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("RecordID=");
-		msg.append(RecordID);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFilesInfoException(msg.toString());
-	}
-
-	/**
-	 * Returns the last files info in the ordered set where RecordID = &#63;.
-	 *
-	 * @param RecordID the record i d
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching files info, or <code>null</code> if a matching files info could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FilesInfo fetchByRecordID_Last(String RecordID,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByRecordID(RecordID);
-
-		List<FilesInfo> list = findByRecordID(RecordID, count - 1, count,
+		List<FilesInfo> list = findByDocumentRecordID(DocumentRecordID, 0, 1,
 				orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -692,19 +638,72 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Returns the files infos before and after the current files info in the ordered set where RecordID = &#63;.
+	 * Returns the last files info in the ordered set where DocumentRecordID = &#63;.
 	 *
-	 * @param DocumentID the primary key of the current files info
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching files info
+	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a matching files info could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FilesInfo findByDocumentRecordID_Last(long DocumentRecordID,
+		OrderByComparator orderByComparator)
+		throws NoSuchFilesInfoException, SystemException {
+		FilesInfo filesInfo = fetchByDocumentRecordID_Last(DocumentRecordID,
+				orderByComparator);
+
+		if (filesInfo != null) {
+			return filesInfo;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("DocumentRecordID=");
+		msg.append(DocumentRecordID);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFilesInfoException(msg.toString());
+	}
+
+	/**
+	 * Returns the last files info in the ordered set where DocumentRecordID = &#63;.
+	 *
+	 * @param DocumentRecordID the document record i d
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching files info, or <code>null</code> if a matching files info could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FilesInfo fetchByDocumentRecordID_Last(long DocumentRecordID,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByDocumentRecordID(DocumentRecordID);
+
+		List<FilesInfo> list = findByDocumentRecordID(DocumentRecordID,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the files infos before and after the current files info in the ordered set where DocumentRecordID = &#63;.
+	 *
+	 * @param FileID the primary key of the current files info
+	 * @param DocumentRecordID the document record i d
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next files info
 	 * @throws edu.jhu.cvrg.waveform.main.dbpersistence.NoSuchFilesInfoException if a files info with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FilesInfo[] findByRecordID_PrevAndNext(String DocumentID,
-		String RecordID, OrderByComparator orderByComparator)
+	public FilesInfo[] findByDocumentRecordID_PrevAndNext(long FileID,
+		long DocumentRecordID, OrderByComparator orderByComparator)
 		throws NoSuchFilesInfoException, SystemException {
-		FilesInfo filesInfo = findByPrimaryKey(DocumentID);
+		FilesInfo filesInfo = findByPrimaryKey(FileID);
 
 		Session session = null;
 
@@ -713,13 +712,13 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 			FilesInfo[] array = new FilesInfoImpl[3];
 
-			array[0] = getByRecordID_PrevAndNext(session, filesInfo, RecordID,
-					orderByComparator, true);
+			array[0] = getByDocumentRecordID_PrevAndNext(session, filesInfo,
+					DocumentRecordID, orderByComparator, true);
 
 			array[1] = filesInfo;
 
-			array[2] = getByRecordID_PrevAndNext(session, filesInfo, RecordID,
-					orderByComparator, false);
+			array[2] = getByDocumentRecordID_PrevAndNext(session, filesInfo,
+					DocumentRecordID, orderByComparator, false);
 
 			return array;
 		}
@@ -731,8 +730,8 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 		}
 	}
 
-	protected FilesInfo getByRecordID_PrevAndNext(Session session,
-		FilesInfo filesInfo, String RecordID,
+	protected FilesInfo getByDocumentRecordID_PrevAndNext(Session session,
+		FilesInfo filesInfo, long DocumentRecordID,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -746,17 +745,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 		query.append(_SQL_SELECT_FILESINFO_WHERE);
 
-		if (RecordID == null) {
-			query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-		}
-		else {
-			if (RecordID.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-			}
-		}
+		query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -823,9 +812,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (RecordID != null) {
-			qPos.add(RecordID);
-		}
+		qPos.add(DocumentRecordID);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(filesInfo);
@@ -961,13 +948,14 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Removes all the files infos where RecordID = &#63; from the database.
+	 * Removes all the files infos where DocumentRecordID = &#63; from the database.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByRecordID(String RecordID) throws SystemException {
-		for (FilesInfo filesInfo : findByRecordID(RecordID)) {
+	public void removeByDocumentRecordID(long DocumentRecordID)
+		throws SystemException {
+		for (FilesInfo filesInfo : findByDocumentRecordID(DocumentRecordID)) {
 			remove(filesInfo);
 		}
 	}
@@ -984,16 +972,17 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	}
 
 	/**
-	 * Returns the number of files infos where RecordID = &#63;.
+	 * Returns the number of files infos where DocumentRecordID = &#63;.
 	 *
-	 * @param RecordID the record i d
+	 * @param DocumentRecordID the document record i d
 	 * @return the number of matching files infos
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByRecordID(String RecordID) throws SystemException {
-		Object[] finderArgs = new Object[] { RecordID };
+	public int countByDocumentRecordID(long DocumentRecordID)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { DocumentRecordID };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RECORDID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1001,17 +990,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 			query.append(_SQL_COUNT_FILESINFO_WHERE);
 
-			if (RecordID == null) {
-				query.append(_FINDER_COLUMN_RECORDID_RECORDID_1);
-			}
-			else {
-				if (RecordID.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_RECORDID_RECORDID_2);
-				}
-			}
+			query.append(_FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2);
 
 			String sql = query.toString();
 
@@ -1024,9 +1003,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (RecordID != null) {
-					qPos.add(RecordID);
-				}
+				qPos.add(DocumentRecordID);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1038,7 +1015,7 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_RECORDID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DOCUMENTRECORDID,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1135,9 +1112,8 @@ public class FilesInfoPersistenceImpl extends BasePersistenceImpl<FilesInfo>
 	private static final String _SQL_SELECT_FILESINFO_WHERE = "SELECT filesInfo FROM FilesInfo filesInfo WHERE ";
 	private static final String _SQL_COUNT_FILESINFO = "SELECT COUNT(filesInfo) FROM FilesInfo filesInfo";
 	private static final String _SQL_COUNT_FILESINFO_WHERE = "SELECT COUNT(filesInfo) FROM FilesInfo filesInfo WHERE ";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_1 = "filesInfo.RecordID IS NULL";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_2 = "filesInfo.RecordID = ?";
-	private static final String _FINDER_COLUMN_RECORDID_RECORDID_3 = "(filesInfo.RecordID IS NULL OR filesInfo.RecordID = ?)";
+	private static final String _FINDER_COLUMN_DOCUMENTRECORDID_DOCUMENTRECORDID_2 =
+		"filesInfo.DocumentRecordID = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "filesInfo.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No FilesInfo exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No FilesInfo exists with the key {";

@@ -31,11 +31,11 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		_methodName1 = "createAnnotationInfo";
 
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteAnnotationInfo";
 
-		_methodParameterTypes2 = new String[] { "java.lang.String" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteAnnotationInfo";
 
@@ -74,11 +74,11 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		_methodName9 = "fetchAnnotationInfo";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "long" };
 
 		_methodName10 = "getAnnotationInfo";
 
-		_methodParameterTypes10 = new String[] { "java.lang.String" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getPersistedModel";
 
@@ -116,11 +116,10 @@ public class AnnotationInfoLocalServiceClpInvoker {
 		_methodName68 = "addAnnotationInfo";
 
 		_methodParameterTypes68 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"long", "long", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date"
+				"java.lang.String", "long", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.util.Date"
 			};
 
 		_methodName69 = "deleteAnnotationInfo";
@@ -135,29 +134,27 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		_methodName71 = "getAnnotationsByRecord";
 
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
+		_methodParameterTypes71 = new String[] { "long" };
 
 		_methodName72 = "getAnnotationsByRecord";
 
-		_methodParameterTypes72 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes72 = new String[] { "long", "int", "int" };
 
 		_methodName73 = "getAnnotation";
 
 		_methodParameterTypes73 = new String[] {
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
 		_methodName74 = "getAnnotationsByType";
 
-		_methodParameterTypes74 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes74 = new String[] { "long", "java.lang.String" };
 
 		_methodName75 = "getAnnotationsByType";
 
 		_methodParameterTypes75 = new String[] {
-				"java.lang.String", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -170,12 +167,12 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.createAnnotationInfo((java.lang.String)arguments[0]);
+			return AnnotationInfoLocalServiceUtil.createAnnotationInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.deleteAnnotationInfo((java.lang.String)arguments[0]);
+			return AnnotationInfoLocalServiceUtil.deleteAnnotationInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -215,12 +212,12 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.fetchAnnotationInfo((java.lang.String)arguments[0]);
+			return AnnotationInfoLocalServiceUtil.fetchAnnotationInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotationInfo((java.lang.String)arguments[0]);
+			return AnnotationInfoLocalServiceUtil.getAnnotationInfo(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
@@ -265,11 +262,12 @@ public class AnnotationInfoLocalServiceClpInvoker {
 			return AnnotationInfoLocalServiceUtil.addAnnotationInfo(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				(java.lang.String)arguments[7], (java.lang.String)arguments[8],
-				(java.lang.String)arguments[9],
-				(java.lang.String)arguments[10],
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6], (java.lang.String)arguments[7],
+				(java.lang.String)arguments[8],
+				((Long)arguments[9]).longValue(),
+				((Long)arguments[10]).longValue(),
 				(java.lang.String)arguments[11],
 				(java.lang.String)arguments[12],
 				(java.lang.String)arguments[13], (java.util.Date)arguments[14]);
@@ -287,32 +285,32 @@ public class AnnotationInfoLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord((java.lang.String)arguments[0]);
+			return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord((java.lang.String)arguments[0],
+			return AnnotationInfoLocalServiceUtil.getAnnotationsByRecord(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotation((java.lang.String)arguments[0],
+			return AnnotationInfoLocalServiceUtil.getAnnotation(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
 		}
 
 		if (_methodName74.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotationsByType((java.lang.String)arguments[0],
+			return AnnotationInfoLocalServiceUtil.getAnnotationsByType(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return AnnotationInfoLocalServiceUtil.getAnnotationsByType((java.lang.String)arguments[0],
+			return AnnotationInfoLocalServiceUtil.getAnnotationsByType(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
